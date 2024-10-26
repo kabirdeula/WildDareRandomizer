@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import 'app/app.dart';
 import 'screens/screen.dart';
 
 void main() async {
@@ -14,9 +15,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Uno Dare Randomizer',
-      home: HomeScreen(),
+    return MaterialApp(
+      title: Config.kAppName,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.system,
+      home: const HomeScreen(),
     );
   }
 }
