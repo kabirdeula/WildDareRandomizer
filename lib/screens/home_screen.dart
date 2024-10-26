@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:wild_dare_randomizer/package.dart';
+
+import 'screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
