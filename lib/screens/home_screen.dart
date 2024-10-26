@@ -1,90 +1,22 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:wild_dare_randomizer/app/app.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wild_dare_randomizer/data/models/model.dart';
+import 'package:wild_dare_randomizer/providers/provider.dart';
 
 import 'screen.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final rulesAsyncValue = ref.watch(rulesProvider);
+    final bool isGridView = ref.watch<bool>(viewModeProvider);
 
-class _HomeScreenState extends State<HomeScreen> {
-  List<RuleModel> randomizedRules = [];
-  bool isGridView = false;
-
-  @override
-  void initState() {
-    super.initState();
-    loadInitialRules();
-  }
-
-  void loadInitialRules() async {
-    List<RuleModel> predefinedRules = await loadRulesFromJson();
-
-    var box = Hive.box(Config.kHiveBox);
-    List<RuleModel> customRules = [];
-
-    for (var rule in box.values) {
-      if (rule is Map &&
-          rule.containsKey('title') &&
-          rule.containsKey('description')) {
-        customRules.add(
-          RuleModel(title: rule['title'], description: rule['description']),
-        );
-      }
+    void toggleViewMode() {
+      ref.read(viewModeProvider.notifier).state = !isGridView;
     }
 
-    setState(() {
-      randomizedRules = [...predefinedRules, ...customRules];
-      randomizedRules.shuffle();
-      randomizedRules = randomizedRules.take(16).toList();
-    });
-  }
-
-  Future<List<RuleModel>> loadRulesFromJson() async {
-    final String response = await rootBundle.loadString('assets/rules.json');
-    final List<dynamic> data = json.decode(response);
-
-    return data.map((json) => RuleModel.fromJson(json)).toList();
-  }
-
-  void randomizeRules() async {
-    var box = Hive.box(Config.kHiveBox);
-    List<RuleModel> customRules = [];
-
-    for (var rule in box.values) {
-      if (rule is Map &&
-          rule.containsKey('title') &&
-          rule.containsKey('description')) {
-        customRules.add(
-          RuleModel(title: rule['title'], description: rule['description']),
-        );
-      }
-    }
-
-    List<RuleModel> allRules = [...await loadRulesFromJson(), ...customRules];
-    allRules.shuffle();
-
-    setState(() {
-      randomizedRules = allRules.take(16).toList();
-    });
-  }
-
-  void toggleViewMode() {
-    setState(() {
-      isGridView = !isGridView;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Uno Dare Randomizer'),
@@ -108,11 +40,25 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Column(
         children: [
-          Expanded(child: isGridView ? buildGridView() : buildListView()),
+          Expanded(
+            child: rulesAsyncValue.when(
+              data: (rules) {
+                // ref.read(randomizedRuleProvider.notifier).state = rules;
+                return isGridView ? buildGridView(rules) : buildListView(rules);
+              },
+              error: (error, stack) => Center(
+                child: Text('Error : $error'),
+              ),
+              loading: () => const Center(
+                child: CircularProgressIndicator(),
+              ),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
-              onPressed: randomizeRules,
+              // onPressed: randomizeRules,
+              onPressed: () => ref.refresh(rulesProvider),
               child: const Text('Randomize Rules'),
             ),
           ),
@@ -121,19 +67,20 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget buildListView() {
+  
+  Widget buildListView(List<RuleModel> rules) {
     return ListView.builder(
-      itemCount: randomizedRules.length,
+      itemCount: rules.length,
       itemBuilder: (context, index) {
         return ListTile(
-          title: Text('${index + 1}: ${randomizedRules[index].title}'),
-          subtitle: Text(randomizedRules[index].description),
+          title: Text('${index + 1}: ${rules[index].title}'),
+          subtitle: Text(rules[index].description),
         );
       },
     );
   }
 
-  Widget buildGridView() {
+  Widget buildGridView(List<RuleModel> rules) {
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
@@ -141,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
       ),
-      itemCount: randomizedRules.length,
+      itemCount: rules.length,
       itemBuilder: (context, index) {
         return Card(
           child: Padding(
@@ -150,13 +97,13 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '${index + 1}: ${randomizedRules[index].title}',
+                  '${index + 1}: ${rules[index].title}',
                   style: const TextStyle(fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  randomizedRules[index].description,
+                  rules[index].description,
                   textAlign: TextAlign.center,
                 ),
               ],
