@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Skip Two Turns",
+    "description": "The next player skips two turns."
+  },
+  {
+    "title": "Discard Same Color",
+    "description": "You can discard all cards of the same color in one turn. If you have only one card left in your hand, you cannot discard it. The next player must draw 2 cards."
+  },
+  {
+    "title": "Take 15 Cards",
+    "description": "You must draw 15 cards from the deck."
+  },
+  {
+    "title": "All Players Draw 5",
+    "description": "All players must draw 5 cards."
+  },
+  {
+    "title": "Discard Same Number",
+    "description": "You can discard all cards with the same number at once. If you have only one card left in your hand, you cannot discard it. The next player must draw 2 cards."
+  },
+  {
+    "title": "Swap Hands",
+    "description": "You can swap hands with any player of your choice."
+  },
+  {
+    "title": "Silent Round",
+    "description": "No talking is allowed for the rest of the round. If a player talks during this round, they must draw 5 cards if they hold less than five cards, or draw 10 cards if they hold five or more cards."
+  },
+  {
+    "title": "Shuffle and Play",
+    "description": "Shuffle the deck and play one card from your hand."
+  },
+  {
+    "title": "Trade Hands",
+    "description": "Trade hands with the player next to you."
+  },
+  {
+    "title": "No Special Cards",
+    "description": "Special cards cannot be played for two rounds"
+  },
+  {
+    "title": "Ultimate Uno",
+    "description": "All players must play with open cards for one round."
+  },
+  {
+    "title": "Mystery Card",
+    "description": "Reveal a card from the deck; players must follow its action."
+  },
+  {
+    "title": "Limitless Play",
+    "description": "During your turn, you can play as many cards as you want, provided they match the color or number of the top card in the discard pile."
+  },
+  {
+    "title": "Time Limit",
+    "description": "Each player has 30 seconds to play their turn or must draw a card."
+  },
+  {
+    "title": "Double Trouble",
+    "description": "If you play two cards of the same number in one turn, the next player must draw three cards. If you are unable to play two cards of the same number, the game continues as normal."
+  }
+]
