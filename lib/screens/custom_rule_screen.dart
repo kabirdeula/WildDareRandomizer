@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:wild_dare_randomizer/app/app.dart';
 
 class CustomRuleScreen extends StatefulWidget {
   const CustomRuleScreen({super.key});
@@ -12,7 +12,7 @@ class CustomRuleScreen extends StatefulWidget {
 class _CustomRuleScreenState extends State<CustomRuleScreen> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-  final box = Hive.box('unoDareRuleBox');
+  final box = Hive.box(Config.kHiveBox);
 
   void addCustomRule() {
     if (titleController.text.isNotEmpty &&

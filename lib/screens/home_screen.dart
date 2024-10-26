@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:wild_dare_randomizer/app/app.dart';
 
 import 'screen.dart';
 
@@ -43,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void loadInitialRules() async {
-    var box = Hive.box('unoDareRuleBox');
+    var box = Hive.box(Config.kHiveBox);
     List<MapEntry<String, String>> customRules = [];
 
     for (var rule in box.values) {
@@ -62,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void randomizeRules() async {
-    var box = Hive.box('unoDareRuleBox');
+    var box = Hive.box(Config.kHiveBox);
     List<MapEntry<String, String>> customRules = [];
 
     for (var rule in box.values) {
