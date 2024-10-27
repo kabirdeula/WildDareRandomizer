@@ -21,4 +21,16 @@ class RuleRepository {
     allRules.shuffle();
     return allRules.take(16).toList();
   }
+
+  Future<void> addRule(RuleModel rule) async {
+    await _hiveService.addRule(rule);
+  }
+
+  Future<void> updateRule(int index, RuleModel rule) async {
+    await _hiveService.updateRule(index, rule);
+  }
+
+  Future<void> deleteRule(int index) async {
+    await _hiveService.deleteRule(index);
+  }
 }
