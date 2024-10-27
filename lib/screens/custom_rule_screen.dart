@@ -80,7 +80,7 @@ class _CustomRuleScreenState extends State<CustomRuleScreen> {
                     if (rule is Map &&
                         rule.containsKey('title') &&
                         rule.containsKey('description')) {
-                      print('Rules in box: ${box.toMap()}');
+                      
                       // Ensure the rule is a Map
                       return ListTile(
                         title: Text(rule['title'] ??

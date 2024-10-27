@@ -1,98 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:wild_dare_randomizer/app/app.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wild_dare_randomizer/data/models/model.dart';
+import 'package:wild_dare_randomizer/providers/provider.dart';
 
 import 'screen.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final rulesAsyncValue = ref.watch(rulesProvider);
+    final bool isGridView = ref.watch<bool>(viewModeProvider);
 
-class _HomeScreenState extends State<HomeScreen> {
-  Map<String, String> predefinedRules = {
-    'Skip Two Turns': 'The next player skips two turns.',
-    'Discard Same Color':
-        'You can discard all cards of the same color in one turn.',
-    'Take 15 Cards': 'You must draw 15 cards from the deck.',
-    'Reverse Skip':
-        'The turn order is reversed, and the next player is skipped.',
-    'Stack Draws': 'You can stack draw cards until the next player draws.',
-    'All Players Draw 5': 'All players must draw 5 cards.',
-    'Discard Same Number':
-        'You can discard all cards with the same number at once.',
-    'Swap Hands': 'You can swap hands with any player of your choice.',
-    'Free Pass': 'You get a free pass and skip your turn.',
-    'Wild Draw Skip': 'You can play a wild draw card and skip the next player.',
-    'Discard or Draw': 'You either discard one card or draw one card.',
-    'Silent Round': 'No talking is allowed for the rest of the round.',
-    'Shuffle but Escape': 'Shuffle the deck but skip your turn.',
-    'Trade Hands': 'Trade hands with the player next to you.',
-    'No Special Cards': 'Special cards cannot be played until the next round.',
-    'Ultimate Uno': 'All players must play with open cards for one round.'
-  };
-
-  List<MapEntry<String, String>> randomizedRules = [];
-  bool isGridView = false;
-
-  @override
-  void initState() {
-    super.initState();
-    loadInitialRules();
-  }
-
-  void loadInitialRules() async {
-    var box = Hive.box(Config.kHiveBox);
-    List<MapEntry<String, String>> customRules = [];
-
-    for (var rule in box.values) {
-      if (rule is Map &&
-          rule.containsKey('title') &&
-          rule.containsKey('description')) {
-        customRules.add(MapEntry(rule['title'], rule['description']));
-      }
+    void toggleViewMode() {
+      ref.read(viewModeProvider.notifier).state = !isGridView;
     }
 
-    setState(() {
-      randomizedRules = [...predefinedRules.entries, ...customRules];
-      randomizedRules.shuffle();
-      randomizedRules = randomizedRules.take(16).toList();
-    });
-  }
-
-  void randomizeRules() async {
-    var box = Hive.box(Config.kHiveBox);
-    List<MapEntry<String, String>> customRules = [];
-
-    for (var rule in box.values) {
-      if (rule is Map &&
-          rule.containsKey('title') &&
-          rule.containsKey('description')) {
-        customRules.add(MapEntry(rule['title'], rule['description']));
-      }
-    }
-
-    List<MapEntry<String, String>> allRules = [
-      ...predefinedRules.entries,
-      ...customRules
-    ];
-    allRules.shuffle();
-
-    setState(() {
-      randomizedRules = allRules.take(16).toList();
-    });
-  }
-
-  void toggleViewMode() {
-    setState(() {
-      isGridView = !isGridView;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Uno Dare Randomizer'),
@@ -116,11 +40,25 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Column(
         children: [
-          Expanded(child: isGridView ? buildGridView() : buildListView()),
+          Expanded(
+            child: rulesAsyncValue.when(
+              data: (rules) {
+                // ref.read(randomizedRuleProvider.notifier).state = rules;
+                return isGridView ? buildGridView(rules) : buildListView(rules);
+              },
+              error: (error, stack) => Center(
+                child: Text('Error : $error'),
+              ),
+              loading: () => const Center(
+                child: CircularProgressIndicator(),
+              ),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
-              onPressed: randomizeRules,
+              // onPressed: randomizeRules,
+              onPressed: () => ref.refresh(rulesProvider),
               child: const Text('Randomize Rules'),
             ),
           ),
@@ -129,27 +67,28 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget buildListView() {
+  
+  Widget buildListView(List<RuleModel> rules) {
     return ListView.builder(
-      itemCount: randomizedRules.length,
+      itemCount: rules.length,
       itemBuilder: (context, index) {
         return ListTile(
-          title: Text('${index + 1}: ${randomizedRules[index].key}'),
-          subtitle: Text(randomizedRules[index].value),
+          title: Text('${index + 1}: ${rules[index].title}'),
+          subtitle: Text(rules[index].description),
         );
       },
     );
   }
 
-  Widget buildGridView() {
+  Widget buildGridView(List<RuleModel> rules) {
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 1.5,
+        childAspectRatio: 1,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
       ),
-      itemCount: randomizedRules.length,
+      itemCount: rules.length,
       itemBuilder: (context, index) {
         return Card(
           child: Padding(
@@ -158,13 +97,13 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '${index + 1}: ${randomizedRules[index].key}',
+                  '${index + 1}: ${rules[index].title}',
                   style: const TextStyle(fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  randomizedRules[index].value,
+                  rules[index].description,
                   textAlign: TextAlign.center,
                 ),
               ],
