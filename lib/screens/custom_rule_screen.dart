@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:wild_dare_randomizer/app/app.dart';
+import 'package:wild_dare_randomizer/utils/util.dart';
 
 class CustomRuleScreen extends StatefulWidget {
   const CustomRuleScreen({super.key});
@@ -30,11 +31,8 @@ class _CustomRuleScreenState extends State<CustomRuleScreen> {
       titleController.clear();
       descriptionController.clear();
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Rule added'),
-        ),
-      );
+      SnackbarUtil.showSnackbar(context, 'Rule added');
+
       setState(() {});
     }
   }
@@ -80,7 +78,6 @@ class _CustomRuleScreenState extends State<CustomRuleScreen> {
                     if (rule is Map &&
                         rule.containsKey('title') &&
                         rule.containsKey('description')) {
-                      
                       // Ensure the rule is a Map
                       return ListTile(
                         title: Text(rule['title'] ??
