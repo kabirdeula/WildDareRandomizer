@@ -58,5 +58,49 @@
   {
     "title": "Double Trouble",
     "description": "If you play two cards of the same number in one turn, the next player must draw three cards. If you are unable to play two cards of the same number, the game continues as normal."
+  },
+  {
+    "title": "Skip 2 Players",
+    "description": "The next two players lose their turns."
+  },
+  {
+    "title": "Swap Hands with Fewest Cards Player",
+    "description": "Give them your large hand and take their small one."
+  },
+  {
+    "title": "Draw Until Wild Card",
+    "description": "No stopping until you get a Wild card!"
+  },
+  {
+    "title": "Reveal Your Hand",
+    "description": "Next Player plays with your cards exposed until your next turn."
+  },
+  {
+    "title": "Give Half to Next Player",
+    "description": "The unlucky next player must take half your hand."
+  },
+  {
+    "title": "Discard One Color, Next Draws 5",
+    "description": "You clear one color, but the next player pays the price by drawing 5 cards."
+  },
+  {
+    "title": "Change Color, Next Draws 4",
+    "description": "Change the color, and if the next player doesn’t have it, they must draw 4 cards."
+  },
+  {
+    "title": "Shuffle and Distribute",
+    "description": "Shuffle all the cards except yours and distribute them."
+  },
+  {
+    "title": "Skip Next 3 Turns",
+    "description": "Miss three turns in a row."
+  },
+  {
+    "title": "Draw Until Even Card",
+    "description": "The next player must draw until they get an even-numbered card."
+  },
+  {
+    "title": "Lose Hand and Draw 7",
+    "description": "The next player loses their entire hand and draws 7 fresh cards."
   }
 ]
