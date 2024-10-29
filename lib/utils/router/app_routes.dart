@@ -1,16 +1,17 @@
 import 'package:go_router/go_router.dart';
 import 'package:wild_dare_randomizer/screens/screen.dart';
+import 'package:wild_dare_randomizer/utils/enums/routes.dart';
 
 class AppRoutes {
   static final GoRouter router = GoRouter(routes: [
     GoRoute(
-      path: '/',
-      name: 'home',
+      path: Routes.initial.path,
+      name: Routes.initial.name,
       builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
-      path: '/rules',
-      name: 'rules',
+      path: Routes.rules.path,
+      name: Routes.rules.name,
       builder: (context, state) => const CustomRuleScreen(),
     ),
   ]);
