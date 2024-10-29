@@ -1,42 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:wild_dare_randomizer/app/app.dart';
 
 class AppTheme {
-  static const Color kLightPrimaryColor = Color(0xFF7E60BF);
-  static const Color kLightSecondaryColor = Color(0xFF387478);
-  static const Color kLightBackgroundColor = Color(0xFFF8F9FA);
-
-  static const Color kDarkPrimaryColor = Color(0xFF433878);
-  static const Color kDarkSecondaryColor = Color(0xFF243642);
-  static const Color kDarkBackgroundColor = Color(0xFF121212);
-
   static final ThemeData lightTheme = ThemeData(
-    primaryColor: kLightPrimaryColor,
-    colorScheme: const ColorScheme.light(
-      primary: kLightPrimaryColor,
-      secondary: kLightSecondaryColor,
-      surface: kLightBackgroundColor,
-      onSurface: Colors.black,
+    primaryColor: AppColor.kLightPrimaryColor,
+    colorScheme: ColorScheme.light(
+      primary: AppColor.kLightPrimaryColor,
+      secondary: AppColor.kLightSecondaryColor,
+      surface: AppColor.kBgPrimaryColor,
+      onSurface: AppColor.kBgSecondaryColor,
     ),
-    scaffoldBackgroundColor: kLightBackgroundColor,
-    appBarTheme: const AppBarTheme(
-      backgroundColor: kLightPrimaryColor,
-      foregroundColor: Colors.white,
+    scaffoldBackgroundColor: AppColor.kBackgroundColor,
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColor.kBackgroundColor,
+      foregroundColor: AppColor.kLightPrimaryColor,
     ),
     brightness: Brightness.light,
   );
 
   static final ThemeData darkTheme = ThemeData(
-    primaryColor: kDarkPrimaryColor,
-    colorScheme: const ColorScheme.dark(
-      primary: kDarkPrimaryColor,
-      secondary: kDarkSecondaryColor,
-      surface: kDarkBackgroundColor,
+    primaryColor: AppColor.kDarkModePrimaryColor,
+    colorScheme: ColorScheme.dark(
+      primary: AppColor.kDarkModePrimaryColor,
+      secondary: AppColor.kDarkModeSecondaryColor,
+      surface: AppColor.kBgPrimaryColor,
       onSurface: Colors.white,
     ),
-    scaffoldBackgroundColor: kDarkBackgroundColor,
-    appBarTheme: const AppBarTheme(
-      backgroundColor: kDarkPrimaryColor,
-      foregroundColor: Colors.white,
+    scaffoldBackgroundColor: AppColor.kBgPrimaryColor,
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColor.kBackgroundColor,
+      foregroundColor: AppColor.kDarkModePrimaryColor,
     ),
     brightness: Brightness.dark,
   );
