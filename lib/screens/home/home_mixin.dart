@@ -16,4 +16,19 @@ mixin HomeMixin {
             ? 4
             : 6;
   }
+
+  Color getRuleColor(int index) {
+    switch (index % 4) {
+      case 0:
+        return Colors.red;
+      case 1:
+        return Colors.blue;
+      case 2:
+        return Colors.green;
+      case 3:
+        return Colors.yellow;
+      default:
+        return Colors.purple;
+    }
+  }
 }

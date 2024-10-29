@@ -21,7 +21,7 @@ class RuleGridView extends StatelessWidget with HomeMixin {
       itemBuilder: (context, index) {
         return Card(
           elevation: 2,
-          color: Colors.white54,
+          color: getRuleColor(index),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
