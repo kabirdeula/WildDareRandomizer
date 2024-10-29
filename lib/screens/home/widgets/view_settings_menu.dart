@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:wild_dare_randomizer/providers/provider.dart';
 import 'package:wild_dare_randomizer/screens/home/home_mixin.dart';
+import 'package:wild_dare_randomizer/utils/enums/routes.dart';
 
 class ViewSettingsMenu extends ConsumerWidget with HomeMixin {
   final bool isGridView;
@@ -20,7 +22,7 @@ class ViewSettingsMenu extends ConsumerWidget with HomeMixin {
             toggleViewMode(ref, isGridView);
             break;
           case 1:
-            navigateToCustomRules(context);
+            context.go(Routes.rules.path);
             break;
         }
       },
