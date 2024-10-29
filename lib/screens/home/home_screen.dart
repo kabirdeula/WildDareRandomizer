@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wild_dare_randomizer/data/models/model.dart';
 import 'package:wild_dare_randomizer/providers/provider.dart';
-
-import 'screen.dart';
+import 'package:wild_dare_randomizer/screens/screen.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
