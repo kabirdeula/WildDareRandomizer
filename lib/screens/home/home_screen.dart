@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wild_dare_randomizer/data/models/model.dart';
 import 'package:wild_dare_randomizer/providers/provider.dart';
-import 'package:wild_dare_randomizer/screens/screen.dart';
+import 'package:wild_dare_randomizer/screens/home/widgets/view_settings_menu.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -11,72 +11,12 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final rulesAsyncValue = ref.watch(rulesProvider);
     final bool isGridView = ref.watch<bool>(viewModeProvider);
-    final themeNotifier = ref.read(themeProvider.notifier);
-    final isDarkMode = ref.watch(themeProvider) == ThemeMode.dark;
-
-    void toggleViewMode() {
-      ref.read(viewModeProvider.notifier).state = !isGridView;
-    }
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Uno Dare Randomizer'),
         actions: [
-          PopupMenuButton(
-            onSelected: (value) {
-              switch (value) {
-                case 0:
-                  toggleViewMode();
-                  break;
-                case 1:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => const CustomRuleScreen()),
-                  );
-                  break;
-              }
-            },
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                value: 0,
-                child: Row(
-                  children: [
-                    Icon(isGridView ? Icons.view_list : Icons.grid_view),
-                    const SizedBox(width: 8),
-                    Text(
-                      isGridView
-                          ? 'Switch to List View'
-                          : 'Switch to Grid View',
-                    ),
-                  ],
-                ),
-              ),
-              const PopupMenuItem(
-                value: 1,
-                child: Row(
-                  children: [
-                    Icon(Icons.settings),
-                    SizedBox(width: 8),
-                    Text('Custom Rules'),
-                  ],
-                ),
-              ),
-              PopupMenuItem(
-                child: Row(
-                  children: [
-                    const Text('Dark Mode'),
-                    const Spacer(),
-                    Switch(
-                      value: isDarkMode,
-                      onChanged: (value) {
-                        themeNotifier.toggleTheme();
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+          ViewSettingsMenu(isGridView: isGridView),
         ],
       ),
       body: Column(
