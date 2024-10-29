@@ -44,7 +44,9 @@ class HomeScreen extends ConsumerWidget {
             child: rulesAsyncValue.when(
               data: (rules) {
                 // ref.read(randomizedRuleProvider.notifier).state = rules;
-                return isGridView ? buildGridView(rules) : buildListView(rules);
+                return isGridView
+                    ? buildGridView(rules, context)
+                    : buildListView(rules);
               },
               error: (error, stack) => Center(
                 child: Text('Error : $error'),
@@ -70,7 +72,7 @@ class HomeScreen extends ConsumerWidget {
   
   Widget buildListView(List<RuleModel> rules) {
     return ListView.builder(
-      itemCount: rules.length,
+      itemCount: 16,
       itemBuilder: (context, index) {
         return ListTile(
           title: Text('${index + 1}: ${rules[index].title}'),
@@ -80,17 +82,33 @@ class HomeScreen extends ConsumerWidget {
     );
   }
 
-  Widget buildGridView(List<RuleModel> rules) {
+  Widget buildGridView(List<RuleModel> rules, BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+
+    // Set the number of columns based on screen width
+    int crossAxisCount;
+    if (screenWidth < 600) {
+      // Mobile view: 2 columns
+      crossAxisCount = 2;
+    } else if (screenWidth < 1200) {
+      // Tablet view: 4 columns
+      crossAxisCount = 4;
+    } else {
+      // Desktop view: 6 columns
+      crossAxisCount = 6;
+    }
     return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: crossAxisCount,
         childAspectRatio: 1,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
       ),
-      itemCount: rules.length,
+      itemCount: 16,
       itemBuilder: (context, index) {
         return Card(
+          elevation: 2,
+          color: Colors.white54,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
