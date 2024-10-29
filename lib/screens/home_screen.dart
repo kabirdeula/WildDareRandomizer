@@ -12,6 +12,8 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final rulesAsyncValue = ref.watch(rulesProvider);
     final bool isGridView = ref.watch<bool>(viewModeProvider);
+    final themeNotifier = ref.read(themeProvider.notifier);
+    final isDarkMode = ref.watch(themeProvider) == ThemeMode.dark;
 
     void toggleViewMode() {
       ref.read(viewModeProvider.notifier).state = !isGridView;
@@ -21,21 +23,61 @@ class HomeScreen extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Uno Dare Randomizer'),
         actions: [
-          IconButton(
-            onPressed: toggleViewMode,
-            icon: isGridView
-                ? const Icon(Icons.view_list)
-                : const Icon(Icons.grid_view),
-          ),
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const CustomRuleScreen()),
-              );
+          PopupMenuButton(
+            onSelected: (value) {
+              switch (value) {
+                case 0:
+                  toggleViewMode();
+                  break;
+                case 1:
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const CustomRuleScreen()),
+                  );
+                  break;
+              }
             },
-          )
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: 0,
+                child: Row(
+                  children: [
+                    Icon(isGridView ? Icons.view_list : Icons.grid_view),
+                    const SizedBox(width: 8),
+                    Text(
+                      isGridView
+                          ? 'Switch to List View'
+                          : 'Switch to Grid View',
+                    ),
+                  ],
+                ),
+              ),
+              const PopupMenuItem(
+                value: 1,
+                child: Row(
+                  children: [
+                    Icon(Icons.settings),
+                    SizedBox(width: 8),
+                    Text('Custom Rules'),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                child: Row(
+                  children: [
+                    const Text('Dark Mode'),
+                    const Spacer(),
+                    Switch(
+                      value: isDarkMode,
+                      onChanged: (value) {
+                        themeNotifier.toggleTheme();
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ],
       ),
       body: Column(
@@ -43,7 +85,6 @@ class HomeScreen extends ConsumerWidget {
           Expanded(
             child: rulesAsyncValue.when(
               data: (rules) {
-                // ref.read(randomizedRuleProvider.notifier).state = rules;
                 return isGridView
                     ? buildGridView(rules, context)
                     : buildListView(rules);
@@ -56,23 +97,18 @@ class HomeScreen extends ConsumerWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ElevatedButton(
-              // onPressed: randomizeRules,
-              onPressed: () => ref.refresh(rulesProvider),
-              child: const Text('Randomize Rules'),
-            ),
-          ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => ref.refresh(rulesProvider),
+        child: const Icon(Icons.shuffle),
       ),
     );
   }
 
-  
   Widget buildListView(List<RuleModel> rules) {
     return ListView.builder(
-      itemCount: 16,
+      itemCount: rules.length.clamp(0, 16),
       itemBuilder: (context, index) {
         return ListTile(
           title: Text('${index + 1}: ${rules[index].title}'),
@@ -84,19 +120,12 @@ class HomeScreen extends ConsumerWidget {
 
   Widget buildGridView(List<RuleModel> rules, BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
+    final crossAxisCount = (screenWidth < 600)
+        ? 2
+        : (screenWidth < 1200)
+            ? 4
+            : 6;
 
-    // Set the number of columns based on screen width
-    int crossAxisCount;
-    if (screenWidth < 600) {
-      // Mobile view: 2 columns
-      crossAxisCount = 2;
-    } else if (screenWidth < 1200) {
-      // Tablet view: 4 columns
-      crossAxisCount = 4;
-    } else {
-      // Desktop view: 6 columns
-      crossAxisCount = 6;
-    }
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
@@ -104,7 +133,7 @@ class HomeScreen extends ConsumerWidget {
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
       ),
-      itemCount: 16,
+      itemCount: rules.length.clamp(0, 16),
       itemBuilder: (context, index) {
         return Card(
           elevation: 2,
