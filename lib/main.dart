@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:wild_dare_randomizer/utils/router/app_routes.dart';
 
 import 'app/app.dart';
 import 'data/repositories/repository.dart';
 import 'providers/provider.dart';
-import 'screens/screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,13 +22,12 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final themeMode = ref.watch(themeProvider);
-
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: AppRoutes.router,
       title: Config.kAppName,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: themeMode,
-      home: const HomeScreen(),
     );
   }
 }
