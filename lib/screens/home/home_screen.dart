@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wild_dare_randomizer/data/models/model.dart';
 import 'package:wild_dare_randomizer/providers/provider.dart';
-import 'package:wild_dare_randomizer/screens/home/widgets/view_settings_menu.dart';
+import 'package:wild_dare_randomizer/screens/home/widgets/home_widget.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -26,7 +26,7 @@ class HomeScreen extends ConsumerWidget {
               data: (rules) {
                 return isGridView
                     ? buildGridView(rules, context)
-                    : buildListView(rules);
+                    : RuleListView(rules: rules);
               },
               error: (error, stack) => Center(
                 child: Text('Error : $error'),
@@ -42,18 +42,6 @@ class HomeScreen extends ConsumerWidget {
         onPressed: () => ref.refresh(rulesProvider),
         child: const Icon(Icons.shuffle),
       ),
-    );
-  }
-
-  Widget buildListView(List<RuleModel> rules) {
-    return ListView.builder(
-      itemCount: rules.length.clamp(0, 16),
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text('${index + 1}: ${rules[index].title}'),
-          subtitle: Text(rules[index].description),
-        );
-      },
     );
   }
 
