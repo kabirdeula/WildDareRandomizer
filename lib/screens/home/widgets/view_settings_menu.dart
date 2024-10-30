@@ -5,13 +5,19 @@ import 'package:wild_dare_randomizer/providers/provider.dart';
 import 'package:wild_dare_randomizer/screens/home/home_mixin.dart';
 import 'package:wild_dare_randomizer/utils/enums/routes.dart';
 
-class ViewSettingsMenu extends ConsumerWidget with HomeMixin {
+class ViewSettingsMenu extends ConsumerStatefulWidget {
   final bool isGridView;
 
-  ViewSettingsMenu({required this.isGridView, super.key});
+  const ViewSettingsMenu({required this.isGridView, super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ViewSettingsMenu> createState() => _ViewSettingsMenuState();
+}
+
+class _ViewSettingsMenuState extends ConsumerState<ViewSettingsMenu>
+    with HomeMixin {
+  @override
+  Widget build(BuildContext context) {
     final themeNotifier = ref.read(themeProvider.notifier);
     final darkMode = isDarkMode(ref);
 
@@ -19,7 +25,7 @@ class ViewSettingsMenu extends ConsumerWidget with HomeMixin {
       onSelected: (value) {
         switch (value) {
           case 0:
-            toggleViewMode(ref, isGridView);
+            toggleViewMode(ref, widget.isGridView);
             break;
           case 1:
             context.go(Routes.rules.path);
@@ -31,10 +37,12 @@ class ViewSettingsMenu extends ConsumerWidget with HomeMixin {
           value: 0,
           child: Row(
             children: [
-              Icon(isGridView ? Icons.view_list : Icons.grid_view),
+              Icon(widget.isGridView ? Icons.view_list : Icons.grid_view),
               const SizedBox(width: 8),
               Text(
-                isGridView ? 'Switch to List View' : 'Switch to Grid View',
+                widget.isGridView
+                    ? 'Switch to List View'
+                    : 'Switch to Grid View',
               ),
             ],
           ),
@@ -57,7 +65,9 @@ class ViewSettingsMenu extends ConsumerWidget with HomeMixin {
               Switch(
                 value: darkMode,
                 onChanged: (value) {
-                  themeNotifier.toggleTheme();
+                  setState(() {
+                    themeNotifier.toggleTheme();
+                  });
                 },
               ),
             ],
