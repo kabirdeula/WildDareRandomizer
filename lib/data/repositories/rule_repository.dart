@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:wild_dare_randomizer/data/models/model.dart';
 import 'package:wild_dare_randomizer/data/sources/rule_service.dart';
+import 'package:wild_dare_randomizer/utils/logger_util.dart';
 
 class RuleRepository {
   final RuleService _ruleService;
@@ -23,7 +24,7 @@ class RuleRepository {
         await _ruleService.addRule(rule);
       }
     } catch (e) {
-      print("Error loading rules from JSON: $e");
+      log.e("Error loading rules from JSON: $e");
     }
   }
 
