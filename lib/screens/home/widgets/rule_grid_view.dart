@@ -29,13 +29,20 @@ class RuleGridView extends StatelessWidget with HomeMixin {
               children: [
                 Text(
                   '${index + 1}: ${rules[index].title}',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge!
+                      .copyWith(fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
                 Text(
                   rules[index].description,
                   textAlign: TextAlign.center,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(fontSize: 18),
                 ),
               ],
             ),

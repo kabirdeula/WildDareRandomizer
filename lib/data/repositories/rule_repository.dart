@@ -13,7 +13,7 @@ class RuleRepository {
   Future<void> loadRulesFromJson() async {
     try {
       final String response = await rootBundle.loadString('assets/rules.json');
-      print('JSON Loaded Successfully');
+
       final List<dynamic> data = json.decode(response);
 
       final List<RuleModel> rules =
