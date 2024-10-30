@@ -10,7 +10,7 @@ import 'providers/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  await Hive.openBox(Config.kHiveBox);
+  await Hive.openBox(Config.kRuleBox);
   final ruleRepository = RuleRepository();
   await ruleRepository.loadRulesIfNeeded();
   runApp(const ProviderScope(child: MyApp()));
