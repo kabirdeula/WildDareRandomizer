@@ -19,7 +19,8 @@ class _ViewSettingsMenuState extends ConsumerState<ViewSettingsMenu>
   @override
   Widget build(BuildContext context) {
     final themeNotifier = ref.read(themeProvider.notifier);
-    final darkMode = isDarkMode(ref);
+    final themeMode = ref.watch(themeProvider);
+    final isDarkMode = themeMode == ThemeMode.dark;
 
     return PopupMenuButton(
       onSelected: (value) {
@@ -29,6 +30,9 @@ class _ViewSettingsMenuState extends ConsumerState<ViewSettingsMenu>
             break;
           case 1:
             context.go(Routes.rules.path);
+            break;
+          case 2:
+            themeNotifier.toggleTheme();
             break;
         }
       },
@@ -58,17 +62,13 @@ class _ViewSettingsMenuState extends ConsumerState<ViewSettingsMenu>
           ),
         ),
         PopupMenuItem(
+          value: 2,
           child: Row(
             children: [
-              const Text('Dark Mode'),
-              const Spacer(),
-              Switch(
-                value: darkMode,
-                onChanged: (value) {
-                  setState(() {
-                    themeNotifier.toggleTheme();
-                  });
-                },
+              Icon(isDarkMode ? Icons.light_mode : Icons.dark_mode),
+              const SizedBox(width: 8),
+              Text(
+                isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode',
               ),
             ],
           ),

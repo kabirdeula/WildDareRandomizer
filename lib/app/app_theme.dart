@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wild_dare_randomizer/app/app.dart';
 
 class AppTheme {
   static final ThemeData lightTheme = ThemeData(
