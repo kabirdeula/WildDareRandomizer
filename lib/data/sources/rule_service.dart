@@ -69,7 +69,6 @@ class RuleService {
       await box.add({'title': rule.title, 'description': rule.description});
     }
 
-    print(rules);
     return rules;
   }
 
