@@ -2,12 +2,12 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:wild_dare_randomizer/app/app.dart';
 import 'package:wild_dare_randomizer/data/models/model.dart';
 
-class HiveServices {
+class RuleService {
   Future<Box> openBox() async {
-    if (!Hive.isBoxOpen(Config.kHiveBox)) {
-      return await Hive.openBox(Config.kHiveBox);
+    if (!Hive.isBoxOpen(Config.kRuleBox)) {
+      return await Hive.openBox(Config.kRuleBox);
     }
-    return Hive.box(Config.kHiveBox);
+    return Hive.box(Config.kRuleBox);
   }
 
   Future<List<RuleModel>> fetchAllRules() async {
@@ -40,8 +40,8 @@ class HiveServices {
   }
 
   Future<void> closeBox() async {
-    if (Hive.isBoxOpen(Config.kHiveBox)) {
-      await Hive.box(Config.kHiveBox).close();
+    if (Hive.isBoxOpen(Config.kRuleBox)) {
+      await Hive.box(Config.kRuleBox).close();
     }
   }
 }
