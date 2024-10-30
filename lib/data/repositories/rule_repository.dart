@@ -51,4 +51,8 @@ class RuleRepository {
   Future<void> deleteRule(int index) async {
     await _ruleService.deleteRule(index);
   }
+
+  Future<List<RuleModel>> shuffleRules() async {
+    return await _ruleService.shuffleRules();
+  }
 }

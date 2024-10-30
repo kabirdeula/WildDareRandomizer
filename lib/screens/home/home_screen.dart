@@ -38,7 +38,12 @@ class HomeScreen extends ConsumerWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => ref.refresh(rulesProvider),
+        onPressed: () {
+          print('Shuffle Rules Pressed');
+          ref.read(ruleRepositoryProvider).shuffleRules().then((_) {
+            ref.invalidate(rulesProvider);
+          });
+        },
         child: const Icon(Icons.shuffle),
       ),
     );
