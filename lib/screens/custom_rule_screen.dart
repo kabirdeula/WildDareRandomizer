@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:wild_dare_randomizer/data/models/model.dart';
 import 'package:wild_dare_randomizer/providers/provider.dart';
 import 'package:wild_dare_randomizer/utils/util.dart';
@@ -51,6 +52,10 @@ class _CustomRuleScreenState extends ConsumerState<CustomRuleScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Custom Rules'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => context.pop(),
+        ),
       ),
       body: Column(
         children: [
