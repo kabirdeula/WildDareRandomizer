@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:wild_dare_randomizer/app/app.dart';
 import 'package:wild_dare_randomizer/app/config.dart';
@@ -54,6 +56,21 @@ class RuleService {
     } catch (e) {
       print("Error updating rule: $e");
     }
+  }
+
+  Future<List<RuleModel>> shuffleRules() async {
+    final rules = await fetchAllRules();
+    rules.shuffle(Random());
+    final box = await _box;
+    await box.clear();
+
+    // Save the shuffled rules back to the box
+    for (var rule in rules) {
+      await box.add({'title': rule.title, 'description': rule.description});
+    }
+
+    print(rules);
+    return rules;
   }
 
   Future<void> closeBox() async {
