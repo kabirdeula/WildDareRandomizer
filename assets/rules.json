@@ -1,0 +1,111 @@
+[
+  {
+    "title": "All Players Draw 5",
+    "description": "All players must draw 5 cards except you."
+  },
+  {
+    "title": "Change Color, Next Draws 4",
+    "description": "Change the color, and if the next player doesn't have it, they must draw 4 cards."
+  },
+  {
+    "title": "Delayed Blast",
+    "description": "Choose any player who will have to draw 5 cards after their next turn, no matter what they play."
+  },
+  {
+    "title": "Discard One Color, Next Draws 5",
+    "description": "You clear one color, but the next player pays the price by drawing 5 cards."
+  },
+  {
+    "title": "Discard Same Color",
+    "description": "You can discard all cards of the same color in one turn. If you have only one card left in your hand, you cannot discard it. The next player must draw 2 cards."
+  },
+  {
+    "title": "Discard Same Number",
+    "description": "You can discard all cards with the same number at once. If you have only one card left in your hand, you cannot discard it. The next player must draw 2 cards."
+  },
+  {
+    "title": "Double Trouble",
+    "description": "If you play two cards of the same number in one turn, the next player must draw three cards. If you are unable to play two cards of the same number, the game continues as normal."
+  },
+  {
+    "title": "Draw Until Even Card",
+    "description": "The next player must draw until they get an even-numbered card."
+  },
+  {
+    "title": "Draw Until Wild Card",
+    "description": "No stopping until you get a Wild card!"
+  },
+  {
+    "title": "Draw Chain",
+    "description": "When the User plays this card, the first person after user picks 1 card, second picks 2 cards and so on.."
+  },
+  {
+    "title": "Give Half to Next Player",
+    "description": "The unlucky next player must take half your hand."
+  },
+  {
+    "title": "Hand Fusion",
+    "description": "Combine your hand with the next player's hand and split the combined cards evenly between both of you. Odd cards go to the next player clockwise."
+  },
+  {
+    "title": "Lose Hand and Draw 7",
+    "description": "The next player loses their entire hand and draws 7 fresh cards."
+  },
+  {
+    "title": "Mystery Card",
+    "description": "Reveal a card from the deck; players must follow its action."
+  },
+  {
+    "title": "No Special Cards",
+    "description": "Special cards cannot be played for one round."
+  },
+  {
+    "title": "Random Draw",
+    "description": "Draw 2 random cards from another player's hand and add them to your own."
+  },
+  {
+    "title": "Reveal Your Hand",
+    "description": "Next Player plays with your cards exposed until your next turn."
+  },
+  {
+    "title": "Shuffle and Distribute",
+    "description": "Shuffle all the cards except yours and distribute them."
+  },
+  {
+    "title": "Shuffle and Play",
+    "description": "Shuffle the deck and play one card from your hand can't be overwritten."
+  },
+  {
+    "title": "Skip 2 Players",
+    "description": "The next two players lose their turns."
+  },
+  { "title": "Skip Next 3 Turns", "description": "Miss three turns in a row." },
+  {
+    "title": "Skip Two Turns",
+    "description": "The next player skips two turns."
+  },
+  {
+    "title": "Sudden Death",
+    "description": "all players drop their hands. Dealer deal one card each. Show em. Highest/lowest card wins. All wild and special cards given are disqualified."
+  },
+  {
+    "title": "Swap Hands",
+    "description": "You can swap hands with any player of your choice."
+  },
+  {
+    "title": "Swap Hands with Fewest Cards Player",
+    "description": "Give them your large hand and take their small one."
+  },
+  {
+    "title": "Take 15 Cards",
+    "description": "You must draw 15 cards from the deck."
+  },
+  {
+    "title": "Trade Hands",
+    "description": "Trade hands with the player next to you."
+  },
+  {
+    "title": "Ultimate Uno",
+    "description": "All players must play with open cards for one round."
+  }
+]

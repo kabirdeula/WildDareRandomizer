@@ -1,0 +1,126 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "dart",
+      "command": "dart",
+      "args": [
+        "run",
+        "flutter_launcher_icons",
+        "-f",
+        "flutter_launcher_icons.yaml"
+      ],
+      "label": "Generate: Flutter Launcher Icons"
+    },
+    {
+      "type": "dart",
+      "command": "dart",
+      "args": ["run", "flutter_launcher_icons:generate"],
+      "label": "Setup config file for Launcher Icons"
+    },
+    {
+      "type": "dart",
+      "command": "dart",
+      "args": [
+        "run",
+        "flutter_native_splash:create",
+        "--path=flutter_native_splash.yaml"
+      ],
+      "label": "Generate: Flutter Native Splash"
+    },
+    {
+      "label": "Run: Flutter Splash and Icons",
+      "dependsOn": [
+        "Generate: Flutter Launcher Icons",
+        "Generate: Flutter Native Splash"
+      ],
+      "dependsOrder": "sequence"
+    },
+    {
+      "type": "dart",
+      "command": "dart",
+      "args": [
+        "run",
+        "easy_localization:generate",
+        "--source-dir",
+        "assets/translations"
+      ],
+      "label": "Generate: Easy Localization"
+    },
+    {
+      "type": "dart",
+      "command": "dart",
+      "args": [
+        "run",
+        "easy_localization:generate",
+        "-S",
+        "assets/translations",
+        "-f",
+        "keys",
+        "-o",
+        "locale_keys.g.dart"
+      ],
+      "label": "Generate: Easy Localization Keys"
+    },
+    {
+      "label": "Run: Easy Localization",
+      "dependsOn": [
+        "Generate: Easy Localization",
+        "Generate: Easy Localization Keys"
+      ],
+      "dependsOrder": "sequence"
+    },
+    {
+      "type": "flutter",
+      "command": "flutter",
+      "args": ["pub", "get"],
+      "problemMatcher": [],
+      "label": "Pub Get"
+    },
+    {
+      "type": "flutter",
+      "command": "flutter",
+      "args": ["clean"],
+      "problemMatcher": [],
+      "label": "Flutter Clean"
+    },
+    {
+      "label": "Run Flutter Clean",
+      "dependsOn": ["Flutter Clean", "Pub Get"],
+      "dependsOrder": "sequence"
+    },
+    {
+      "type": "shell",
+      "label": "Flutter Build APK",
+      "command": "flutter",
+      "args": [
+        "build",
+        "apk",
+        "--target-platform",
+        "android-arm64",
+        "--build-number",
+        "${input:buildNumber}",
+        "--build-name",
+        "${input:buildName}"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "buildNumber",
+      "type": "promptString",
+      "description": "Enter the build number",
+      "default": "1"
+    },
+    {
+      "id": "buildName",
+      "type": "promptString",
+      "description": "Enter the build name",
+      "default": "1.0.0"
+    }
+  ]
+}
