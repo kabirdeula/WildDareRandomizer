@@ -60,7 +60,7 @@ Contributions are welcome! Please read the `CONTRIBUTING.md` for guidelines on h
 
 ## Changelog
 
-For a detailed list of changed, see the [Changelod](./CHANGELOG.md).
+For a detailed list of changed, see the [Changelog](./CHANGELOG.md).
 
 ## License
 
