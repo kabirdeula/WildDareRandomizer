@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:math' hide log;
 
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:wild_dare_randomizer/app/app.dart';
@@ -23,7 +23,7 @@ class RuleService {
               description: ruleMap['description'] ?? ''))
           .toList();
     } catch (e) {
-      print("Error fetching rules: $e");
+      log.e("Error fetching rules: $e");
       return [];
     }
   }
@@ -33,7 +33,7 @@ class RuleService {
       final box = await _box;
       await box.add({'title': rule.title, 'description': rule.description});
     } catch (e) {
-      print("Error adding rule: $e");
+      log.e("Error adding rule: $e");
     }
   }
 
@@ -42,7 +42,7 @@ class RuleService {
       final box = await _box;
       await box.deleteAt(index);
     } catch (e) {
-      print("Error deleting rule: $e");
+      log.e("Error deleting rule: $e");
     }
   }
 
@@ -54,7 +54,7 @@ class RuleService {
         'description': rule.description,
       });
     } catch (e) {
-      print("Error updating rule: $e");
+      log.e("Error updating rule: $e");
     }
   }
 

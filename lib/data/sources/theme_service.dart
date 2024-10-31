@@ -15,7 +15,7 @@ class ThemeService {
       final box = await _box;
       await box.put(_themeKey, isDarkMode);
     } catch (e) {
-      print("Error toggling theme: $e");
+      log.e("Error toggling theme: $e");
     }
   }
 
@@ -24,7 +24,7 @@ class ThemeService {
       final box = await _box;
       return box.get(_themeKey, defaultValue: false);
     } catch (e) {
-      print('Error loading theme: $e');
+      log.e('Error loading theme: $e');
       return false;
     }
   }
