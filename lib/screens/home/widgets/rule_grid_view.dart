@@ -42,7 +42,7 @@ class RuleGridView extends StatelessWidget with HomeMixin {
                   style: Theme.of(context)
                       .textTheme
                       .bodyLarge!
-                      .copyWith(fontSize: 18),
+                      .copyWith(fontSize: 16),
                 ),
               ],
             ),

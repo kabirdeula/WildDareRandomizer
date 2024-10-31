@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:wild_dare_randomizer/providers/provider.dart';
 import 'package:wild_dare_randomizer/screens/home/home_mixin.dart';
-import 'package:wild_dare_randomizer/utils/enums/routes.dart';
 
 class ViewSettingsMenu extends ConsumerStatefulWidget {
   final bool isGridView;
@@ -29,9 +27,6 @@ class _ViewSettingsMenuState extends ConsumerState<ViewSettingsMenu>
             toggleViewMode(ref, widget.isGridView);
             break;
           case 1:
-            context.go(Routes.rules.path);
-            break;
-          case 2:
             themeNotifier.toggleTheme();
             break;
         }
@@ -48,16 +43,6 @@ class _ViewSettingsMenuState extends ConsumerState<ViewSettingsMenu>
                     ? 'Switch to List View'
                     : 'Switch to Grid View',
               ),
-            ],
-          ),
-        ),
-        const PopupMenuItem(
-          value: 1,
-          child: Row(
-            children: [
-              Icon(Icons.settings),
-              SizedBox(width: 8),
-              Text('Custom Rules'),
             ],
           ),
         ),
