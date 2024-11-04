@@ -14,6 +14,16 @@ class HomeScreen extends ConsumerWidget {
     final bool isGridView = ref.watch<bool>(viewModeProvider);
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Uno Dare Randomizer'),
+        actions: [
+          IconButton(
+            onPressed: () => context.push(Routes.rules.path),
+            icon: const Icon(Icons.rule),
+          ),
+          ViewSettingsMenu(isGridView: isGridView),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           ref.read(ruleRepositoryProvider).shuffleRules().then(
@@ -22,25 +32,17 @@ class HomeScreen extends ConsumerWidget {
         },
         child: const Icon(Icons.shuffle),
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            title: const Text('Uno Dare Randomizer'),
-            actions: [
-              IconButton(
-                onPressed: () => context.push(Routes.rules.path),
-                icon: const Icon(Icons.rule),
-              ),
-              ViewSettingsMenu(isGridView: isGridView),
-            ],
-          ),
-          SliverFillRemaining(
+      body: Column(
+        children: [
+          Expanded(
             child: rulesAsyncValue.when(
-              data: (rules) => isGridView
-                  ? RuleGridView(rules: rules)
-                  : RuleListView(rules: rules),
+              data: (rules) {
+                return isGridView
+                    ? RuleGridView(rules: rules)
+                    : RuleListView(rules: rules);
+              },
               error: (error, stack) => Center(
-                child: Text('Error:$error'),
+                child: Text('Error : $error'),
               ),
               loading: () => const Center(
                 child: CircularProgressIndicator(),
