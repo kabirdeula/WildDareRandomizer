@@ -11,7 +11,7 @@ class ThemeService {
     _box = HiveUtil.openHiveBox(Config.kSettingsBox);
   }
 
-  Future<SettingsModel> _loadSettings() async {
+  Future<SettingsModel> loadSettings() async {
     try {
       final box = await _box;
       final settingsJson = box.get(_settingsKey);
@@ -26,7 +26,7 @@ class ThemeService {
 
   Future<void> toggleTheme(bool isDarkMode) async {
     try {
-      final settings = await _loadSettings();
+      final settings = await loadSettings();
       final updatedSettings = settings.copyWith(isDarkMode: isDarkMode);
       final box = await _box;
       await box.put(_settingsKey, updatedSettings.toJson());
@@ -36,7 +36,7 @@ class ThemeService {
   }
 
   Future<bool> loadTheme() async {
-    final settings = await _loadSettings();
+    final settings = await loadSettings();
     return settings.isDarkMode;
   }
 }
