@@ -1,10 +1,11 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:wild_dare_randomizer/app/app.dart';
+import 'package:wild_dare_randomizer/data/models/settings_model.dart';
 import 'package:wild_dare_randomizer/utils/util.dart';
 
 class ThemeService {
-  late Future<Box> _box;
-  static const _themeKey = 'isDarkMode';
+  late final Future<Box> _box;
+  static const _settingsKey = 'settings';
 
   ThemeService() {
     _box = HiveUtil.openHiveBox(Config.kSettingsBox);
@@ -13,18 +14,27 @@ class ThemeService {
   Future<void> toggleTheme(bool isDarkMode) async {
     try {
       final box = await _box;
-      await box.put(_themeKey, isDarkMode);
-    } catch (e) {
-      log.e("Error toggling theme: $e");
+      final settingsJson = box.get(_settingsKey);
+      final settings = settingsJson != null
+          ? SettingsModel.fromJson(Map<String, dynamic>.from(settingsJson))
+          : const SettingsModel();
+      final updatedSettings = settings.copyWith(isDarkMode: isDarkMode);
+      await box.put(_settingsKey, updatedSettings.toJson());
+    } catch (e, stackTrace) {
+      log.e("Error toggling theme: $e", error: e, stackTrace: stackTrace);
     }
   }
 
   Future<bool> loadTheme() async {
     try {
       final box = await _box;
-      return box.get(_themeKey, defaultValue: false);
-    } catch (e) {
-      log.e('Error loading theme: $e');
+      final settingsJson = box.get(_settingsKey);
+      final settings = settingsJson != null
+          ? SettingsModel.fromJson(Map<String, dynamic>.from(settingsJson))
+          : const SettingsModel();
+      return settings.isDarkMode;
+    } catch (e, stackTrace) {
+      log.e('Error loading theme: $e', error: e, stackTrace: stackTrace);
       return false;
     }
   }
