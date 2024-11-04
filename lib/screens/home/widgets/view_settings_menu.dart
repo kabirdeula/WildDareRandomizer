@@ -47,7 +47,7 @@ class _ViewSettingsMenuState extends ConsumerState<ViewSettingsMenu>
           ),
         ),
         PopupMenuItem(
-          value: 2,
+          value: 1,
           child: Row(
             children: [
               Icon(isDarkMode ? Icons.light_mode : Icons.dark_mode),
