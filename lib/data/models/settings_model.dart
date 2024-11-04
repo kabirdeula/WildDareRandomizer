@@ -6,8 +6,8 @@ part 'settings_model.g.dart';
 @freezed
 class SettingsModel with _$SettingsModel {
   const factory SettingsModel({
-    required bool isDarkMode,
-    required bool isGridView,
+    @Default(false) bool isDarkMode,
+    @Default(true) bool isGridView,
   }) = _SettingsModel;
 
   factory SettingsModel.fromJson(Map<String, dynamic> json) =>

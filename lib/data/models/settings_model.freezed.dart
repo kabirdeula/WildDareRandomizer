@@ -108,15 +108,16 @@ class __$$SettingsModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SettingsModelImpl implements _SettingsModel {
-  const _$SettingsModelImpl(
-      {required this.isDarkMode, required this.isGridView});
+  const _$SettingsModelImpl({this.isDarkMode = false, this.isGridView = true});
 
   factory _$SettingsModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$SettingsModelImplFromJson(json);
 
   @override
+  @JsonKey()
   final bool isDarkMode;
   @override
+  @JsonKey()
   final bool isGridView;
 
   @override
@@ -154,9 +155,8 @@ class _$SettingsModelImpl implements _SettingsModel {
 }
 
 abstract class _SettingsModel implements SettingsModel {
-  const factory _SettingsModel(
-      {required final bool isDarkMode,
-      required final bool isGridView}) = _$SettingsModelImpl;
+  const factory _SettingsModel({final bool isDarkMode, final bool isGridView}) =
+      _$SettingsModelImpl;
 
   factory _SettingsModel.fromJson(Map<String, dynamic> json) =
       _$SettingsModelImpl.fromJson;
