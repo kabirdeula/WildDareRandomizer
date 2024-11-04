@@ -2,7 +2,7 @@ name: wild_dare_randomizer
 description: "A Flutter app for randomized Uno Dare rules with Firebase Hosting for web."
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+1
+version: 1.0.1+2
 
 environment:
   sdk: ">=3.4.1 <4.0.0"
