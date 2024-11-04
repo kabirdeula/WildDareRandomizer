@@ -107,6 +107,12 @@
         "kind": "build",
         "isDefault": true
       }
+    },
+    {
+      "type": "shell",
+      "command": "firebase",
+      "args": ["deploy", "--only", "hosting"],
+      "label": "Deploy to Firebase Hosting"
     }
   ],
   "inputs": [
