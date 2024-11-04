@@ -1,5 +1,10 @@
 # Uno Dare Randomizer
 
+[![wakatime](https://wakatime.com/badge/user/d843d77e-df9e-4be5-a842-ed311ba05a54/project/8533cf97-64f5-4e23-b107-8d8ebf28c5b2.svg)](https://wakatime.com/badge/user/d843d77e-df9e-4be5-a842-ed311ba05a54/project/8533cf97-64f5-4e23-b107-8d8ebf28c5b2)
+![Flutter Version](https://img.shields.io/badge/Flutter-3.22.1-blue)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+
+
 A Flutter app that provides a randomized list of Uno Dare rules for an exciting gameplay experience, available as a web app on Firebase Hosting.
 
 ## Features
@@ -50,13 +55,9 @@ A Flutter app that provides a randomized list of Uno Dare rules for an exciting 
 
 2. **_Deploy:_**
    `bash
- firebase deploy --only hosting
- `
+firebase deploy --only hosting
+`
    The app will be live at the URL provided by Firebase Hosting.
-
-## Contributing
-
-Contributions are welcome! Please read the `CONTRIBUTING.md` for guidelines on how to get started.
 
 ## Changelog
 

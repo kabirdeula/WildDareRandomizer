@@ -12,10 +12,18 @@ class RuleListView extends StatelessWidget with HomeMixin {
     return ListView.builder(
       itemCount: rules.length.clamp(0, 16),
       itemBuilder: (context, index) {
-        return ListTile(
-          tileColor: getRuleColor(index),
-          title: Text('${index + 1}: ${rules[index].title}'),
-          subtitle: Text(rules[index].description),
+        return Container(
+          margin: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0),
+          decoration: ShapeDecoration(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12.0),
+            ),
+            color: getRuleColor(index),
+          ),
+          child: ListTile(
+            title: Text('${index + 1}: ${rules[index].title}'),
+            subtitle: Text(rules[index].description),
+          ),
         );
       },
     );
