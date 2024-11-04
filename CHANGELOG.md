@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.1] - 2024-11-04
+
+### Fixed
+
+- **Grid State Issue**: Grid view shows in startup.
+- **ThemeMode**: Fix changing from light mode to dark mode.
+- **Remove SliverAppBar**: Remove sliver app bar with app bar.
+
 ## [1.0.0] - 2024-10-31
 
 ### Added
