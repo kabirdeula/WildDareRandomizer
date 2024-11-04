@@ -11,7 +11,8 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final rulesAsyncValue = ref.watch(rulesProvider);
-    final bool isGridView = ref.watch<bool>(viewModeProvider);
+    final settings = ref.watch(settingsProvider);
+    final bool isGridView = settings.isGridView;
 
     return Scaffold(
       appBar: AppBar(
@@ -21,7 +22,7 @@ class HomeScreen extends ConsumerWidget {
             onPressed: () => context.push(Routes.rules.path),
             icon: const Icon(Icons.rule),
           ),
-          ViewSettingsMenu(isGridView: isGridView),
+          const ViewSettingsMenu(),
         ],
       ),
       floatingActionButton: FloatingActionButton(
