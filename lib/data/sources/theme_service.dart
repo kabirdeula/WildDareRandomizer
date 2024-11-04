@@ -11,31 +11,32 @@ class ThemeService {
     _box = HiveUtil.openHiveBox(Config.kSettingsBox);
   }
 
-  Future<void> toggleTheme(bool isDarkMode) async {
+  Future<SettingsModel> _loadSettings() async {
     try {
       final box = await _box;
       final settingsJson = box.get(_settingsKey);
-      final settings = settingsJson != null
+      return settingsJson != null
           ? SettingsModel.fromJson(Map<String, dynamic>.from(settingsJson))
           : const SettingsModel();
+    } catch (e, stackTrace) {
+      log.e("Error Loading Settings: $e", error: e, stackTrace: stackTrace);
+      return const SettingsModel();
+    }
+  }
+
+  Future<void> toggleTheme(bool isDarkMode) async {
+    try {
+      final settings = await _loadSettings();
       final updatedSettings = settings.copyWith(isDarkMode: isDarkMode);
+      final box = await _box;
       await box.put(_settingsKey, updatedSettings.toJson());
     } catch (e, stackTrace) {
-      log.e("Error toggling theme: $e", error: e, stackTrace: stackTrace);
+      log.e("Error Toggling Theme: $e", error: e, stackTrace: stackTrace);
     }
   }
 
   Future<bool> loadTheme() async {
-    try {
-      final box = await _box;
-      final settingsJson = box.get(_settingsKey);
-      final settings = settingsJson != null
-          ? SettingsModel.fromJson(Map<String, dynamic>.from(settingsJson))
-          : const SettingsModel();
-      return settings.isDarkMode;
-    } catch (e, stackTrace) {
-      log.e('Error loading theme: $e', error: e, stackTrace: stackTrace);
-      return false;
-    }
+    final settings = await _loadSettings();
+    return settings.isDarkMode;
   }
 }
