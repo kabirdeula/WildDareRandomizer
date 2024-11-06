@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:wild_dare_randomizer/app/app.dart';
 
 class AppTheme {
   static final ThemeData lightTheme = ThemeData(
+    textTheme: customTextTheme,
     // primaryColor: AppColor.kLightPrimaryColor,
     // colorScheme: ColorScheme.light(
     //   primary: AppColor.kLightPrimaryColor,
@@ -18,6 +20,10 @@ class AppTheme {
   );
 
   static final ThemeData darkTheme = ThemeData(
+    textTheme: customTextTheme.apply(
+      bodyColor: Colors.white,
+      displayColor: Colors.white,
+    ),
     // primaryColor: AppColor.kDarkModePrimaryColor,
     // colorScheme: ColorScheme.dark(
     //   primary: AppColor.kDarkModePrimaryColor,
