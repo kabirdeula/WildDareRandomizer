@@ -85,33 +85,6 @@ class HomeScreen extends ConsumerWidget {
 //           const ViewSettingsMenu(),
 //         ],
 //       ),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: () {
-//           ref.read(ruleRepositoryProvider).shuffleRules().then(
-//                 (_) => ref.refresh(rulesProvider),
-//               );
-//         },
-//         child: const Icon(Icons.shuffle),
-//       ),
-//       body: Column(
-//         children: [
-//           Expanded(
-//             child: rulesAsyncValue.when(
-//               data: (rules) {
-//                 return isGridView
-//                     ? RuleGridView(rules: rules)
-//                     : RuleListView(rules: rules);
-//               },
-//               error: (error, stack) => Center(
-//                 child: Text('Error : $error'),
-//               ),
-//               loading: () => const Center(
-//                 child: CircularProgressIndicator(),
-//               ),
-//             ),
-//           ),
-//         ],
-//       ),
 //     );
 //   }
 // }
