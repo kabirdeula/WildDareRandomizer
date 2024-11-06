@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wild_dare_randomizer/providers/provider.dart';
+import 'package:wild_dare_randomizer/screens/screen.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -21,10 +22,16 @@ class HomeScreen extends ConsumerWidget {
         controller: pageController,
         onPageChanged: (index) =>
             ref.read(selectedIndexProvider.notifier).state = index,
-        children: const [],
+        children: const [
+          RulesPage(),
+        ],
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: selectedIndex,
+        onDestinationSelected: (index) {
+          ref.read(selectedIndexProvider.notifier).state = index;
+          pageController.jumpToPage(index);
+        },
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.home_outlined),
@@ -76,33 +83,6 @@ class HomeScreen extends ConsumerWidget {
 //             icon: const Icon(Icons.rule),
 //           ),
 //           const ViewSettingsMenu(),
-//         ],
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: () {
-//           ref.read(ruleRepositoryProvider).shuffleRules().then(
-//                 (_) => ref.refresh(rulesProvider),
-//               );
-//         },
-//         child: const Icon(Icons.shuffle),
-//       ),
-//       body: Column(
-//         children: [
-//           Expanded(
-//             child: rulesAsyncValue.when(
-//               data: (rules) {
-//                 return isGridView
-//                     ? RuleGridView(rules: rules)
-//                     : RuleListView(rules: rules);
-//               },
-//               error: (error, stack) => Center(
-//                 child: Text('Error : $error'),
-//               ),
-//               loading: () => const Center(
-//                 child: CircularProgressIndicator(),
-//               ),
-//             ),
-//           ),
 //         ],
 //       ),
 //     );
