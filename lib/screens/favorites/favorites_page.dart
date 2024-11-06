@@ -131,9 +131,29 @@ class _FavoritesPageState extends ConsumerState<FavoritesPage>
                           icon: const Icon(Icons.edit),
                         ),
                         IconButton(
-                          onPressed: () => deleteCustomRule(
-                            index: index,
-                            ref: ref,
+                          onPressed: () => showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text('Delete Rule'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: const Text('Cancel'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      deleteCustomRule(
+                                        index: index,
+                                        ref: ref,
+                                      );
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('Confirm'),
+                                  ),
+                                ],
+                              );
+                            },
                           ),
                           icon: const Icon(Icons.delete),
                         ),
