@@ -9,10 +9,5 @@ class AppRoutes {
       name: Routes.initial.name,
       builder: (context, state) => const HomeScreen(),
     ),
-    GoRoute(
-      path: Routes.rules.path,
-      name: Routes.rules.name,
-      builder: (context, state) => const CustomRuleScreen(),
-    ),
   ]);
 }
