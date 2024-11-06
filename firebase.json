@@ -8,7 +8,7 @@
     ],
     "rewrites": [
       {
-        "source": "**",
+        "source": "/uno/**",
         "destination": "/index.html"
       }
     ]
