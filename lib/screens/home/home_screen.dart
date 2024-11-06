@@ -10,21 +10,36 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedIndex = ref.watch(selectedIndexProvider);
     final pageController = ref.watch(pageControllerProvider);
+    final appBarTitle = ref.watch(appBarTitleProvider);
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'Uno Dare Randomizer',
+          appBarTitle,
           style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
       body: PageView(
         controller: pageController,
-        onPageChanged: (index) =>
-            ref.read(selectedIndexProvider.notifier).state = index,
+        onPageChanged: (index) {
+          ref.read(selectedIndexProvider.notifier).state = index;
+          switch (index) {
+            case 0:
+              ref.read(appBarTitleProvider.notifier).state =
+                  'Uno Dare Randomizer';
+              break;
+            case 1:
+              ref.read(appBarTitleProvider.notifier).state = 'Favorites';
+              break;
+            case 2:
+              ref.read(appBarTitleProvider.notifier).state = 'Settings';
+              break;
+          }
+        },
         children: const [
           RulesPage(),
-          FavoritesPage()
+          FavoritesPage(),
         ],
       ),
       bottomNavigationBar: NavigationBar(
