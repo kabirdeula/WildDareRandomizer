@@ -24,6 +24,7 @@ class HomeScreen extends ConsumerWidget {
             ref.read(selectedIndexProvider.notifier).state = index,
         children: const [
           RulesPage(),
+          FavoritesPage()
         ],
       ),
       bottomNavigationBar: NavigationBar(
