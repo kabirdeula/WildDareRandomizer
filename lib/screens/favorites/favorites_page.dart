@@ -4,6 +4,8 @@ import 'package:wild_dare_randomizer/data/models/model.dart';
 import 'package:wild_dare_randomizer/providers/provider.dart';
 import 'package:wild_dare_randomizer/utils/util.dart';
 
+part 'favorites_mixin.dart';
+
 class FavoritesPage extends ConsumerStatefulWidget {
   const FavoritesPage({super.key});
 
@@ -11,40 +13,8 @@ class FavoritesPage extends ConsumerStatefulWidget {
   ConsumerState<FavoritesPage> createState() => _FavoritesPageState();
 }
 
-class _FavoritesPageState extends ConsumerState<FavoritesPage> {
-  TextEditingController titleController = TextEditingController();
-  TextEditingController descriptionController = TextEditingController();
-
-  void addCustomRule() async {
-    if (ValidationUtils.isValidRuleTitle(titleController.text) &&
-        ValidationUtils.isValidRuleDescription(descriptionController.text)) {
-      final newRule = RuleModel(
-        title: titleController.text,
-        description: descriptionController.text,
-      );
-
-      await ref.read(ruleRepositoryProvider).addRule(newRule);
-
-      if (!mounted) return;
-      ref.invalidate(rulesProvider);
-
-      titleController.clear();
-      descriptionController.clear();
-
-      SnackbarUtil.showSnackbar(context, 'Rule added');
-    }
-  }
-
-  void deleteCustomRule(int index) async {
-    await ref.read(ruleRepositoryProvider).deleteRule(index);
-    ref.invalidate(rulesProvider);
-  }
-
-  void editCustomRule(int index, RuleModel rule) async {
-    await ref.read(ruleRepositoryProvider).updateRule(index, rule);
-    ref.invalidate(rulesProvider);
-  }
-
+class _FavoritesPageState extends ConsumerState<FavoritesPage>
+    with FavoritesMixin {
   @override
   Widget build(BuildContext context) {
     final asyncRules = ref.watch(rulesProvider);
@@ -80,7 +50,7 @@ class _FavoritesPageState extends ConsumerState<FavoritesPage> {
                     ),
                     TextButton(
                       onPressed: () {
-                        addCustomRule();
+                        addCustomRule(ref);
                         Navigator.pop(context);
                       },
                       child: const Text('Save'),
@@ -145,12 +115,10 @@ class _FavoritesPageState extends ConsumerState<FavoritesPage> {
                                     ),
                                     TextButton(
                                       onPressed: () {
-                                        final editedRule = RuleModel(
-                                          title: titleController.text,
-                                          description:
-                                              descriptionController.text,
+                                        editCustomRule(
+                                          index: index,
+                                          ref: ref,
                                         );
-                                        editCustomRule(index, editedRule);
                                         Navigator.pop(context);
                                       },
                                       child: const Text('Save'),
@@ -163,7 +131,10 @@ class _FavoritesPageState extends ConsumerState<FavoritesPage> {
                           icon: const Icon(Icons.edit),
                         ),
                         IconButton(
-                          onPressed: () => deleteCustomRule(index),
+                          onPressed: () => deleteCustomRule(
+                            index: index,
+                            ref: ref,
+                          ),
                           icon: const Icon(Icons.delete),
                         ),
                       ],
