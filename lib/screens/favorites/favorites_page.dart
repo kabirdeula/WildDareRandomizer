@@ -20,45 +20,7 @@ class _FavoritesPageState extends ConsumerState<FavoritesPage>
     final asyncRules = ref.watch(rulesProvider);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  title: const Text('Add Rule'),
-                  content: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      TextField(
-                        controller: titleController,
-                        decoration: const InputDecoration(
-                          labelText: 'Rule Title',
-                        ),
-                      ),
-                      TextField(
-                        controller: descriptionController,
-                        decoration: const InputDecoration(
-                          labelText: 'Rule Description',
-                        ),
-                      )
-                    ],
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: const Text('Cancel'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        addCustomRule(ref);
-                        Navigator.pop(context);
-                      },
-                      child: const Text('Save'),
-                    )
-                  ],
-                );
-              });
-        },
+        onPressed: () => showAddRuleDialog(ref),
         child: const Icon(Icons.add),
       ),
       body: Column(
@@ -88,73 +50,16 @@ class _FavoritesPageState extends ConsumerState<FavoritesPage>
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         IconButton(
-                          onPressed: () {
-                            titleController.text = rule.title;
-                            descriptionController.text = rule.description;
-
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  title: const Text('Edit Rule'),
-                                  content: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      TextField(
-                                        controller: titleController,
-                                      ),
-                                      TextField(
-                                        controller: descriptionController,
-                                      ),
-                                    ],
-                                  ),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () => Navigator.pop(context),
-                                      child: const Text('Cancel'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        editCustomRule(
-                                          index: index,
-                                          ref: ref,
-                                        );
-                                        Navigator.pop(context);
-                                      },
-                                      child: const Text('Save'),
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                          },
+                          onPressed: () => showEditRuleDialog(
+                            ref: ref,
+                            index: index,
+                            rule: rule,
+                          ),
                           icon: const Icon(Icons.edit),
                         ),
                         IconButton(
-                          onPressed: () => showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                title: const Text('Delete Rule'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context),
-                                    child: const Text('Cancel'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {
-                                      deleteCustomRule(
-                                        index: index,
-                                        ref: ref,
-                                      );
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Text('Confirm'),
-                                  ),
-                                ],
-                              );
-                            },
-                          ),
+                          onPressed: () =>
+                              showDeleteRuleDialog(index: index, ref: ref),
                           icon: const Icon(Icons.delete),
                         ),
                       ],
