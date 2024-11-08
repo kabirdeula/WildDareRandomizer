@@ -5,7 +5,11 @@
   },
   {
     "title": "Change Color, Next Draws 4",
-    "description": "Change the color, and if the next player doesn't have it, they must draw 4 cards."
+    "description": "Change the color, and if the next player doesn't have it, they must draw 4 cards. no overwrite"
+  },
+  {
+    "title": "Deadly Uno",
+    "description": "every player must give there all cards to the next player."
   },
   {
     "title": "Delayed Blast",
@@ -13,11 +17,7 @@
   },
   {
     "title": "Discard One Color, Next Draws 5",
-    "description": "You clear one color, but the next player pays the price by drawing 5 cards."
-  },
-  {
-    "title": "Discard Same Color",
-    "description": "You can discard all cards of the same color in one turn. If you have only one card left in your hand, you cannot discard it. The next player must draw 2 cards."
+    "description": "Clearing a color requires one card left in hand; next player draws five."
   },
   {
     "title": "Discard Same Number",
@@ -25,19 +25,19 @@
   },
   {
     "title": "Double Trouble",
-    "description": "If you play two cards of the same number in one turn, the next player must draw three cards. If you are unable to play two cards of the same number, the game continues as normal."
-  },
-  {
-    "title": "Draw Until Even Card",
-    "description": "The next player must draw until they get an even-numbered card."
-  },
-  {
-    "title": "Draw Until Wild Card",
-    "description": "No stopping until you get a Wild card!"
+    "description": "If you play two cards of the same number in one turn, the next player must draw four cards. If you are unable to play two cards of the same number, the game continues as normal."
   },
   {
     "title": "Draw Chain",
     "description": "When the User plays this card, the first person after user picks 1 card, second picks 2 cards and so on.."
+  },
+  {
+    "title": "Draw Until Even Card",
+    "description": "The next player must draw until they get an even-numbered card. no over write"
+  },
+  {
+    "title": "Draw Until Wild Card",
+    "description": "No stopping until you get a Wild card!"
   },
   {
     "title": "Give Half to Next Player",
@@ -53,11 +53,11 @@
   },
   {
     "title": "Mystery Card",
-    "description": "Reveal a card from the deck; players must follow its action."
+    "description": "Reveal a card from the deck; players must follow its action.if no action card appears the player next to them draws two card and there turns are skiped. "
   },
   {
     "title": "No Special Cards",
-    "description": "Special cards cannot be played for one round."
+    "description": "Special cards cannot be played for one round. no choosing color"
   },
   {
     "title": "Random Draw",
@@ -77,7 +77,7 @@
   },
   {
     "title": "Skip 2 Players",
-    "description": "The next two players lose their turns."
+    "description": "The next two players lose their turns for one round."
   },
   { "title": "Skip Next 3 Turns", "description": "Miss three turns in a row." },
   {
@@ -86,7 +86,7 @@
   },
   {
     "title": "Sudden Death",
-    "description": "all players drop their hands. Dealer deal one card each. Show em. Highest/lowest card wins. All wild and special cards given are disqualified."
+    "description": "all players drop their hands. Dealer deal one card each. Show em. Highest/lowest card wins. "
   },
   {
     "title": "Swap Hands",
