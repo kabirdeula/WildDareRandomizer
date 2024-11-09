@@ -106,7 +106,7 @@ class __$$RuleModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$RuleModelImpl with DiagnosticableTreeMixin implements _RuleModel {
+class _$RuleModelImpl implements _RuleModel {
   const _$RuleModelImpl({required this.title, required this.description});
 
   factory _$RuleModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -118,17 +118,8 @@ class _$RuleModelImpl with DiagnosticableTreeMixin implements _RuleModel {
   final String description;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'RuleModel(title: $title, description: $description)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'RuleModel'))
-      ..add(DiagnosticsProperty('title', title))
-      ..add(DiagnosticsProperty('description', description));
   }
 
   @override
