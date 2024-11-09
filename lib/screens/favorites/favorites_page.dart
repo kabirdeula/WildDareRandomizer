@@ -18,6 +18,7 @@ class _FavoritesPageState extends ConsumerState<FavoritesPage>
   @override
   Widget build(BuildContext context) {
     final asyncRules = ref.watch(rulesProvider);
+    // final asyncRules = ref.watch(rulesNotifier);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () => showAddRuleDialog(ref),
@@ -30,7 +31,12 @@ class _FavoritesPageState extends ConsumerState<FavoritesPage>
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                  onPressed: () {}, child: const Text('Import Rule')),
+                onPressed: () {
+                  ref.read(ruleRepositoryProvider).importData();
+                  ref.invalidate(rulesProvider);
+                },
+                child: const Text('Import Rule'),
+              ),
               ElevatedButton(
                 onPressed: () => ref.read(ruleRepositoryProvider).exportData(),
                 child: const Text('Export Rule'),

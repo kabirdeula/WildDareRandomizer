@@ -58,4 +58,14 @@ class RuleRepository {
   Future<void> exportData() async {
     await _ruleService.exportToJson();
   }
+
+  Future<List<RuleModel>> importData() async {
+    final importedRules = await _ruleService.importRulesFromFile();
+
+    for (var rule in importedRules) {
+      await _ruleService.addRule(rule);
+    }
+
+    return importedRules;
+  }
 }

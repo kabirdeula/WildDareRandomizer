@@ -19,6 +19,15 @@ class RulesNotifier extends StateNotifier<AsyncValue<List<RuleModel>>> {
     }
   }
 
+  Future<void> importRules() async {
+    try {
+      final importedRules = await _ruleRepository.importData();
+      state = AsyncValue.data(importedRules);
+    } catch (e) {
+      state = AsyncValue.error(e, StackTrace.current);
+    }
+  }
+
   Future<void> shuffleRules() async {
     try {
       final shuffledRules = await _ruleRepository.shuffleRules();

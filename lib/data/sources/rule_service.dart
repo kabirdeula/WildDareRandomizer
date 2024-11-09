@@ -116,4 +116,26 @@ class RuleService {
       log.e("Error exporting data: $e");
     }
   }
+
+  Future<List<RuleModel>> importRulesFromFile() async {
+    try {
+      final input = html.FileUploadInputElement()..accept = ".json";
+      input.click();
+
+      final file = await input.onChange.first.then((_) => input.files?.first);
+      if (file == null) return [];
+
+      final reader = html.FileReader();
+      reader.readAsText(file);
+
+      await reader.onLoadEnd.first;
+
+      final jsonString = reader.result as String;
+      final List<dynamic> data = json.decode(jsonString);
+      return data.map((rule) => RuleModel.fromJson(rule)).toList();
+    } catch (e) {
+      log.e("Error importing data: $e");
+      return [];
+    }
+  }
 }
