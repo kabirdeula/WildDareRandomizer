@@ -32,7 +32,9 @@ class _FavoritesPageState extends ConsumerState<FavoritesPage>
               ElevatedButton(
                   onPressed: () {}, child: const Text('Import Rule')),
               ElevatedButton(
-                  onPressed: () {}, child: const Text('Export Rule')),
+                onPressed: () => ref.read(ruleRepositoryProvider).exportData(),
+                child: const Text('Export Rule'),
+              ),
             ],
           ),
           Expanded(

@@ -54,4 +54,8 @@ class RuleRepository {
   Future<List<RuleModel>> shuffleRules() async {
     return await _ruleService.shuffleRules();
   }
+
+  Future<void> exportData() async {
+    await _ruleService.exportToJson();
+  }
 }
