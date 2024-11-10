@@ -14,9 +14,7 @@ class RuleRepository {
   Future<void> loadRulesFromJson() async {
     try {
       final String response = await rootBundle.loadString('assets/rules.json');
-
       final List<dynamic> data = json.decode(response);
-
       final List<RuleModel> rules =
           data.map((json) => RuleModel.fromJson(json)).toList();
 
@@ -55,5 +53,19 @@ class RuleRepository {
 
   Future<List<RuleModel>> shuffleRules() async {
     return await _ruleService.shuffleRules();
+  }
+
+  Future<void> exportData() async {
+    await _ruleService.exportToJson();
+  }
+
+  Future<List<RuleModel>> importData() async {
+    final importedRules = await _ruleService.importRulesFromFile();
+
+    for (var rule in importedRules) {
+      await _ruleService.addRule(rule);
+    }
+
+    return importedRules;
   }
 }

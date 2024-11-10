@@ -29,4 +29,5 @@ linter:
 
 analyzer:
   errors:
+    avoid_web_libraries_in_flutter: ignore
     invalid_annotation_target: ignore

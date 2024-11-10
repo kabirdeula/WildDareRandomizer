@@ -1,6 +1,11 @@
+import 'dart:convert';
+import 'dart:html' as html;
 import 'dart:math' hide log;
 
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:path_provider/path_provider.dart';
+
 import 'package:wild_dare_randomizer/app/app.dart';
 import 'package:wild_dare_randomizer/app/config.dart';
 import 'package:wild_dare_randomizer/data/models/model.dart';
@@ -75,6 +80,62 @@ class RuleService {
   Future<void> closeBox() async {
     if (Hive.isBoxOpen(Config.kRuleBox)) {
       await Hive.box(Config.kRuleBox).close();
+    }
+  }
+
+  String convertRulesToJson(List<RuleModel> rules) {
+    List<Map<String, dynamic>> jsonList =
+        rules.map((rule) => rule.toJson()).toList();
+    return jsonEncode(jsonList);
+  }
+
+  Future<String> getFilePath() async {
+    final directory = await getApplicationDocumentsDirectory();
+    log.d('Path: ${directory.path}');
+    return '${directory.path}/rules.json';
+  }
+
+  Future<void> exportToJson() async {
+    try {
+      final rules = await fetchAllRules();
+      String jsonString = convertRulesToJson(rules);
+      if (kIsWeb) {
+        final blob = html.Blob([jsonString]);
+
+        final url = html.Url.createObjectUrlFromBlob(blob);
+
+        final anchor = html.AnchorElement(href: url)
+          ..target = 'blank'
+          ..download = 'rules.json';
+
+        anchor.click();
+
+        html.Url.revokeObjectUrl(url);
+      }
+    } catch (e) {
+      log.e("Error exporting data: $e");
+    }
+  }
+
+  Future<List<RuleModel>> importRulesFromFile() async {
+    try {
+      final input = html.FileUploadInputElement()..accept = ".json";
+      input.click();
+
+      final file = await input.onChange.first.then((_) => input.files?.first);
+      if (file == null) return [];
+
+      final reader = html.FileReader();
+      reader.readAsText(file);
+
+      await reader.onLoadEnd.first;
+
+      final jsonString = reader.result as String;
+      final List<dynamic> data = json.decode(jsonString);
+      return data.map((rule) => RuleModel.fromJson(rule)).toList();
+    } catch (e) {
+      log.e("Error importing data: $e");
+      return [];
     }
   }
 }

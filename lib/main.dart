@@ -6,13 +6,18 @@ import 'package:wild_dare_randomizer/utils/router/app_routes.dart';
 import 'app/app.dart';
 import 'data/repositories/repository.dart';
 import 'providers/provider.dart';
+import 'utils/util.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter();
-  await Hive.openBox(Config.kRuleBox);
-  final ruleRepository = RuleRepository();
-  await ruleRepository.loadRulesIfNeeded();
+  try {
+    await Hive.initFlutter();
+    await Hive.openBox(Config.kRuleBox);
+    final ruleRepository = RuleRepository();
+    await ruleRepository.loadRulesIfNeeded();
+  } catch (e) {
+    log.e("Error initializing App Dependencies: $e");
+  }
   runApp(const ProviderScope(child: MyApp()));
 }
 

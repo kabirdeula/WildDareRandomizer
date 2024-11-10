@@ -1,6 +1,5 @@
 enum Routes {
   initial('/'),
-  rules('/rules'),
   ;
 
   final String path;
