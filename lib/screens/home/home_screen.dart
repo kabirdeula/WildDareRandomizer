@@ -40,6 +40,7 @@ class HomeScreen extends ConsumerWidget {
         children: const [
           RulesPage(),
           FavoritesPage(),
+          SettingsPage(),
         ],
       ),
       bottomNavigationBar: NavigationBar(
