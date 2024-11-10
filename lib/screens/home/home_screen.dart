@@ -38,6 +38,7 @@ class HomeScreen extends ConsumerWidget {
           }
         },
         children: const [
+          SettingsPage(),
           RulesPage(),
           FavoritesPage(),
         ],
