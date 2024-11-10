@@ -1,7 +1,37 @@
 import 'package:flutter/material.dart';
 
 class AppColor {
-  /// Color code: `#14142B`
+  /// Color code: `#F8F8F8 - White`
+  static Color kDefaultBackgroundColor = const Color(0xFFF8F8F8);
+
+  /// Color code: `#1C1C1E - Dark Charcoal`
+  static Color kDarkBackgroundColor = const Color(0xFF1C1C1E);
+
+  /// Color code: `#FF3B30 - Red`
+  static Color kDefaultPrimaryColor = const Color(0xFFFF3B30);
+
+  /// Color code: `#FF453A - Bright Red`
+  static Color kDarkPrimaryColor = const Color(0xFFFF453A);
+
+  /// Color code: `#007AFF - Blue`
+  static Color kDefaultSecondaryColor = const Color(0xFF007AFF);
+
+  /// Color code: `#0A84FF - Lighter Blue`
+  static Color kDarkSecondaryColor = const Color(0xFF0A84FF);
+
+  /// Color code: `#FFCC00 - Yellow`
+  static Color kDefaultAccentColor = const Color(0xFFFFCC00);
+
+  /// Color code: `#FFD60A - Bright Yellow`
+  static Color kDarkAccentColor = const Color(0xFFFFD60A);
+
+  /// Color code: `#333333 - Dark Gray`
+  static Color kDefaultTextColor = const Color(0xFF333333);
+
+  /// Color code: `#EBEBF5 - Light Gray`
+  static Color kDarkTextColor = const Color(0xFFEBEBF5);
+}
+/// Color code: `#14142B`
   // static Color kTitleActiveColor = const Color(0xFF14142B);
 
   /// Color code: `#4E4B66`
@@ -19,20 +49,8 @@ class AppColor {
   /// Color code: `#EFF0F6`
   // static Color kInputBackgroundColor = const Color(0xFFEFF0F6);
 
-  /// Color code: `#F8F8F8`
-  static Color kDefaultBackgroundColor = const Color(0xFFF8F8F8);
-
-  /// Color code: `#1C1C1E`
-  static Color kDarkBackgroundColor = const Color(0xFF1C1C1E);
-
   /// Color code: `#FCFCFC`
   // static Color kOffWhiteColor = const Color(0xFFFCFCFC);
-
-  /// Color code: `#FF3B30`
-  static Color kDefaultPrimaryColor = const Color(0xFFFF3B30);
-
-  /// Color code: `#FF453A`
-  static Color kDarkPrimaryColor = const Color(0xFFFF453A);
 
   /// Color code: `#FFD872`
   // static Color kDarkModePrimaryColor = const Color(0xFFFFD872);
@@ -42,12 +60,6 @@ class AppColor {
 
   /// Color code: `#DCEFFE`
   // static Color kBgPrimaryColor = const Color(0xFFDCEFFE);
-
-  /// Color code: `#007AFF`
-  static Color kDefaultSecondaryColor = const Color(0xFF007AFF);
-
-  /// Color code: `#0A84FF`
-  static Color kDarkSecondaryColor = const Color(0xFF0A84FF);
 
   /// Color code: `#414141`
   // static Color kDarkModeSecondaryColor = const Color(0xFF414141);
@@ -103,19 +115,6 @@ class AppColor {
   /// Color code: `#FFF9EF`
   // static Color kBgWarningColor = const Color(0xFFFFF9EF);
 
-  /// Color code: `#FFCC00`
-  static Color kDefaultAccentColor = const Color(0xFFFFCC00);
-
-  /// Color code: `#FFD60A`
-  static Color kDarkAccentColor = const Color(0xFFFFD60A);
-
-  /// Color code: `#333333`
-  static Color kDefaultTextColor = const Color(0xFF333333);
-
-  /// Color code: `#EBEBF5`
-  static Color kDarkTextColor = const Color(0xFFEBEBF5);
-
   // static getActiveColor(bool isActive) {
   //   return isActive ? AppColor.lPrimaryColor : AppColor.lNavInActiveColor;
   // }
-}
