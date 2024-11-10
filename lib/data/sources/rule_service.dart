@@ -11,13 +11,24 @@ import 'package:wild_dare_randomizer/app/config.dart';
 import 'package:wild_dare_randomizer/data/models/model.dart';
 import 'package:wild_dare_randomizer/utils/util.dart';
 
+/// A service class the manages CRUD operations for rules stored in a Hive database,
+/// as well as functionality for importing and exporting rules in JSON format.
+///
+/// This service provides methods for adding, fetching, updating, deleting,
+/// shuffling, and exporting rules to a JSON file. It also includes import
+/// functionality to load rules from a JSON file into the app.
 class RuleService {
+  /// The [Future] Hive [Box] instance for managing the rule data storage.
   late Future<Box> _box;
 
+  /// Creates a new instance of [RuleService] and initializes the Hive box.
   RuleService() {
     _box = HiveUtil.openHiveBox(Config.kRuleBox);
   }
 
+  /// Fetches all rules from the Hive box and converts them to a list of [RuleModel] objects.
+  ///
+  /// Returns a [List] of [RuleModel] objects or an empty list if an error occurs.
   Future<List<RuleModel>> fetchAllRules() async {
     try {
       final box = await _box;
@@ -33,6 +44,9 @@ class RuleService {
     }
   }
 
+  /// Adds a new rule to the Hive box.
+  ///
+  /// [rule] - The [RuleModel] instance to add to the box.
   Future<void> addRule(RuleModel rule) async {
     try {
       final box = await _box;
@@ -42,6 +56,7 @@ class RuleService {
     }
   }
 
+  /// Deletes a rule from the Hive box at the specified [index].
   Future<void> deleteRule(int index) async {
     try {
       final box = await _box;
@@ -51,6 +66,9 @@ class RuleService {
     }
   }
 
+  /// Updates a rule in the Hive box at the specified [index] with new data.
+  ///
+  /// [rule] - The updated [RuleModel] object.
   Future<void> updateRule(int index, RuleModel rule) async {
     try {
       final box = await _box;
@@ -63,6 +81,9 @@ class RuleService {
     }
   }
 
+  /// Shuffles the list of rules randomly and saves the shuffled order back to the Hive box.
+  ///
+  /// Returns the shuffled list of [RuleModel] objects.
   Future<List<RuleModel>> shuffleRules() async {
     final rules = await fetchAllRules();
     rules.shuffle(Random());
@@ -73,16 +94,20 @@ class RuleService {
     for (var rule in rules) {
       await box.add({'title': rule.title, 'description': rule.description});
     }
-
     return rules;
   }
 
+  /// Closes the Hive box if it is currently open.s
   Future<void> closeBox() async {
     if (Hive.isBoxOpen(Config.kRuleBox)) {
       await Hive.box(Config.kRuleBox).close();
     }
   }
 
+  /// Converts a list of [RuleModel] objects to a JSON-formatted [String].
+  ///
+  /// [rules] - The list of rules to convert.
+  /// Returns the JSON [String] representation of the list.
   String convertRulesToJson(List<RuleModel> rules) {
     List<Map<String, dynamic>> jsonList =
         rules.map((rule) => rule.toJson()).toList();
@@ -95,6 +120,10 @@ class RuleService {
     return '${directory.path}/rules.json';
   }
 
+  /// Exports all rules to a JSON file named `rules.json`.
+  ///
+  /// For web, initiates a download of the file directly. Logs an error if an
+  /// exception occurs during export.
   Future<void> exportToJson() async {
     try {
       final rules = await fetchAllRules();
@@ -117,6 +146,10 @@ class RuleService {
     }
   }
 
+  /// Imports rules from a JSON file and converts them into a list of [RuleModel] objects.
+  ///
+  /// For web, opens a file picker for the user to select the file.
+  /// Returns a list of imported [RuleModel] objects or an empty list if an error occurs.
   Future<List<RuleModel>> importRulesFromFile() async {
     try {
       final input = html.FileUploadInputElement()..accept = ".json";
