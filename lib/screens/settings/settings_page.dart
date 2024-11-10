@@ -1,15 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SettingsPage extends StatefulWidget {
+class SettingsPage extends ConsumerStatefulWidget {
   const SettingsPage({super.key});
 
   @override
-  State<SettingsPage> createState() => _SettingsPageState();
+  ConsumerState<SettingsPage> createState() => _SettingsPageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _SettingsPageState extends ConsumerState<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: ListView(
+        children: const [
+          ListTile(
+            title: Text('Dark Mode'),
+            trailing: Switch(
+              value: false,
+              onChanged: null,
+            ),
+          ),
+          ListTile(
+            title: Text('Grid View'),
+          ),
+          ListTile(
+            title: Text('Clear All Rules'),
+          ),
+          ListTile(
+            title: Text('Import Rules'),
+          ),
+          ListTile(
+            title: Text('Export Rules'),
+          ),
+        ],
+      ),
+    );
   }
 }
