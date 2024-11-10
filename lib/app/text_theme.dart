@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:wild_dare_randomizer/app/app.dart';
+
+import 'colors.dart';
 
 /// The 2018 spec has thirteen text styles:
 ///
@@ -18,25 +21,50 @@ import 'package:flutter/material.dart';
 /// | labelLarge     | 14.0 | medium  |  1.25    |             |
 /// | labelSmall     | 10.0 | regular |  1.5     |             |
 
-const TextTheme customTextTheme = TextTheme(
-  displayLarge: TextStyle(),
-  displayMedium: TextStyle(),
-  displaySmall: TextStyle(),
-  headlineLarge: TextStyle(),
-  headlineMedium: TextStyle(),
+final TextTheme kLightTextTheme = TextTheme(
+  displayLarge: const TextStyle(),
+  displayMedium: const TextStyle(),
+  displaySmall: const TextStyle(),
+  headlineLarge: const TextStyle(),
+  headlineMedium: const TextStyle(),
   headlineSmall: TextStyle(
     fontWeight: FontWeight.w600,
-    color: Colors.black87,
+    color: AppColor.kDefaultTextColor,
     fontFamily: 'Poppins',
   ),
-  titleLarge: TextStyle(),
-  titleMedium: TextStyle(),
-  titleSmall: TextStyle(),
+  titleLarge: const TextStyle(),
+  titleMedium: const TextStyle(),
+  titleSmall: const TextStyle(),
   bodyLarge: TextStyle(
+    color: AppColor.kDefaultTextColor,
     fontFamily: 'Poppins',
   ),
-  bodyMedium: TextStyle(),
-  bodySmall: TextStyle(),
-  labelLarge: TextStyle(),
-  labelSmall: TextStyle(),
+  bodyMedium: const TextStyle(),
+  bodySmall: const TextStyle(),
+  labelLarge: const TextStyle(),
+  labelSmall: const TextStyle(),
+);
+
+final TextTheme kDarkTextTheme = TextTheme(
+  displayLarge: const TextStyle(),
+  displayMedium: const TextStyle(),
+  displaySmall: const TextStyle(),
+  headlineLarge: const TextStyle(),
+  headlineMedium: const TextStyle(),
+  headlineSmall: TextStyle(
+    fontWeight: FontWeight.w600,
+    color: AppColor.kDarkTextColor,
+    fontFamily: 'Poppins',
+  ),
+  titleLarge: const TextStyle(),
+  titleMedium: const TextStyle(),
+  titleSmall: const TextStyle(),
+  bodyLarge: TextStyle(
+    color: AppColor.kDarkTextColor,
+    fontFamily: 'Poppins',
+  ),
+  bodyMedium: const TextStyle(),
+  bodySmall: const TextStyle(),
+  labelLarge: const TextStyle(),
+  labelSmall: const TextStyle(),
 );

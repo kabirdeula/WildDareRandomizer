@@ -3,27 +3,24 @@ import 'package:wild_dare_randomizer/app/app.dart';
 
 class AppTheme {
   static final ThemeData lightTheme = ThemeData(
-    textTheme: customTextTheme,
-    // primaryColor: AppColor.kLightPrimaryColor,
-    // colorScheme: ColorScheme.light(
-    //   primary: AppColor.kLightPrimaryColor,
-    //   secondary: AppColor.kLightSecondaryColor,
-    //   surface: AppColor.kBgPrimaryColor,
-    //   onSurface: AppColor.kBgSecondaryColor,
-    // ),
-    // scaffoldBackgroundColor: AppColor.kBackgroundColor,
-    // appBarTheme: AppBarTheme(
-    //   backgroundColor: AppColor.kBackgroundColor,
-    //   foregroundColor: AppColor.kLightPrimaryColor,
-    // ),
     brightness: Brightness.light,
+    colorScheme: ColorScheme.light(
+      primary: AppColor.kDefaultPrimaryColor,
+      secondary: AppColor.kDefaultSecondaryColor,
+      surface: AppColor.kDefaultBackgroundColor,
+      onPrimary: Colors.white,
+      onSecondary: Colors.black,
+      onSurface: AppColor.kDefaultTextColor,
+    ),
+    primaryColor: AppColor.kDefaultPrimaryColor,
+    scaffoldBackgroundColor: AppColor.kDefaultBackgroundColor,
+    textTheme: kLightTextTheme,
+    useMaterial3: true,
   );
 
   static final ThemeData darkTheme = ThemeData(
-    textTheme: customTextTheme.apply(
-      bodyColor: Colors.white,
-      displayColor: Colors.white,
-    ),
+    brightness: Brightness.dark,
+    textTheme: kDarkTextTheme,
     // primaryColor: AppColor.kDarkModePrimaryColor,
     // colorScheme: ColorScheme.dark(
     //   primary: AppColor.kDarkModePrimaryColor,
@@ -36,6 +33,5 @@ class AppTheme {
     //   backgroundColor: AppColor.kBackgroundColor,
     //   foregroundColor: AppColor.kDarkModePrimaryColor,
     // ),
-    brightness: Brightness.dark,
   );
 }
