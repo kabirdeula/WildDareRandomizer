@@ -2,28 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wild_dare_randomizer/providers/provider.dart';
 
-class SettingsPage extends ConsumerStatefulWidget {
+class SettingsPage extends ConsumerWidget {
   const SettingsPage({super.key});
 
-  @override
-  ConsumerState<SettingsPage> createState() => _SettingsPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final settings = ref.watch(settingsProvider);
+    final SettingsNotifier = ref.read(settingsProvider.notifier);
 
-class _SettingsPageState extends ConsumerState<SettingsPage> {
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
         children: [
-          const ListTile(
-            title: Text('Dark Mode'),
+          ListTile(
+            title: const Text('Dark Mode'),
             trailing: Switch(
-              value: false,
-              onChanged: null,
+              value: settings.isDarkMode,
+              onChanged: (_) => SettingsNotifier.toggleTheme(),
             ),
           ),
-          const ListTile(
-            title: Text('Grid View'),
+          ListTile(
+            title: const Text('Grid View'),
+            trailing: Switch(
+              value: settings.isGridView,
+              onChanged: (value) => SettingsNotifier.toggleViewMode(),
+            ),
           ),
           ListTile(
             title: const Text('Clear All Rules'),
