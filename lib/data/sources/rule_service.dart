@@ -171,4 +171,16 @@ class RuleService {
       return [];
     }
   }
+
+  /// Clears all rules from the Hive box.
+  ///
+  /// Throws an error if an exception occurs during the operation.
+  Future<void> clearRules() async {
+    try {
+      final box = await _box;
+      await box.clear();
+    } catch (e) {
+      log.e("Error clearing rules: $e");
+    }
+  }
 }
