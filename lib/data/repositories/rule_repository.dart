@@ -90,4 +90,11 @@ class RuleRepository {
     }
     return importedRules;
   }
+
+  /// Clears all rules from the storage.
+  ///
+  /// This method is useful when a reset of the rule data is needed.
+  Future<void> clearRules() async {
+    await _ruleService.clearRules();
+  }
 }

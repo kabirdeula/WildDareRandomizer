@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wild_dare_randomizer/providers/provider.dart';
 
 class SettingsPage extends ConsumerStatefulWidget {
   const SettingsPage({super.key});
@@ -13,24 +14,27 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
-        children: const [
-          ListTile(
+        children: [
+          const ListTile(
             title: Text('Dark Mode'),
             trailing: Switch(
               value: false,
               onChanged: null,
             ),
           ),
-          ListTile(
+          const ListTile(
             title: Text('Grid View'),
           ),
           ListTile(
-            title: Text('Clear All Rules'),
+            title: const Text('Clear All Rules'),
+            onTap: () => ref.read(ruleRepositoryProvider).clearRules().then(
+                  (value) => ref.refresh(rulesProvider),
+                ),
           ),
-          ListTile(
+          const ListTile(
             title: Text('Import Rules'),
           ),
-          ListTile(
+          const ListTile(
             title: Text('Export Rules'),
           ),
         ],
