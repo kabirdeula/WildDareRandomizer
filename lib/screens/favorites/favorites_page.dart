@@ -24,66 +24,45 @@ class _FavoritesPageState extends ConsumerState<FavoritesPage>
         onPressed: () => showAddRuleDialog(ref),
         child: const Icon(Icons.add),
       ),
-      body: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  ref.read(ruleRepositoryProvider).importData();
-                  ref.invalidate(rulesProvider);
-                },
-                child: const Text('Import Rule'),
-              ),
-              ElevatedButton(
-                onPressed: () => ref.read(ruleRepositoryProvider).exportData(),
-                child: const Text('Export Rule'),
-              ),
-            ],
-          ),
-          Expanded(
-            child: asyncRules.when(
-              data: (rules) => ListView.builder(
-                reverse: true,
-                itemCount: rules.length,
-                itemBuilder: (context, index) {
-                  final rule = rules[index];
+      body: Expanded(
+        child: asyncRules.when(
+          data: (rules) => ListView.builder(
+            reverse: true,
+            itemCount: rules.length,
+            itemBuilder: (context, index) {
+              final rule = rules[index];
 
-                  return ListTile(
-                    title: Text(rule.title),
-                    subtitle: Text(rule.description),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          onPressed: () => showEditRuleDialog(
-                            ref: ref,
-                            index: index,
-                            rule: rule,
-                          ),
-                          icon: const Icon(Icons.edit),
-                        ),
-                        IconButton(
-                          onPressed: () =>
-                              showDeleteRuleDialog(index: index, ref: ref),
-                          icon: const Icon(Icons.delete),
-                        ),
-                      ],
+              return ListTile(
+                title: Text(rule.title),
+                subtitle: Text(rule.description),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      onPressed: () => showEditRuleDialog(
+                        ref: ref,
+                        index: index,
+                        rule: rule,
+                      ),
+                      icon: const Icon(Icons.edit),
                     ),
-                  );
-                },
-              ),
-              error: (error, state) => Center(
-                child: Text('Error: $error'),
-              ),
-              loading: () => const Center(
-                child: CircularProgressIndicator(),
-              ),
-            ),
-          )
-        ],
+                    IconButton(
+                      onPressed: () =>
+                          showDeleteRuleDialog(index: index, ref: ref),
+                      icon: const Icon(Icons.delete),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+          error: (error, state) => Center(
+            child: Text('Error: $error'),
+          ),
+          loading: () => const Center(
+            child: CircularProgressIndicator(),
+          ),
+        ),
       ),
     );
   }

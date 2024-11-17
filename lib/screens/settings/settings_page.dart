@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wild_dare_randomizer/providers/provider.dart';
+import 'package:wild_dare_randomizer/utils/util.dart';
 
 class SettingsPage extends ConsumerWidget {
   const SettingsPage({super.key});
@@ -28,15 +29,28 @@ class SettingsPage extends ConsumerWidget {
           ),
           ListTile(
             title: const Text('Clear All Rules'),
-            onTap: () => ref.read(ruleRepositoryProvider).clearRules().then(
-                  (value) => ref.refresh(rulesProvider),
-                ),
+            onTap: () async {
+              ref.read(ruleRepositoryProvider).clearRules().then(
+                    (_) => ref.invalidate(rulesProvider),
+                  );
+              SnackbarUtil.showSnackbar(context, 'All rules cleared');
+            },
           ),
-          const ListTile(
-            title: Text('Import Rules'),
+          ListTile(
+            title: const Text('Import Rules'),
+            onTap: () {
+              ref.read(ruleRepositoryProvider).importData().then(
+                    (_) => ref.refresh(rulesProvider),
+                  );
+              SnackbarUtil.showSnackbar(context, 'Rules Imported Successfully');
+            },
           ),
-          const ListTile(
-            title: Text('Export Rules'),
+          ListTile(
+            title: const Text('Export Rules'),
+            onTap: () {
+              ref.read(ruleRepositoryProvider).exportData();
+              SnackbarUtil.showSnackbar(context, 'Rules Exported');
+            },
           ),
         ],
       ),
