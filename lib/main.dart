@@ -2,6 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:wild_dare_randomizer/utils/router/app_routes.dart';
 
@@ -34,13 +35,19 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsProvider);
-    return MaterialApp.router(
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
-      debugShowCheckedModeBanner: false,
-      routerConfig: AppRoutes.router,
-      title: Config.kAppName,
-      theme: settings.isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
+    return ScreenUtilInit(
+      designSize: const Size(360, 640),
+      minTextAdapt: true,
+      builder: (context,child) {
+        return MaterialApp.router(
+          locale: DevicePreview.locale(context),
+          builder: DevicePreview.appBuilder,
+          debugShowCheckedModeBanner: false,
+          routerConfig: AppRoutes.router,
+          title: Config.kAppName,
+          theme: settings.isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
+        );
+      }
     );
   }
 }
