@@ -1,4 +1,7 @@
+import 'package:flip_card/flip_card.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wild_dare_randomizer/data/models/model.dart';
 import 'package:wild_dare_randomizer/screens/home/home_mixin.dart';
 
@@ -14,40 +17,33 @@ class RuleGridView extends StatelessWidget with HomeMixin {
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
         childAspectRatio: 1,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
+        crossAxisSpacing: kIsWeb ? 4 : 10.w,
+        mainAxisSpacing: kIsWeb ? 4 : 10.h,
       ),
       itemCount: rules.length.clamp(0, 16),
       itemBuilder: (context, index) {
-        return Card(
-          elevation: 2,
-          color: getRuleColor(index),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  '${index + 1}: ${rules[index].title}',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineSmall,
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  rules[index].description,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge!
-                      .copyWith(fontSize: 16),
-                ),
-              ],
-            ),
+        return FlipCard(
+          front: buildRuleCard(
+            context: context,
+            content: '${index + 1}: ${rules[index].title}',
+            color: getRuleColor(index),
+            style: Theme.of(context).textTheme.displaySmall,
+            maxFontSize: kIsWeb ? 34 : 40.sp,
+            minFontSize: kIsWeb ? 30 : 24.sp,
+          ),
+          back: buildRuleCard(
+            isScrollable: true,
+            context: context,
+            content: rules[index].description,
+            color: getRuleColor(index),
+            style: Theme.of(context).textTheme.displaySmall,
+            maxFontSize: kIsWeb ? 48 : 40.sp,
+            minFontSize: kIsWeb ? 34 : 24.sp,
           ),
         );
       },
     );
   }
+
+  
 }
