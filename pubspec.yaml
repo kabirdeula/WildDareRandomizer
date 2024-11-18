@@ -25,6 +25,9 @@ dependencies:
   logger: ^2.4.0
   path_provider: ^2.1.5
   device_preview: ^1.2.0
+  flutter_screenutil: ^5.9.3
+  flip_card: ^0.7.0
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:

@@ -10,6 +10,7 @@ import 'colors.dart';
 /// | displayLarge   | 96.0 | light   | -1.5     |             |
 /// | displayMedium  | 60.0 | light   | -0.5     |             |
 /// | displaySmall   | 48.0 | regular |  0.0     |             |
+/// | headlineLarge  | 40.0 | regular |  0.25    |             |
 /// | headlineMedium | 34.0 | regular |  0.25    |             |
 /// | headlineSmall  | 24.0 | regular |  0.0     |             |
 /// | titleLarge     | 20.0 | medium  |  0.15    |             |
@@ -24,8 +25,16 @@ import 'colors.dart';
 final TextTheme kLightTextTheme = TextTheme(
   displayLarge: const TextStyle(),
   displayMedium: const TextStyle(),
-  displaySmall: const TextStyle(),
-  headlineLarge: const TextStyle(),
+  displaySmall: TextStyle(
+    fontWeight: FontWeight.w600,
+    color: AppColor.kDefaultTextColor,
+    fontFamily: 'Poppins',
+  ),
+  headlineLarge: TextStyle(
+    // fontWeight: FontWeight.w600,
+    color: AppColor.kDefaultTextColor,
+    fontFamily: 'Poppins',
+  ),
   headlineMedium: const TextStyle(),
   headlineSmall: TextStyle(
     fontWeight: FontWeight.w600,
