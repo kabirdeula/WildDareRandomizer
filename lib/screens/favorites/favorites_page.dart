@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wild_dare_randomizer/data/models/model.dart';
 import 'package:wild_dare_randomizer/providers/provider.dart';
+import 'package:wild_dare_randomizer/screens/home/home_mixin.dart';
 import 'package:wild_dare_randomizer/utils/util.dart';
 
 part 'favorites_mixin.dart';
@@ -14,54 +16,36 @@ class FavoritesPage extends ConsumerStatefulWidget {
 }
 
 class _FavoritesPageState extends ConsumerState<FavoritesPage>
-    with FavoritesMixin {
+    with FavoritesMixin, HomeMixin {
   @override
   Widget build(BuildContext context) {
     final asyncRules = ref.watch(rulesProvider);
-    // final asyncRules = ref.watch(rulesNotifier);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () => showAddRuleDialog(ref),
         child: const Icon(Icons.add),
       ),
-      body: Expanded(
-        child: asyncRules.when(
-          data: (rules) => ListView.builder(
-            reverse: true,
-            itemCount: rules.length,
-            itemBuilder: (context, index) {
-              final rule = rules[index];
+      body: asyncRules.when(
+        data: (rules) => ListView.separated(
+          padding: const EdgeInsets.all(kIsWeb ? 32 : 16),
+          separatorBuilder: (context, index) => const SizedBox(height: 8),
+          itemCount: rules.length,
+          itemBuilder: (context, index) {
+            final rule = rules[index];
 
-              return ListTile(
-                title: Text(rule.title),
-                subtitle: Text(rule.description),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    IconButton(
-                      onPressed: () => showEditRuleDialog(
-                        ref: ref,
-                        index: index,
-                        rule: rule,
-                      ),
-                      icon: const Icon(Icons.edit),
-                    ),
-                    IconButton(
-                      onPressed: () =>
-                          showDeleteRuleDialog(index: index, ref: ref),
-                      icon: const Icon(Icons.delete),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-          error: (error, state) => Center(
-            child: Text('Error: $error'),
-          ),
-          loading: () => const Center(
-            child: CircularProgressIndicator(),
-          ),
+            return buildRuleListTile(
+              ref: ref,
+              rule: rule,
+              color: getRuleColor(index),
+              index: index,
+            );
+          },
+        ),
+        error: (error, state) => Center(
+          child: Text('Error: $error'),
+        ),
+        loading: () => const Center(
+          child: CircularProgressIndicator(),
         ),
       ),
     );

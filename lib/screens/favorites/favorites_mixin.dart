@@ -166,4 +166,45 @@ mixin FavoritesMixin on State<FavoritesPage> {
       ],
     );
   }
+
+  ListTile buildRuleListTile({
+    required WidgetRef ref,
+    required RuleModel rule,
+    required Color color,
+    required int index,
+  }) {
+    return ListTile(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      tileColor: color,
+      title: Text(
+        rule.title,
+        style: Theme.of(context).textTheme.titleMedium,
+      ),
+      subtitle: Text(rule.description),
+      leading: CircleAvatar(
+        backgroundColor: color,
+        child: Text(
+          '${index + 1}',
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
+      ),
+      trailing: Wrap(
+        spacing: 8,
+        children: [
+          IconButton(
+            onPressed: () => showEditRuleDialog(
+              ref: ref,
+              index: index,
+              rule: rule,
+            ),
+            icon: const Icon(Icons.edit),
+          ),
+          IconButton(
+            onPressed: () => showDeleteRuleDialog(index: index, ref: ref),
+            icon: const Icon(Icons.delete),
+          ),
+        ],
+      ),
+    );
+  }
 }
