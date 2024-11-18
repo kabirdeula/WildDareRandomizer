@@ -36,7 +36,7 @@ class RuleGridView extends StatelessWidget with HomeMixin {
             context: context,
             content: rules[index].description,
             color: getRuleColor(index),
-            style: Theme.of(context).textTheme.displaySmall,
+            style: Theme.of(context).textTheme.headlineLarge,
             maxFontSize: kIsWeb ? 48 : 40.sp,
             minFontSize: kIsWeb ? 34 : 24.sp,
           ),

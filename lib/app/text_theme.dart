@@ -25,8 +25,16 @@ import 'colors.dart';
 final TextTheme kLightTextTheme = TextTheme(
   displayLarge: const TextStyle(),
   displayMedium: const TextStyle(),
-  displaySmall: const TextStyle(),
-  headlineLarge: const TextStyle(),
+  displaySmall: TextStyle(
+    fontWeight: FontWeight.w600,
+    color: AppColor.kDefaultTextColor,
+    fontFamily: 'Poppins',
+  ),
+  headlineLarge: TextStyle(
+    // fontWeight: FontWeight.w600,
+    color: AppColor.kDefaultTextColor,
+    fontFamily: 'Poppins',
+  ),
   headlineMedium: const TextStyle(),
   headlineSmall: TextStyle(
     fontWeight: FontWeight.w600,
