@@ -6,9 +6,10 @@ import 'package:wild_dare_randomizer/utils/util.dart';
 class SettingsPage extends ConsumerWidget {
   const SettingsPage({super.key});
 
+  @override
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsProvider);
-    final SettingsNotifier = ref.read(settingsProvider.notifier);
+    final settingsNotifier = ref.read(settingsProvider.notifier);
 
     return Scaffold(
       body: ListView(
@@ -17,14 +18,14 @@ class SettingsPage extends ConsumerWidget {
             title: const Text('Dark Mode'),
             trailing: Switch(
               value: settings.isDarkMode,
-              onChanged: (_) => SettingsNotifier.toggleTheme(),
+              onChanged: (_) => settingsNotifier.toggleTheme(),
             ),
           ),
           ListTile(
             title: const Text('Grid View'),
             trailing: Switch(
               value: settings.isGridView,
-              onChanged: (value) => SettingsNotifier.toggleViewMode(),
+              onChanged: (value) => settingsNotifier.toggleViewMode(),
             ),
           ),
           ListTile(
