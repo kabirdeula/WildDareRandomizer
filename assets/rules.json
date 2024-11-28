@@ -1,111 +1,142 @@
 [
   {
     "title": "All Players Draw 5",
-    "description": "All players must draw 5 cards except you."
+    "description": "All players must draw 5 cards except you.",
+    "level": "Easy"
   },
   {
-    "title": "Change Color, Next Draws 4",
-    "description": "Change the color, and if the next player doesn't have it, they must draw 4 cards. no overwrite"
+    "title": "Change Color, Next Draws 4 🚫",
+    "description": "Change the color, and if the next player doesn't have it, they must draw 4 cards. NO OVERWRITE",
+    "level": "Medium"
   },
   {
     "title": "Deadly Uno",
-    "description": "every player must give there all cards to the next player."
+    "description": "every player must give there all cards to the next player.",
+    "level": "Hard"
   },
   {
     "title": "Delayed Blast",
-    "description": "Choose any player who will have to draw 5 cards after their next turn, no matter what they play."
+    "description": "Choose any player who will have to draw 5 cards after their next turn, no matter what they play.",
+    "level": "Hard"
   },
   {
     "title": "Discard One Color, Next Draws 5",
-    "description": "Clearing a color requires one card left in hand; next player draws five."
+    "description": "Clearing a color requires one card left in hand; next player draws five.",
+    "level": "Hard"
   },
   {
     "title": "Discard Same Number",
-    "description": "You can discard all cards with the same number at once. If you have only one card left in your hand, you cannot discard it. The next player must draw 2 cards."
+    "description": "You can discard all cards with the same number at once. If you have only one card left in your hand, you cannot discard it. The next player must draw 2 cards.",
+    "level": "Medium"
   },
   {
     "title": "Double Trouble",
-    "description": "If you play two cards of the same number in one turn, the next player must draw four cards. If you are unable to play two cards of the same number, the game continues as normal."
+    "description": "If you play two cards of the same number in one turn, the next player must draw four cards. If you are unable to play two cards of the same number, the game continues as normal.",
+    "level": "Medium"
   },
   {
     "title": "Draw Chain",
-    "description": "When the User plays this card, the first person after user picks 1 card, second picks 2 cards and so on.."
+    "description": "When the User plays this card, the first person after user picks 1 card, second picks 2 cards and so on..",
+    "level": "Hard"
   },
   {
-    "title": "Draw Until Even Card",
-    "description": "The next player must draw until they get an even-numbered card. no over write"
+    "title": "Draw Until Even Card 🚫",
+    "description": "The next player must draw until they get an even-numbered card. NO OVERWRITE",
+    "level": "Medium"
   },
   {
     "title": "Draw Until Wild Card",
-    "description": "No stopping until you get a Wild card!"
+    "description": "No stopping until you get a Wild card!",
+    "level": "Extreme"
   },
   {
     "title": "Give Half to Next Player",
-    "description": "The unlucky next player must take half your hand."
+    "description": "The unlucky next player must take half your hand.",
+    "level": "Medium"
   },
   {
     "title": "Hand Fusion",
-    "description": "Combine your hand with the next player's hand and split the combined cards evenly between both of you. Odd cards go to the next player clockwise."
+    "description": "Combine your hand with the next player's hand and split the combined cards evenly between both of you. Odd cards go to the next player clockwise.",
+    "level": "Hard"
   },
   {
     "title": "Lose Hand and Draw 7",
-    "description": "The next player loses their entire hand and draws 7 fresh cards."
+    "description": "The next player loses their entire hand and draws 7 fresh cards.",
+    "level": "Hard"
   },
   {
     "title": "Mystery Card",
-    "description": "Reveal a card from the deck; players must follow its action.if no action card appears the player next to them draws two card and there turns are skiped. "
+    "description": "Reveal a card from the deck; players must follow its action.if no action card appears the player next to them draws two card and there turns are skipped.",
+    "level": "Medium"
   },
   {
     "title": "No Special Cards",
-    "description": "Special cards cannot be played for one round. no choosing color"
+    "description": "Special cards cannot be played for one round. no choosing color",
+    "level": "Hard"
   },
   {
     "title": "Random Draw",
-    "description": "Draw 2 random cards from another player's hand and add them to your own."
+    "description": "Draw 2 random cards from another player's hand and add them to your own.",
+    "level": "Easy"
   },
   {
     "title": "Reveal Your Hand",
-    "description": "Next Player plays with your cards exposed until your next turn."
+    "description": "Next Player plays with your cards exposed until your next turn.",
+    "level": "Medium"
   },
   {
     "title": "Shuffle and Distribute",
-    "description": "Shuffle all the cards except yours and distribute them."
+    "description": "Shuffle all the cards except yours and distribute them.",
+    "level": "Extreme"
   },
   {
-    "title": "Shuffle and Play",
-    "description": "Shuffle the deck and play one card from your hand can't be overwritten."
+    "title": "Shuffle and Play 🚫",
+    "description": "Shuffle the deck and play one card from your hand. NO OVERWRITE",
+    "level": "Extreme"
   },
   {
     "title": "Skip 2 Players",
-    "description": "The next two players lose their turns for one round."
+    "description": "The next two players lose their turns for one round.",
+    "level": "Medium"
   },
-  { "title": "Skip Next 3 Turns", "description": "Miss three turns in a row." },
+  {
+    "title": "Skip Next 3 Turns",
+    "description": "Miss three turns in a row.",
+    "level": "Easy"
+  },
   {
     "title": "Skip Two Turns",
-    "description": "The next player skips two turns."
+    "description": "The next player skips two turns.",
+    "level": "Easy"
   },
   {
     "title": "Sudden Death",
-    "description": "all players drop their hands. Dealer deal one card each. Show em. Highest/lowest card wins. "
+    "description": "All players drop their hands. Dealer deal one card each. Show em. Highest/lowest card wins.",
+    "level": "Extreme"
   },
   {
     "title": "Swap Hands",
-    "description": "You can swap hands with any player of your choice."
+    "description": "You can swap hands with any player of your choice.",
+    "level": "Easy"
   },
   {
     "title": "Swap Hands with Fewest Cards Player",
-    "description": "Give them your large hand and take their small one."
+    "description": "Give them your large hand and take their small one.",
+    "level": "Easy"
   },
   {
     "title": "Take 15 Cards",
-    "description": "You must draw 15 cards from the deck."
+    "description": "You must draw 15 cards from the deck.",
+    "level": "Extreme"
   },
   {
     "title": "Trade Hands",
-    "description": "Trade hands with the player next to you."
+    "description": "Trade hands with the player next to you.",
+    "level": "Medium"
   },
   {
     "title": "Ultimate Uno",
-    "description": "All players must play with open cards for one round."
+    "description": "All players must play with open cards for one round.",
+    "level": "Extreme"
   }
 ]
