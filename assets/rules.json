@@ -30,11 +30,6 @@
     "level": "Medium"
   },
   {
-    "title": "Double Trouble",
-    "description": "If you play two cards of the same number in one turn, the next player must draw four cards. If you are unable to play two cards of the same number, the game continues as normal.",
-    "level": "Medium"
-  },
-  {
     "title": "Draw Chain",
     "description": "When the User plays this card, the first person after user picks 1 card, second picks 2 cards and so on..",
     "level": "Hard"
@@ -65,11 +60,6 @@
     "level": "Hard"
   },
   {
-    "title": "Mystery Card",
-    "description": "Reveal a card from the deck; players must follow its action.if no action card appears the player next to them draws two card and there turns are skipped.",
-    "level": "Medium"
-  },
-  {
     "title": "No Special Cards",
     "description": "Special cards cannot be played for one round. no choosing color",
     "level": "Hard"
@@ -93,16 +83,6 @@
     "title": "Shuffle and Play 🚫",
     "description": "Shuffle the deck and play one card from your hand. NO OVERWRITE",
     "level": "Extreme"
-  },
-  {
-    "title": "Skip 2 Players",
-    "description": "The next two players lose their turns for one round.",
-    "level": "Medium"
-  },
-  {
-    "title": "Skip Next 3 Turns",
-    "description": "Miss three turns in a row.",
-    "level": "Easy"
   },
   {
     "title": "Skip Two Turns",
@@ -138,5 +118,50 @@
     "title": "Ultimate Uno",
     "description": "All players must play with open cards for one round.",
     "level": "Extreme"
+  },
+  {
+    "title": "Time Bomb 🚫",
+    "description": "After being played, this card stays in effect for the next three players. The first two players are skipped, and on the third player’s turn, if they have a \"Skip\" card, they avoid drawing 10 cards and pass the effect to the next player. This continues until a \"Skip\" card is played; otherwise, the player must draw 10 cards.",
+    "level": "Extreme"
+  },
+  {
+    "title": "Wildest Card",
+    "description": "Lose your hand,Choose color and take one card for the deck.",
+    "level": "Hard"
+  },
+  {
+    "title": "One for One 🚫",
+    "description": "Take one wild card from the discard pile. The picked card overwrite is discarded",
+    "level": "Hard"
+  },
+  {
+    "title": "Force Swap 🚫",
+    "description": "Force two players of your choice to swap hands. You cannot include yourself.",
+    "level": "Hard"
+  },
+  {
+    "title": "All-in Draw",
+    "description": "All players(excluding you) draw cards equal to the number of cards in their own hand.",
+    "level": "Extreme"
+  },
+  {
+    "title": "Tit for Tat 🚫",
+    "description": "Cancel the effect of the last Draw card played against you and return it to the player who used it.🖕🏿",
+    "level": "Medium"
+  },
+  {
+    "title": "Force Play",
+    "description": "Choose a player and force them to discard their power card you can choose the card. If they dont have it draw +2",
+    "level": "Easy"
+  },
+  {
+    "title": "Trap Card 🚫",
+    "description": "Place this card face down in front of a player. When their turn comes, they must draw 3 cards unless they play a power card. NO OVERWRITE.",
+    "level": "Extreme"
+  },
+  {
+    "title": "Chain Reaction 🚫",
+    "description": "If the next player has the same number as yours, they can stack it, and the chain continues. No Wildcard to be played.If it breaks, the last player in the chain draws 6 cards.",
+    "level": "Hard"
   }
 ]
