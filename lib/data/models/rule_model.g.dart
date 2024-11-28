@@ -10,10 +10,12 @@ _$RuleModelImpl _$$RuleModelImplFromJson(Map<String, dynamic> json) =>
     _$RuleModelImpl(
       title: json['title'] as String,
       description: json['description'] as String,
+      level: json['level'] as String,
     );
 
 Map<String, dynamic> _$$RuleModelImplToJson(_$RuleModelImpl instance) =>
     <String, dynamic>{
       'title': instance.title,
       'description': instance.description,
+      'level': instance.level,
     };

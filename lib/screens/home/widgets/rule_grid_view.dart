@@ -26,7 +26,7 @@ class RuleGridView extends StatelessWidget with HomeMixin {
           front: buildRuleCard(
             context: context,
             content: '${index + 1}: ${rules[index].title}',
-            color: getRuleColor(index),
+            color: getRuleColor(rules[index].level),
             style: Theme.of(context).textTheme.displaySmall,
             maxFontSize: kIsWeb ? 34 : 40.sp,
             minFontSize: kIsWeb ? 30 : 24.sp,
@@ -35,7 +35,7 @@ class RuleGridView extends StatelessWidget with HomeMixin {
             isScrollable: true,
             context: context,
             content: rules[index].description,
-            color: getRuleColor(index),
+            color: getRuleColor(rules[index].level),
             style: Theme.of(context).textTheme.headlineLarge,
             maxFontSize: kIsWeb ? 48 : 40.sp,
             minFontSize: kIsWeb ? 34 : 24.sp,
@@ -44,6 +44,4 @@ class RuleGridView extends StatelessWidget with HomeMixin {
       },
     );
   }
-
-  
 }

@@ -113,6 +113,22 @@
       "command": "firebase",
       "args": ["deploy", "--only", "hosting"],
       "label": "Deploy to Firebase Hosting"
+    },
+    {
+      "type": "shell",
+      "command": "flutter",
+      "args": ["build", "web", "--release"],
+      "label": "Flutter Build Web"
+    },
+    {
+      "label": "Build Web and Deploy",
+      "dependsOn": [
+        "Flutter Clean",
+        "Pub Get",
+        "Flutter Build Web",
+        "Deploy to Firebase Hosting"
+      ],
+      "dependsOrder": "sequence"
     }
   ],
   "inputs": [

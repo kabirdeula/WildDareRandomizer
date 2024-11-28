@@ -18,7 +18,7 @@ class RuleListView extends StatelessWidget with HomeMixin {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12.0),
             ),
-            color: getRuleColor(index),
+            color: getRuleColor(rules[index].level),
           ),
           child: ListTile(
             title: Text('${index + 1}: ${rules[index].title}'),

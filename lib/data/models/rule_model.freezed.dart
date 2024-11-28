@@ -22,6 +22,7 @@ RuleModel _$RuleModelFromJson(Map<String, dynamic> json) {
 mixin _$RuleModel {
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  String get level => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,7 @@ abstract class $RuleModelCopyWith<$Res> {
   factory $RuleModelCopyWith(RuleModel value, $Res Function(RuleModel) then) =
       _$RuleModelCopyWithImpl<$Res, RuleModel>;
   @useResult
-  $Res call({String title, String description});
+  $Res call({String title, String description, String level});
 }
 
 /// @nodoc
@@ -52,6 +53,7 @@ class _$RuleModelCopyWithImpl<$Res, $Val extends RuleModel>
   $Res call({
     Object? title = null,
     Object? description = null,
+    Object? level = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -61,6 +63,10 @@ class _$RuleModelCopyWithImpl<$Res, $Val extends RuleModel>
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      level: null == level
+          ? _value.level
+          : level // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -74,7 +80,7 @@ abstract class _$$RuleModelImplCopyWith<$Res>
       __$$RuleModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, String description});
+  $Res call({String title, String description, String level});
 }
 
 /// @nodoc
@@ -90,6 +96,7 @@ class __$$RuleModelImplCopyWithImpl<$Res>
   $Res call({
     Object? title = null,
     Object? description = null,
+    Object? level = null,
   }) {
     return _then(_$RuleModelImpl(
       title: null == title
@@ -100,6 +107,10 @@ class __$$RuleModelImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      level: null == level
+          ? _value.level
+          : level // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -107,7 +118,8 @@ class __$$RuleModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RuleModelImpl implements _RuleModel {
-  const _$RuleModelImpl({required this.title, required this.description});
+  const _$RuleModelImpl(
+      {required this.title, required this.description, required this.level});
 
   factory _$RuleModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$RuleModelImplFromJson(json);
@@ -116,10 +128,12 @@ class _$RuleModelImpl implements _RuleModel {
   final String title;
   @override
   final String description;
+  @override
+  final String level;
 
   @override
   String toString() {
-    return 'RuleModel(title: $title, description: $description)';
+    return 'RuleModel(title: $title, description: $description, level: $level)';
   }
 
   @override
@@ -129,12 +143,13 @@ class _$RuleModelImpl implements _RuleModel {
             other is _$RuleModelImpl &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            (identical(other.level, level) || other.level == level));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, description);
+  int get hashCode => Object.hash(runtimeType, title, description, level);
 
   @JsonKey(ignore: true)
   @override
@@ -153,7 +168,8 @@ class _$RuleModelImpl implements _RuleModel {
 abstract class _RuleModel implements RuleModel {
   const factory _RuleModel(
       {required final String title,
-      required final String description}) = _$RuleModelImpl;
+      required final String description,
+      required final String level}) = _$RuleModelImpl;
 
   factory _RuleModel.fromJson(Map<String, dynamic> json) =
       _$RuleModelImpl.fromJson;
@@ -162,6 +178,8 @@ abstract class _RuleModel implements RuleModel {
   String get title;
   @override
   String get description;
+  @override
+  String get level;
   @override
   @JsonKey(ignore: true)
   _$$RuleModelImplCopyWith<_$RuleModelImpl> get copyWith =>
