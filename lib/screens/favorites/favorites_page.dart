@@ -36,7 +36,7 @@ class _FavoritesPageState extends ConsumerState<FavoritesPage>
             return buildRuleListTile(
               ref: ref,
               rule: rule,
-              color: getRuleColor(index),
+              color: getRuleColor(rules[index].level),
               index: index,
             );
           },

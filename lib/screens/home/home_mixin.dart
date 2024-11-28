@@ -17,16 +17,17 @@ mixin HomeMixin {
             : 6;
   }
 
-  Color getRuleColor(int index) {
-    switch (index % 4) {
-      case 0:
+  Color getRuleColor(String level) {
+    // log.d(level);
+    switch (level.toLowerCase()) {
+      case 'extreme':
         return Colors.red;
-      case 1:
-        return Colors.blue;
-      case 2:
-        return Colors.green;
-      case 3:
+      case 'hard':
         return Colors.yellow;
+      case 'medium':
+        return Colors.blue;
+      case 'easy':
+        return Colors.green;
       default:
         return Colors.purple;
     }

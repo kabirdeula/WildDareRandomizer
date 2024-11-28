@@ -10,6 +10,7 @@ mixin FavoritesMixin on State<FavoritesPage> {
       final newRule = RuleModel(
         title: titleController.text,
         description: descriptionController.text,
+        level: '',
       );
 
       await ref.read(ruleRepositoryProvider).addRule(newRule);
@@ -46,6 +47,7 @@ mixin FavoritesMixin on State<FavoritesPage> {
     final editedRule = RuleModel(
       title: titleController.text,
       description: descriptionController.text,
+      level: '',
     );
     await ref.read(ruleRepositoryProvider).updateRule(index, editedRule);
 

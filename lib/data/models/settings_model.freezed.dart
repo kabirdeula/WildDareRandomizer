@@ -20,7 +20,10 @@ SettingsModel _$SettingsModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SettingsModel {
+  /// A boolean indicating whether dark mode is enabled.
   bool get isDarkMode => throw _privateConstructorUsedError;
+
+  /// A boolean indicating whether items are displayed in a grid view.
   bool get isGridView => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -113,9 +116,12 @@ class _$SettingsModelImpl implements _SettingsModel {
   factory _$SettingsModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$SettingsModelImplFromJson(json);
 
+  /// A boolean indicating whether dark mode is enabled.
   @override
   @JsonKey()
   final bool isDarkMode;
+
+  /// A boolean indicating whether items are displayed in a grid view.
   @override
   @JsonKey()
   final bool isGridView;
@@ -162,8 +168,12 @@ abstract class _SettingsModel implements SettingsModel {
       _$SettingsModelImpl.fromJson;
 
   @override
+
+  /// A boolean indicating whether dark mode is enabled.
   bool get isDarkMode;
   @override
+
+  /// A boolean indicating whether items are displayed in a grid view.
   bool get isGridView;
   @override
   @JsonKey(ignore: true)

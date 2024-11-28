@@ -32,11 +32,13 @@ class RuleService {
   Future<List<RuleModel>> fetchAllRules() async {
     try {
       final box = await _box;
+      log.d("Rules: ${box.values}");
       return box.values
           .whereType<Map>()
           .map((ruleMap) => RuleModel(
               title: ruleMap['title'] ?? '',
-              description: ruleMap['description'] ?? ''))
+              description: ruleMap['description'] ?? '',
+              level: ruleMap['level'] ?? ''))
           .toList();
     } catch (e) {
       log.e("Error fetching rules: $e");
@@ -50,7 +52,11 @@ class RuleService {
   Future<void> addRule(RuleModel rule) async {
     try {
       final box = await _box;
-      await box.add({'title': rule.title, 'description': rule.description});
+      await box.add({
+        'title': rule.title,
+        'description': rule.description,
+        'level': rule.level,
+      });
     } catch (e) {
       log.e("Error adding rule: $e");
     }
@@ -75,6 +81,7 @@ class RuleService {
       await box.putAt(index, {
         'title': rule.title,
         'description': rule.description,
+        'level': rule.level
       });
     } catch (e) {
       log.e("Error updating rule: $e");
@@ -92,7 +99,11 @@ class RuleService {
 
     // Save the shuffled rules back to the box
     for (var rule in rules) {
-      await box.add({'title': rule.title, 'description': rule.description});
+      await box.add({
+        'title': rule.title,
+        'description': rule.description,
+        'level': rule.level
+      });
     }
     return rules;
   }
