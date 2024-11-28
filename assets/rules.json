@@ -5,13 +5,23 @@
     "level": "Easy"
   },
   {
-    "title": "Change Color, Next Draws 4 🚫",
-    "description": "Change the color, and if the next player doesn't have it, they must draw 4 cards. NO OVERWRITE",
+    "title": "All-in Draw",
+    "description": "All players(excluding you) draw cards equal to the number of cards in their own hand.",
+    "level": "Extreme"
+  },
+  {
+    "title": "Chain Reaction \ud83d\udeab",
+    "description": "If the next player has the same number as yours, they can stack it, and the chain continues. No Wildcard to be played.If it breaks, the last player in the chain draws 6 cards.",
+    "level": "Hard"
+  },
+  {
+    "title": "Change Color, Next Draws 4 \ud83d\udeab",
+    "description": "Change the color, and if the next player doesn't have it, they must draw 4 cards.",
     "level": "Medium"
   },
   {
     "title": "Deadly Uno",
-    "description": "every player must give there all cards to the next player.",
+    "description": "Every player must give there all cards to the next player.",
     "level": "Hard"
   },
   {
@@ -35,14 +45,24 @@
     "level": "Hard"
   },
   {
-    "title": "Draw Until Even Card 🚫",
-    "description": "The next player must draw until they get an even-numbered card. NO OVERWRITE",
+    "title": "Draw Until Even Card \ud83d\udeab",
+    "description": "The next player must draw until they get an even-numbered card.",
     "level": "Medium"
   },
   {
     "title": "Draw Until Wild Card",
     "description": "No stopping until you get a Wild card!",
     "level": "Extreme"
+  },
+  {
+    "title": "Force Play",
+    "description": "Choose a player and force them to discard their power card you can choose the card. If they dont have it draw +2",
+    "level": "Easy"
+  },
+  {
+    "title": "Force Swap \ud83d\udeab",
+    "description": "Force two players of your choice to swap hands. You cannot include yourself.",
+    "level": "Hard"
   },
   {
     "title": "Give Half to Next Player",
@@ -65,6 +85,11 @@
     "level": "Hard"
   },
   {
+    "title": "One for One \ud83d\udeab",
+    "description": "Take one wild card from the discard pile. The picked card overwrite is discarded",
+    "level": "Hard"
+  },
+  {
     "title": "Random Draw",
     "description": "Draw 2 random cards from another player's hand and add them to your own.",
     "level": "Easy"
@@ -80,8 +105,8 @@
     "level": "Extreme"
   },
   {
-    "title": "Shuffle and Play 🚫",
-    "description": "Shuffle the deck and play one card from your hand. NO OVERWRITE",
+    "title": "Shuffle and Play \ud83d\udeab",
+    "description": "Shuffle the deck and play one card from your hand.",
     "level": "Extreme"
   },
   {
@@ -110,9 +135,24 @@
     "level": "Extreme"
   },
   {
+    "title": "Time Bomb \ud83d\udeab",
+    "description": "After being played, this card stays in effect for the next three players. The first two players are skipped, and on the third player\u2019s turn, if they have a \"Skip\" card, they avoid drawing 10 cards and pass the effect to the next player. This continues until a \"Skip\" card is played; otherwise, the player must draw 10 cards.",
+    "level": "Extreme"
+  },
+  {
+    "title": "Tit for Tat \ud83d\udeab",
+    "description": "Cancel the effect of the last Draw card played against you and return it to the player who used it.\ud83d\udd95\ud83c\udfff",
+    "level": "Extreme"
+  },
+  {
     "title": "Trade Hands",
     "description": "Trade hands with the player next to you.",
     "level": "Medium"
+  },
+  {
+    "title": "Trap Card \ud83d\udeab",
+    "description": "Place this card face down in front of a player. When their turn comes, they must draw 3 cards unless they play a power card.",
+    "level": "Extreme"
   },
   {
     "title": "Ultimate Uno",
@@ -120,48 +160,8 @@
     "level": "Extreme"
   },
   {
-    "title": "Time Bomb 🚫",
-    "description": "After being played, this card stays in effect for the next three players. The first two players are skipped, and on the third player’s turn, if they have a \"Skip\" card, they avoid drawing 10 cards and pass the effect to the next player. This continues until a \"Skip\" card is played; otherwise, the player must draw 10 cards.",
-    "level": "Extreme"
-  },
-  {
     "title": "Wildest Card",
     "description": "Lose your hand,Choose color and take one card for the deck.",
-    "level": "Hard"
-  },
-  {
-    "title": "One for One 🚫",
-    "description": "Take one wild card from the discard pile. The picked card overwrite is discarded",
-    "level": "Hard"
-  },
-  {
-    "title": "Force Swap 🚫",
-    "description": "Force two players of your choice to swap hands. You cannot include yourself.",
-    "level": "Hard"
-  },
-  {
-    "title": "All-in Draw",
-    "description": "All players(excluding you) draw cards equal to the number of cards in their own hand.",
-    "level": "Extreme"
-  },
-  {
-    "title": "Tit for Tat 🚫",
-    "description": "Cancel the effect of the last Draw card played against you and return it to the player who used it.🖕🏿",
-    "level": "Medium"
-  },
-  {
-    "title": "Force Play",
-    "description": "Choose a player and force them to discard their power card you can choose the card. If they dont have it draw +2",
-    "level": "Easy"
-  },
-  {
-    "title": "Trap Card 🚫",
-    "description": "Place this card face down in front of a player. When their turn comes, they must draw 3 cards unless they play a power card. NO OVERWRITE.",
-    "level": "Extreme"
-  },
-  {
-    "title": "Chain Reaction 🚫",
-    "description": "If the next player has the same number as yours, they can stack it, and the chain continues. No Wildcard to be played.If it breaks, the last player in the chain draws 6 cards.",
     "level": "Hard"
   }
 ]
