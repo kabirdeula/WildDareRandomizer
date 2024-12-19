@@ -4,11 +4,8 @@
 
 - lib
   - app/
-    - app_theme.dart
     - app.dart
-    - colors.dart
     - config.dart
-    - text_theme.dart
   - data/
     - models/
       - model.dart
@@ -68,7 +65,6 @@
 - lib/
   - core/
     - constants/
-      - colors.dart
       - enums.dart
     - services/
       - log_service.dart
@@ -140,4 +136,77 @@
     - app.dart
     - app_theme.dart
     - text_theme.dart
+  - main.dart
+
+## Current Project Structure
+
+- lib
+  - app/
+    - app.dart
+    - config.dart
+  - core/
+    - constants/
+      - app_colors.dart
+      - constants.dart
+    - themes/
+      - app_text_theme.dart
+      - app_themes.dart
+      - themes.dart
+  - data/
+    - models/
+      - model.dart
+      - rule_model.dart
+      - rule_model.freezed.dart
+      - rule_model.g.dart
+      - settings_model.dart
+      - settings_model.freezed.dart
+      - settings_model.g.dart
+    - repositories/
+      - repository.dart
+      - rule_repository.dart
+    - sources/
+      - log_service.dart
+      - rule_service.dart
+      - source.dart
+      - theme_service.dart
+  - pages/
+    - gateway_page.dart
+    - home_page.dart
+  - providers/
+    - page_provider.dart
+    - provider.dart
+    - rule_provider.dart
+    - rules_notifier.dart
+    - settings_notifier.dart
+    - theme_provider.dart
+    - view_mode_provider.dart
+  - routes/
+    - app_router.dart
+    - app_routes.dart
+    - routes.dart
+  - screens/
+    - favorites/
+      - favorites_mixin.dart
+      - favorites_page.dart
+    - home/
+      - widgets/
+        - home_widget.dart
+        - rule_grid_view.dart
+        - rule_list_view.dart
+      - home_mixin.dart
+      - home_screen.dart
+    - settings/
+      - settings_page.dart
+    - rules_page.dart
+    - screen.dart
+  - utils/
+    - hive_util.dart
+    - logger_util.dart
+    - snackbar_util.dart
+    - util.dart
+    - validation_utils.dart
+  - widgets/
+    - rule_card.dart
+    - toggle_view_button.dart
+    - widget.dart
   - main.dart
