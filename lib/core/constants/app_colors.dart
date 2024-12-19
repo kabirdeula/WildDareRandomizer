@@ -1,35 +1,35 @@
 import 'package:flutter/material.dart';
 
-class AppColor {
+class AppColors {
   /// Color code: `#F8F8F8 - Seasalt(White)`
-  static Color kDefaultBackgroundColor = const Color(0xFFF8F8F8);
+  static Color background = const Color(0xFFF8F8F8);
 
   /// Color code: `#1C1C1E - Eerie black(Dark Charcoal)`
-  static Color kDarkBackgroundColor = const Color(0xFF1C1C1E);
+  static Color darkBackground = const Color(0xFF1C1C1E);
 
   /// Color code: `#FF3B30 - Vermilion(Red)`
-  static Color kDefaultPrimaryColor = const Color(0xFFFF3B30);
+  static Color primary = const Color(0xFFFF3B30);
 
   /// Color code: `#FF453A - Tomato(Bright Red)`
-  static Color kDarkPrimaryColor = const Color(0xFFFF453A);
+  static Color darkPrimary = const Color(0xFFFF453A);
 
   /// Color code: `#007AFF - Azure(Blue)`
-  static Color kDefaultSecondaryColor = const Color(0xFF007AFF);
+  static Color secondary = const Color(0xFF007AFF);
 
   /// Color code: `#0A84FF - Azure(Lighter Blue)`
-  static Color kDarkSecondaryColor = const Color(0xFF0A84FF);
+  static Color darkSecondary = const Color(0xFF0A84FF);
 
   /// Color code: `#FFCC00 - Jonquil(Yellow)`
-  static Color kDefaultAccentColor = const Color(0xFFFFCC00);
+  static Color accent = const Color(0xFFFFCC00);
 
   /// Color code: `#FFD60A - Gold(Bright Yellow)`
-  static Color kDarkAccentColor = const Color(0xFFFFD60A);
+  static Color darkAccent = const Color(0xFFFFD60A);
 
   /// Color code: `#333333 - Jet(Dark Gray)`
-  static Color kDefaultTextColor = const Color(0xFF333333);
+  static Color text = const Color(0xFF333333);
 
   /// Color code: `#EBEBF5 - Magnolia(Light Gray)`
-  static Color kDarkTextColor = const Color(0xFFEBEBF5);
+  static Color darkText = const Color(0xFFEBEBF5);
 }
 
 /// Color code: `#14142B`

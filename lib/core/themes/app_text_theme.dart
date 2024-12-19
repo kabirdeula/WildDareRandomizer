@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wild_dare_randomizer/app/app.dart';
-
-import 'colors.dart';
+import 'package:wild_dare_randomizer/core/constants/constants.dart';
 
 /// The 2018 spec has thirteen text styles:
 ///
@@ -27,25 +25,25 @@ final TextTheme kLightTextTheme = TextTheme(
   displayMedium: const TextStyle(),
   displaySmall: TextStyle(
     fontWeight: FontWeight.w600,
-    color: AppColor.kDefaultTextColor,
+    color: AppColors.text,
     fontFamily: 'Poppins',
   ),
   headlineLarge: TextStyle(
     // fontWeight: FontWeight.w600,
-    color: AppColor.kDefaultTextColor,
+    color: AppColors.text,
     fontFamily: 'Poppins',
   ),
   headlineMedium: const TextStyle(),
   headlineSmall: TextStyle(
     fontWeight: FontWeight.w600,
-    color: AppColor.kDefaultTextColor,
+    color: AppColors.text,
     fontFamily: 'Poppins',
   ),
   titleLarge: const TextStyle(),
   titleMedium: const TextStyle(),
   titleSmall: const TextStyle(),
   bodyLarge: TextStyle(
-    color: AppColor.kDefaultTextColor,
+    color: AppColors.text,
     fontFamily: 'Poppins',
   ),
   bodyMedium: const TextStyle(),
@@ -62,14 +60,14 @@ final TextTheme kDarkTextTheme = TextTheme(
   headlineMedium: const TextStyle(),
   headlineSmall: TextStyle(
     fontWeight: FontWeight.w600,
-    color: AppColor.kDarkTextColor,
+    color: AppColors.darkText,
     fontFamily: 'Poppins',
   ),
   titleLarge: const TextStyle(),
   titleMedium: const TextStyle(),
   titleSmall: const TextStyle(),
   bodyLarge: TextStyle(
-    color: AppColor.kDarkTextColor,
+    color: AppColors.darkText,
     fontFamily: 'Poppins',
   ),
   bodyMedium: const TextStyle(),
