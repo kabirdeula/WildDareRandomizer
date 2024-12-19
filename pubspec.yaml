@@ -28,6 +28,9 @@ dependencies:
   flutter_screenutil: ^5.9.3
   flip_card: ^0.7.0
   auto_size_text: ^3.0.0
+  equatable: ^2.0.7
+  flutter_bloc: ^8.1.6
+  get_it: ^8.0.3
 
 dev_dependencies:
   flutter_test:
