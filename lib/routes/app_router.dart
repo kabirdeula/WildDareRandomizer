@@ -18,7 +18,7 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.dashboard.path,
         name: AppRoutes.dashboard.name,
-        builder: (context, state) => const DashboardScreen(),
+        builder: (context, state) => DashboardScreen(),
       ),
       GoRoute(
         path: AppRoutes.home.path,
