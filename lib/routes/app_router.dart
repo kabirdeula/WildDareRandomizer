@@ -1,10 +1,8 @@
-import 'package:go_router/go_router.dart';
 import 'package:wild_dare_randomizer/features/dashboard/dashboard.dart';
-
 import 'package:wild_dare_randomizer/features/gateway/gateway.dart';
-import 'package:wild_dare_randomizer/pages/home_page.dart';
+import 'package:wild_dare_randomizer/features/home/home.dart';
 
-import 'app_routes.dart';
+import 'routes.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -23,7 +21,7 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.home.path,
         name: AppRoutes.home.name,
-        builder: (context, state) => const HomePage(),
+        builder: (context, state) => const HomeScreen(),
       ),
     ],
   );
