@@ -8,6 +8,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'core/themes/themes.dart';
 import 'core/utils/utils.dart';
 import 'dependency_injection.dart';
+import 'features/dashboard/dashboard.dart';
 import 'features/gateway/gateway.dart';
 import 'routes/routes.dart';
 
@@ -22,6 +23,7 @@ void main() async {
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(create: (context) => locator<GatewayCubit>()),
+      BlocProvider(create: (context) => locator<DashboardCubit>())
     ],
     child: DevicePreview(
       enabled: !kReleaseMode,
