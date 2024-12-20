@@ -20,8 +20,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       leading: showBackButton ? BackButton(color: AppColors.text) : leading,
-      title: Text(title ?? ''),
+      title: Text(
+        title ?? '',
+        style: Theme.of(context).textTheme.titleLarge,
+      ),
       actions: actions,
+      centerTitle: true,
     );
   }
 
