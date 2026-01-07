@@ -163,5 +163,10 @@
     "title": "Wildest Card",
     "description": "Lose your hand,Choose color and take one card for the deck.",
     "level": "Hard"
+  },
+  {
+    "title": "Three Musketeers \ud83d\udeab",
+    "description": "Choose 1 to 3 players to draw cards. If one player is chosen, they draw 12 cards. If two players are chosen, each draws 6 cards. If three players are chosen, each draws 4 cards.",
+    "level": "Extreme"
   }
 ]
