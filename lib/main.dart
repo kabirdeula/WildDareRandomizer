@@ -9,7 +9,9 @@ import 'package:wild_dare_randomizer/cubits/cubit.dart';
 import 'package:wild_dare_randomizer/utils/router/app_routes.dart';
 
 import 'app/app.dart';
+import 'data/models/model.dart';
 import 'data/repositories/repository.dart';
+import 'data/sources/source.dart';
 import 'providers/provider.dart';
 import 'utils/util.dart';
 
@@ -36,27 +38,31 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final settings = ref.watch(settingsProvider);
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => NavigationCubit()),
         BlocProvider(create: (_) => RulesCubit(repository: ruleRepository)),
+        BlocProvider(create: (_) => SettingsCubit(ThemeService())),
       ],
-      child: ScreenUtilInit(
-          designSize: const Size(360, 640),
-          minTextAdapt: true,
-          builder: (context, child) {
-            return MaterialApp.router(
-              locale: DevicePreview.locale(context),
-              builder: DevicePreview.appBuilder,
-              debugShowCheckedModeBanner: false,
-              routerConfig: AppRoutes.router,
-              title: Config.kAppName,
-              theme: settings.isDarkMode
-                  ? AppTheme.darkTheme
-                  : AppTheme.lightTheme,
-            );
-          }),
+      child: BlocBuilder<SettingsCubit, SettingsModel>(
+        builder: (context, state) {
+          return ScreenUtilInit(
+            designSize: const Size(360, 640),
+            minTextAdapt: true,
+            builder: (context, child) {
+              return MaterialApp.router(
+                locale: DevicePreview.locale(context),
+                builder: DevicePreview.appBuilder,
+                debugShowCheckedModeBanner: false,
+                routerConfig: AppRoutes.router,
+                title: Config.kAppName,
+                theme:
+                    state.isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }

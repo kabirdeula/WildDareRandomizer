@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../data/models/model.dart';
 import 'home/widgets/home_widget.dart';
 
 import '../cubits/cubit.dart';
@@ -14,18 +15,26 @@ class RulesScreen extends StatelessWidget {
         onPressed: () => context.read<RulesCubit>().shuffleRules(),
         child: const Icon(Icons.shuffle),
       ),
-      body: BlocBuilder<RulesCubit, RulesState>(builder: (context, state) {
-        if (state is RulesLoading) {
-          return const Center(child: CircularProgressIndicator());
-        }
+      body: BlocBuilder<SettingsCubit, SettingsModel>(
+        builder: (context, settingsState) {
+          return BlocBuilder<RulesCubit, RulesState>(
+            builder: (context, state) {
+              if (state is RulesLoading) {
+                return const Center(child: CircularProgressIndicator());
+              }
 
-        if (state is RulesFailure) {
-          return Center(child: Text('Error: ${state.error}'));
-        }
+              if (state is RulesFailure) {
+                return Center(child: Text('Error: ${state.error}'));
+              }
 
-        final rules = (state as RulesLoaded).rules;
-        return RuleGridView(rules: rules);
-      }),
+              final rules = (state as RulesLoaded).rules;
+              return settingsState.isGridView
+                  ? RuleGridView(rules: rules)
+                  : RuleListView(rules: rules);
+            },
+          );
+        },
+      ),
     );
   }
 }
