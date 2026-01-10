@@ -38,7 +38,10 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsProvider);
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (_) => NavigationCubit())],
+      providers: [
+        BlocProvider(create: (_) => NavigationCubit()),
+        BlocProvider(create: (_) => RulesCubit(repository: ruleRepository)),
+      ],
       child: ScreenUtilInit(
           designSize: const Size(360, 640),
           minTextAdapt: true,
