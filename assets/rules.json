@@ -168,5 +168,30 @@
     "title": "Three Musketeers \ud83d\udeab",
     "description": "Choose 1 to 3 players to draw cards. If one player is chosen, they draw 12 cards. If two players are chosen, each draws 6 cards. If three players are chosen, each draws 4 cards.",
     "level": "Extreme"
+  },
+  {
+    "title": "Forced Redistribution \ud83d\udeab",
+    "description": "The affected player must distribute all cards from their hand to other players of their choice, excluding the player who gave the dare. After distributing all cards, they draw 7 new cards from the deck.",
+    "level": "Hard"
+  },
+  {
+    "title": "Hand Drain",
+    "description": "The affected player must discard half of their hand (rounded up) and then draw the same number of cards from the deck.",
+    "level": "Hard"
+  },
+  {
+    "title": "Reverse Donation",
+    "description": "The affected player gives all their power cards to other players of their choice, excluding the player who gave the dare. Number cards remain untouched.",
+    "level": "Hard"
+  },
+  {
+    "title": "Forced Equality",
+    "description": "All players except the one who played this card must adjust their hand size to match the affected player’s hand by either drawing or discarding cards.",
+    "level": "Extreme"
+  },
+  {
+    "title": "Hand Collapse",
+    "description": "The affected player discards their entire hand and immediately draws the same number of cards from the deck.",
+    "level": "Medium"
   }
 ]
