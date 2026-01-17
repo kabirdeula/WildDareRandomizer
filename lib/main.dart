@@ -1,68 +1,27 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:wild_dare_randomizer/cubits/cubit.dart';
-import 'package:wild_dare_randomizer/utils/router/app_routes.dart';
 
-import 'app/app.dart';
-import 'data/models/model.dart';
-import 'data/repositories/repository.dart';
-import 'data/sources/source.dart';
-import 'providers/provider.dart';
-import 'utils/util.dart';
+import 'app.dart';
+import 'common/common.dart';
+import 'core/core.dart';
+import 'features/rules/rules.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  try {
-    await Hive.initFlutter();
-    await Hive.openBox(Config.kRuleBox);
-    final ruleRepository = RuleRepository();
-    await ruleRepository.loadRulesIfNeeded();
-  } catch (e) {
-    log.e("Error initializing App Dependencies: $e");
-  }
+
+  final RuleAssetSource source = RuleAssetSource();
+  final rules = await source.loadRules();
+  log.d("Loaded ${rules.length} rules");
+
+  await HiveService.init();
+
   runApp(
-    DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (context) => const ProviderScope(child: MyApp()),
+    AppBlocProviders(
+      child: DevicePreview(
+        enabled: !kReleaseMode,
+        builder: (context) => WildDareApp(),
+      ),
     ),
   );
-}
-
-class MyApp extends ConsumerWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => NavigationCubit()),
-        BlocProvider(create: (_) => RulesCubit(repository: ruleRepository)),
-        BlocProvider(create: (_) => SettingsCubit(ThemeService())),
-      ],
-      child: BlocBuilder<SettingsCubit, SettingsModel>(
-        builder: (context, state) {
-          return ScreenUtilInit(
-            designSize: const Size(360, 640),
-            minTextAdapt: true,
-            builder: (context, child) {
-              return MaterialApp.router(
-                locale: DevicePreview.locale(context),
-                builder: DevicePreview.appBuilder,
-                debugShowCheckedModeBanner: false,
-                routerConfig: AppRoutes.router,
-                title: Config.kAppName,
-                theme:
-                    state.isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
-              );
-            },
-          );
-        },
-      ),
-    );
-  }
 }
