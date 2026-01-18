@@ -14,9 +14,10 @@ import 'package:path_provider/path_provider.dart';
 /// detailed log messages to be captured.
 /// - In `release` mode, the log level is set to `Level.error`, limiting
 /// logs to critical error messages for production efficiency.
-abstract final class LogService {
-  static final LogService _instance = LogService();
+class LogService {
+  LogService._();
 
+  static final LogService _instance = LogService._();
   factory LogService() => _instance;
 
   static final Map<Level, AnsiColor> levelColor = {

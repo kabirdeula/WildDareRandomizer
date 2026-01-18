@@ -17,8 +17,12 @@ abstract final class HiveService {
 
     // * Register Adapters
     Hive.registerAdapter(RuleEntityAdapter());
+    Hive.registerAdapter(RandomValueAdapter());
 
-    log.d("Initialized Hive and registered adapters.", tags: fileName);
+    log.d(
+      "Initialized Hive for ${kIsWeb ? 'Web' : 'Mobile'} and registered adapters.",
+      tags: fileName,
+    );
   }
 
   static Future<void> clearAllData() async {
