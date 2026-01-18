@@ -8,7 +8,7 @@ part of 'rule_entity.dart';
 
 class RuleEntityAdapter extends TypeAdapter<RuleEntity> {
   @override
-  final typeId = 1;
+  final typeId = 0;
 
   @override
   RuleEntity read(BinaryReader reader) {
@@ -57,6 +57,49 @@ class RuleEntityAdapter extends TypeAdapter<RuleEntity> {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is RuleEntityAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class RandomValueAdapter extends TypeAdapter<RandomValue> {
+  @override
+  final typeId = 1;
+
+  @override
+  RandomValue read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return RandomValue(
+      type: fields[0] as String,
+      min: (fields[1] as num).toInt(),
+      max: (fields[2] as num).toInt(),
+      reroll: fields[3] == null ? false : fields[3] as bool,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, RandomValue obj) {
+    writer
+      ..writeByte(4)
+      ..writeByte(0)
+      ..write(obj.type)
+      ..writeByte(1)
+      ..write(obj.min)
+      ..writeByte(2)
+      ..write(obj.max)
+      ..writeByte(3)
+      ..write(obj.reroll);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is RandomValueAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

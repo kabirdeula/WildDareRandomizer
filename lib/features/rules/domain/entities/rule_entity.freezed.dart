@@ -600,7 +600,7 @@ as String?,
 /// @nodoc
 mixin _$RandomValue {
 
- String get type; int get min; int get max; bool get reroll;
+@HiveField(0) String get type;@HiveField(1) int get min;@HiveField(2) int get max;@HiveField(3) bool get reroll;
 /// Create a copy of RandomValue
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -633,7 +633,7 @@ abstract mixin class $RandomValueCopyWith<$Res>  {
   factory $RandomValueCopyWith(RandomValue value, $Res Function(RandomValue) _then) = _$RandomValueCopyWithImpl;
 @useResult
 $Res call({
- String type, int min, int max, bool reroll
+@HiveField(0) String type,@HiveField(1) int min,@HiveField(2) int max,@HiveField(3) bool reroll
 });
 
 
@@ -741,7 +741,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String type,  int min,  int max,  bool reroll)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@HiveField(0)  String type, @HiveField(1)  int min, @HiveField(2)  int max, @HiveField(3)  bool reroll)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _RandomValue() when $default != null:
 return $default(_that.type,_that.min,_that.max,_that.reroll);case _:
@@ -762,7 +762,7 @@ return $default(_that.type,_that.min,_that.max,_that.reroll);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String type,  int min,  int max,  bool reroll)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@HiveField(0)  String type, @HiveField(1)  int min, @HiveField(2)  int max, @HiveField(3)  bool reroll)  $default,) {final _that = this;
 switch (_that) {
 case _RandomValue():
 return $default(_that.type,_that.min,_that.max,_that.reroll);case _:
@@ -782,7 +782,7 @@ return $default(_that.type,_that.min,_that.max,_that.reroll);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String type,  int min,  int max,  bool reroll)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@HiveField(0)  String type, @HiveField(1)  int min, @HiveField(2)  int max, @HiveField(3)  bool reroll)?  $default,) {final _that = this;
 switch (_that) {
 case _RandomValue() when $default != null:
 return $default(_that.type,_that.min,_that.max,_that.reroll);case _:
@@ -797,13 +797,13 @@ return $default(_that.type,_that.min,_that.max,_that.reroll);case _:
 @JsonSerializable()
 
 class _RandomValue implements RandomValue {
-  const _RandomValue({required this.type, required this.min, required this.max, this.reroll = false});
+  const _RandomValue({@HiveField(0) required this.type, @HiveField(1) required this.min, @HiveField(2) required this.max, @HiveField(3) this.reroll = false});
   factory _RandomValue.fromJson(Map<String, dynamic> json) => _$RandomValueFromJson(json);
 
-@override final  String type;
-@override final  int min;
-@override final  int max;
-@override@JsonKey() final  bool reroll;
+@override@HiveField(0) final  String type;
+@override@HiveField(1) final  int min;
+@override@HiveField(2) final  int max;
+@override@JsonKey()@HiveField(3) final  bool reroll;
 
 /// Create a copy of RandomValue
 /// with the given fields replaced by the non-null parameter values.
@@ -838,7 +838,7 @@ abstract mixin class _$RandomValueCopyWith<$Res> implements $RandomValueCopyWith
   factory _$RandomValueCopyWith(_RandomValue value, $Res Function(_RandomValue) _then) = __$RandomValueCopyWithImpl;
 @override @useResult
 $Res call({
- String type, int min, int max, bool reroll
+@HiveField(0) String type,@HiveField(1) int min,@HiveField(2) int max,@HiveField(3) bool reroll
 });
 
 

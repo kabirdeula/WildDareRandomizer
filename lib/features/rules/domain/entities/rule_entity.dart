@@ -17,7 +17,7 @@ abstract class RuleAssetFile with _$RuleAssetFile {
 }
 
 @freezed
-@HiveType(typeId: 1)
+@HiveType(typeId: 0)
 abstract class RuleEntity with _$RuleEntity {
   const factory RuleEntity({
     @HiveField(0) required String id,
@@ -35,12 +35,13 @@ abstract class RuleEntity with _$RuleEntity {
 }
 
 @freezed
+@HiveType(typeId: 1)
 abstract class RandomValue with _$RandomValue {
   const factory RandomValue({
-    required String type,
-    required int min,
-    required int max,
-    @Default(false) bool reroll,
+    @HiveField(0) required String type,
+    @HiveField(1) required int min,
+    @HiveField(2) required int max,
+    @HiveField(3) @Default(false) bool reroll,
   }) = _RandomValue;
 
   factory RandomValue.fromJson(Map<String, dynamic> json) =>
