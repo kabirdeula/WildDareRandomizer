@@ -156,7 +156,7 @@ class _DeckBuilderDialogState extends State<DeckBuilderDialog> {
                                 labelText: 'Filter by Level',
                                 border: OutlineInputBorder(),
                               ),
-                              value: _selectedLevel,
+                              initialValue: _selectedLevel,
                               items: [
                                 const DropdownMenuItem(
                                   value: null,
@@ -182,7 +182,7 @@ class _DeckBuilderDialogState extends State<DeckBuilderDialog> {
                                 labelText: 'Filter by Tag',
                                 border: OutlineInputBorder(),
                               ),
-                              value: _selectedTag,
+                              initialValue: _selectedTag,
                               items: [
                                 const DropdownMenuItem(
                                   value: null,
