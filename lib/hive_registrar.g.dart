@@ -3,10 +3,14 @@
 // Check in to version control
 
 import 'package:hive_ce/hive_ce.dart';
+import 'package:wild_dare_randomizer/features/deck/domain/entities/deck_entity.dart';
+import 'package:wild_dare_randomizer/features/rules/domain/entities/played_rule_tracker.dart';
 import 'package:wild_dare_randomizer/features/rules/domain/entities/rule_entity.dart';
 
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
+    registerAdapter(DeckEntityAdapter());
+    registerAdapter(PlayedRuleTrackerAdapter());
     registerAdapter(RandomValueAdapter());
     registerAdapter(RuleEntityAdapter());
   }
@@ -14,6 +18,8 @@ extension HiveRegistrar on HiveInterface {
 
 extension IsolatedHiveRegistrar on IsolatedHiveInterface {
   void registerAdapters() {
+    registerAdapter(DeckEntityAdapter());
+    registerAdapter(PlayedRuleTrackerAdapter());
     registerAdapter(RandomValueAdapter());
     registerAdapter(RuleEntityAdapter());
   }
