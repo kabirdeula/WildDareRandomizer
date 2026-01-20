@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:hive_ce_flutter/hive_ce_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../../features/deck/deck.dart';
 import '../../features/rules/rules.dart';
 import '../core.dart';
 
@@ -18,6 +19,8 @@ abstract final class HiveService {
     // * Register Adapters
     Hive.registerAdapter(RuleEntityAdapter());
     Hive.registerAdapter(RandomValueAdapter());
+    Hive.registerAdapter(DeckEntityAdapter());
+    Hive.registerAdapter(PlayedRuleTrackerAdapter());
 
     log.d(
       "Initialized Hive for ${kIsWeb ? 'Web' : 'Mobile'} and registered adapters.",
@@ -27,6 +30,8 @@ abstract final class HiveService {
 
   static Future<void> clearAllData() async {
     await clearBox<RuleEntity>(boxName: ruleEntityKey.name);
+    await clearBox<DeckEntity>(boxName: deckEntityKey.name);
+    await clearBox<PlayedRuleTracker>(boxName: playedRuleTrackerKey.name);
   }
 
   static Future<Box<T>> openBox<T>({required String boxName}) async {
@@ -63,7 +68,13 @@ class HiveBoxKey<T> {
 }
 
 abstract final class HiveBoxes {
+  static const String deckEntity = 'DeckEntity';
   static const String ruleEntity = 'RuleEntity';
+  static const String playedRuleTracker = 'PlayedRuleTracker';
 }
 
+const deckEntityKey = HiveBoxKey<DeckEntity>(name: HiveBoxes.deckEntity);
 const ruleEntityKey = HiveBoxKey<RuleEntity>(name: HiveBoxes.ruleEntity);
+const playedRuleTrackerKey = HiveBoxKey<RuleEntity>(
+  name: HiveBoxes.playedRuleTracker,
+);
