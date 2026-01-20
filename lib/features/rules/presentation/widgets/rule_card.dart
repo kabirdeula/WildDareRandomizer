@@ -109,7 +109,7 @@ class _RuleCardState extends State<RuleCard>
             duration: const Duration(milliseconds: 200),
             curve: Curves.easeOut,
             transform: Matrix4.identity()
-              ..translate(0.0, _isHovered ? -8.0 : 0.0)
+              ..translateByDouble(0.0, _isHovered ? -8.0 : 0.0, 0.0, 1.0)
               ..rotateZ(_isHovered ? -0.02 : 0.0),
             child: Stack(
               children: [
