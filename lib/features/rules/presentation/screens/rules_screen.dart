@@ -69,7 +69,7 @@ class _RulesScreenState extends State<RulesScreen>
           return Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              title: Text(AppConstants.appName),
+              title: const Text(AppConstants.appName),
               actions: [
                 // Deck selector button
                 BlocBuilder<DeckCubit, DeckState>(
@@ -110,7 +110,7 @@ class _RulesScreenState extends State<RulesScreen>
                               );
                             }),
                             const PopupMenuDivider(),
-                            PopupMenuItem<String>(
+                            const PopupMenuItem<String>(
                               value: 'manage',
                               child: Row(
                                 children: [
@@ -130,11 +130,11 @@ class _RulesScreenState extends State<RulesScreen>
               ],
             ),
             body: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [const Color(0xFFF8F9FA), const Color(0xFFE9ECEF)],
+                  colors: [Color(0xFFF8F9FA), Color(0xFFE9ECEF)],
                 ),
               ),
               child: Column(
@@ -389,10 +389,10 @@ class _ProgressHeader extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Icon(
+                const Icon(
                   Icons.info_outline,
                   size: 16,
-                  color: const Color(0xFF9B59B6),
+                  color: Color(0xFF9B59B6),
                 ),
                 const SizedBox(width: 8),
                 Expanded(

@@ -19,13 +19,13 @@ class DeckCubit extends Cubit<DeckState> {
     required this.deckRepository,
     required this.ruleRepository,
     required this.playedRulesSource,
-  }) : super(DeckState.loading()) {
+  }) : super(const DeckState.loading()) {
     loadDecks();
   }
 
   Future<void> loadDecks() async {
     try {
-      emit(DeckState.loading());
+      emit(const DeckState.loading());
 
       final allRules = await ruleRepository.fetchRules();
       final decks = await deckRepository.fetchDecks();

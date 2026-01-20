@@ -9,13 +9,13 @@ part 'rules_cubit.freezed.dart';
 class RulesCubit extends Cubit<RulesState> {
   final RuleRepository repository;
 
-  RulesCubit({required this.repository}) : super(RulesState.loading()) {
+  RulesCubit({required this.repository}) : super(const RulesState.loading()) {
     loadRules();
   }
 
   Future<void> loadRules() async {
     try {
-      emit(RulesState.loading());
+      emit(const RulesState.loading());
 
       final rules = await repository.fetchRules();
 

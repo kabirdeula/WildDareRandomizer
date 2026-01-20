@@ -21,10 +21,10 @@ class LogService {
   factory LogService() => _instance;
 
   static final Map<Level, AnsiColor> levelColor = {
-    Level.debug: AnsiColor.fg(14),
-    Level.info: AnsiColor.fg(15),
-    Level.warning: AnsiColor.fg(11),
-    Level.error: AnsiColor.fg(9),
+    Level.debug: const AnsiColor.fg(14),
+    Level.info: const AnsiColor.fg(15),
+    Level.warning: const AnsiColor.fg(11),
+    Level.error: const AnsiColor.fg(9),
   };
 
   /// The instance of `Logger` used for logging in the app.

@@ -15,7 +15,7 @@ void main() async {
     AppBlocProviders(
       child: DevicePreview(
         enabled: !kReleaseMode,
-        builder: (context) => WildDareApp(),
+        builder: (context) => const WildDareApp(),
       ),
     ),
   );

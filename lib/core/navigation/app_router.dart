@@ -24,13 +24,13 @@ abstract final class AppRouter {
       path: AppRoute.initial.path,
       name: AppRoute.initial.name,
       pageBuilder: (context, state) =>
-          buildFadeTransition(context, state, RulesScreen()),
+          buildFadeTransition(context, state, const RulesScreen()),
     ),
     GoRoute(
       path: AppRoute.deckManagement.path,
       name: AppRoute.deckManagement.name,
       pageBuilder: (context, state) =>
-          buildSlideTransition(context, state, DeckManagementScreen()),
+          buildSlideTransition(context, state, const DeckManagementScreen()),
     ),
   ];
 }
