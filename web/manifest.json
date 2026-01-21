@@ -1,11 +1,11 @@
 {
   "name": "Uno Dare Randomizer",
-  "short_name": "Uno Dare Randomizer",
-  "start_url": ".",
+  "short_name": "Uno Dare",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#0175C2",
   "theme_color": "#0175C2",
-  "description": "A new Flutter project.",
+  "description": "Randomize and customize your Uno Dare house rules for an exciting game experience!",
   "orientation": "portrait-primary",
   "prefer_related_applications": false,
   "icons": [
@@ -31,5 +31,7 @@
       "type": "image/png",
       "purpose": "maskable"
     }
-  ]
+  ],
+  "categories": ["games", "entertainment"],
+  "lang": "en"
 }
