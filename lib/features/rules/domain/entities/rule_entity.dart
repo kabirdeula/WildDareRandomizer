@@ -39,9 +39,10 @@ abstract class RuleEntity with _$RuleEntity {
 abstract class RandomValue with _$RandomValue {
   const factory RandomValue({
     @HiveField(0) required String type,
-    @HiveField(1) required int min,
-    @HiveField(2) required int max,
+    @HiveField(1) int? min,
+    @HiveField(2) int? max,
     @HiveField(3) @Default(false) bool reroll,
+    @HiveField(4) List<String>? choices,
   }) = _RandomValue;
 
   factory RandomValue.fromJson(Map<String, dynamic> json) =>

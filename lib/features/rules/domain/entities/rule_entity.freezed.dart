@@ -600,7 +600,7 @@ as String?,
 /// @nodoc
 mixin _$RandomValue {
 
-@HiveField(0) String get type;@HiveField(1) int get min;@HiveField(2) int get max;@HiveField(3) bool get reroll;
+@HiveField(0) String get type;@HiveField(1) int? get min;@HiveField(2) int? get max;@HiveField(3) bool get reroll;@HiveField(4) List<String>? get choices;
 /// Create a copy of RandomValue
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -613,16 +613,16 @@ $RandomValueCopyWith<RandomValue> get copyWith => _$RandomValueCopyWithImpl<Rand
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RandomValue&&(identical(other.type, type) || other.type == type)&&(identical(other.min, min) || other.min == min)&&(identical(other.max, max) || other.max == max)&&(identical(other.reroll, reroll) || other.reroll == reroll));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RandomValue&&(identical(other.type, type) || other.type == type)&&(identical(other.min, min) || other.min == min)&&(identical(other.max, max) || other.max == max)&&(identical(other.reroll, reroll) || other.reroll == reroll)&&const DeepCollectionEquality().equals(other.choices, choices));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,type,min,max,reroll);
+int get hashCode => Object.hash(runtimeType,type,min,max,reroll,const DeepCollectionEquality().hash(choices));
 
 @override
 String toString() {
-  return 'RandomValue(type: $type, min: $min, max: $max, reroll: $reroll)';
+  return 'RandomValue(type: $type, min: $min, max: $max, reroll: $reroll, choices: $choices)';
 }
 
 
@@ -633,7 +633,7 @@ abstract mixin class $RandomValueCopyWith<$Res>  {
   factory $RandomValueCopyWith(RandomValue value, $Res Function(RandomValue) _then) = _$RandomValueCopyWithImpl;
 @useResult
 $Res call({
-@HiveField(0) String type,@HiveField(1) int min,@HiveField(2) int max,@HiveField(3) bool reroll
+@HiveField(0) String type,@HiveField(1) int? min,@HiveField(2) int? max,@HiveField(3) bool reroll,@HiveField(4) List<String>? choices
 });
 
 
@@ -650,13 +650,14 @@ class _$RandomValueCopyWithImpl<$Res>
 
 /// Create a copy of RandomValue
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? type = null,Object? min = null,Object? max = null,Object? reroll = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? type = null,Object? min = freezed,Object? max = freezed,Object? reroll = null,Object? choices = freezed,}) {
   return _then(_self.copyWith(
 type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as String,min: null == min ? _self.min : min // ignore: cast_nullable_to_non_nullable
-as int,max: null == max ? _self.max : max // ignore: cast_nullable_to_non_nullable
-as int,reroll: null == reroll ? _self.reroll : reroll // ignore: cast_nullable_to_non_nullable
-as bool,
+as String,min: freezed == min ? _self.min : min // ignore: cast_nullable_to_non_nullable
+as int?,max: freezed == max ? _self.max : max // ignore: cast_nullable_to_non_nullable
+as int?,reroll: null == reroll ? _self.reroll : reroll // ignore: cast_nullable_to_non_nullable
+as bool,choices: freezed == choices ? _self.choices : choices // ignore: cast_nullable_to_non_nullable
+as List<String>?,
   ));
 }
 
@@ -741,10 +742,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@HiveField(0)  String type, @HiveField(1)  int min, @HiveField(2)  int max, @HiveField(3)  bool reroll)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@HiveField(0)  String type, @HiveField(1)  int? min, @HiveField(2)  int? max, @HiveField(3)  bool reroll, @HiveField(4)  List<String>? choices)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _RandomValue() when $default != null:
-return $default(_that.type,_that.min,_that.max,_that.reroll);case _:
+return $default(_that.type,_that.min,_that.max,_that.reroll,_that.choices);case _:
   return orElse();
 
 }
@@ -762,10 +763,10 @@ return $default(_that.type,_that.min,_that.max,_that.reroll);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@HiveField(0)  String type, @HiveField(1)  int min, @HiveField(2)  int max, @HiveField(3)  bool reroll)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@HiveField(0)  String type, @HiveField(1)  int? min, @HiveField(2)  int? max, @HiveField(3)  bool reroll, @HiveField(4)  List<String>? choices)  $default,) {final _that = this;
 switch (_that) {
 case _RandomValue():
-return $default(_that.type,_that.min,_that.max,_that.reroll);case _:
+return $default(_that.type,_that.min,_that.max,_that.reroll,_that.choices);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -782,10 +783,10 @@ return $default(_that.type,_that.min,_that.max,_that.reroll);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@HiveField(0)  String type, @HiveField(1)  int min, @HiveField(2)  int max, @HiveField(3)  bool reroll)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@HiveField(0)  String type, @HiveField(1)  int? min, @HiveField(2)  int? max, @HiveField(3)  bool reroll, @HiveField(4)  List<String>? choices)?  $default,) {final _that = this;
 switch (_that) {
 case _RandomValue() when $default != null:
-return $default(_that.type,_that.min,_that.max,_that.reroll);case _:
+return $default(_that.type,_that.min,_that.max,_that.reroll,_that.choices);case _:
   return null;
 
 }
@@ -797,13 +798,22 @@ return $default(_that.type,_that.min,_that.max,_that.reroll);case _:
 @JsonSerializable()
 
 class _RandomValue implements RandomValue {
-  const _RandomValue({@HiveField(0) required this.type, @HiveField(1) required this.min, @HiveField(2) required this.max, @HiveField(3) this.reroll = false});
+  const _RandomValue({@HiveField(0) required this.type, @HiveField(1) this.min, @HiveField(2) this.max, @HiveField(3) this.reroll = false, @HiveField(4) final  List<String>? choices}): _choices = choices;
   factory _RandomValue.fromJson(Map<String, dynamic> json) => _$RandomValueFromJson(json);
 
 @override@HiveField(0) final  String type;
-@override@HiveField(1) final  int min;
-@override@HiveField(2) final  int max;
+@override@HiveField(1) final  int? min;
+@override@HiveField(2) final  int? max;
 @override@JsonKey()@HiveField(3) final  bool reroll;
+ final  List<String>? _choices;
+@override@HiveField(4) List<String>? get choices {
+  final value = _choices;
+  if (value == null) return null;
+  if (_choices is EqualUnmodifiableListView) return _choices;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
 
 /// Create a copy of RandomValue
 /// with the given fields replaced by the non-null parameter values.
@@ -818,16 +828,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RandomValue&&(identical(other.type, type) || other.type == type)&&(identical(other.min, min) || other.min == min)&&(identical(other.max, max) || other.max == max)&&(identical(other.reroll, reroll) || other.reroll == reroll));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RandomValue&&(identical(other.type, type) || other.type == type)&&(identical(other.min, min) || other.min == min)&&(identical(other.max, max) || other.max == max)&&(identical(other.reroll, reroll) || other.reroll == reroll)&&const DeepCollectionEquality().equals(other._choices, _choices));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,type,min,max,reroll);
+int get hashCode => Object.hash(runtimeType,type,min,max,reroll,const DeepCollectionEquality().hash(_choices));
 
 @override
 String toString() {
-  return 'RandomValue(type: $type, min: $min, max: $max, reroll: $reroll)';
+  return 'RandomValue(type: $type, min: $min, max: $max, reroll: $reroll, choices: $choices)';
 }
 
 
@@ -838,7 +848,7 @@ abstract mixin class _$RandomValueCopyWith<$Res> implements $RandomValueCopyWith
   factory _$RandomValueCopyWith(_RandomValue value, $Res Function(_RandomValue) _then) = __$RandomValueCopyWithImpl;
 @override @useResult
 $Res call({
-@HiveField(0) String type,@HiveField(1) int min,@HiveField(2) int max,@HiveField(3) bool reroll
+@HiveField(0) String type,@HiveField(1) int? min,@HiveField(2) int? max,@HiveField(3) bool reroll,@HiveField(4) List<String>? choices
 });
 
 
@@ -855,13 +865,14 @@ class __$RandomValueCopyWithImpl<$Res>
 
 /// Create a copy of RandomValue
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? type = null,Object? min = null,Object? max = null,Object? reroll = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? type = null,Object? min = freezed,Object? max = freezed,Object? reroll = null,Object? choices = freezed,}) {
   return _then(_RandomValue(
 type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as String,min: null == min ? _self.min : min // ignore: cast_nullable_to_non_nullable
-as int,max: null == max ? _self.max : max // ignore: cast_nullable_to_non_nullable
-as int,reroll: null == reroll ? _self.reroll : reroll // ignore: cast_nullable_to_non_nullable
-as bool,
+as String,min: freezed == min ? _self.min : min // ignore: cast_nullable_to_non_nullable
+as int?,max: freezed == max ? _self.max : max // ignore: cast_nullable_to_non_nullable
+as int?,reroll: null == reroll ? _self.reroll : reroll // ignore: cast_nullable_to_non_nullable
+as bool,choices: freezed == choices ? _self._choices : choices // ignore: cast_nullable_to_non_nullable
+as List<String>?,
   ));
 }
 

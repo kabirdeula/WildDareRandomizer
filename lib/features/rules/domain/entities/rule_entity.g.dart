@@ -73,16 +73,17 @@ class RandomValueAdapter extends TypeAdapter<RandomValue> {
     };
     return RandomValue(
       type: fields[0] as String,
-      min: (fields[1] as num).toInt(),
-      max: (fields[2] as num).toInt(),
+      min: (fields[1] as num?)?.toInt(),
+      max: (fields[2] as num?)?.toInt(),
       reroll: fields[3] == null ? false : fields[3] as bool,
+      choices: (fields[4] as List?)?.cast<String>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, RandomValue obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.type)
       ..writeByte(1)
@@ -90,7 +91,9 @@ class RandomValueAdapter extends TypeAdapter<RandomValue> {
       ..writeByte(2)
       ..write(obj.max)
       ..writeByte(3)
-      ..write(obj.reroll);
+      ..write(obj.reroll)
+      ..writeByte(4)
+      ..write(obj.choices);
   }
 
   @override
@@ -155,9 +158,12 @@ Map<String, dynamic> _$RuleEntityToJson(_RuleEntity instance) =>
 
 _RandomValue _$RandomValueFromJson(Map<String, dynamic> json) => _RandomValue(
   type: json['type'] as String,
-  min: (json['min'] as num).toInt(),
-  max: (json['max'] as num).toInt(),
+  min: (json['min'] as num?)?.toInt(),
+  max: (json['max'] as num?)?.toInt(),
   reroll: json['reroll'] as bool? ?? false,
+  choices: (json['choices'] as List<dynamic>?)
+      ?.map((e) => e as String)
+      .toList(),
 );
 
 Map<String, dynamic> _$RandomValueToJson(_RandomValue instance) =>
@@ -166,4 +172,5 @@ Map<String, dynamic> _$RandomValueToJson(_RandomValue instance) =>
       'min': instance.min,
       'max': instance.max,
       'reroll': instance.reroll,
+      'choices': instance.choices,
     };
