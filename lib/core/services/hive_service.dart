@@ -34,6 +34,12 @@ abstract final class HiveService {
     await clearBox<PlayedRuleTracker>(boxName: playedRuleTrackerKey.name);
   }
 
+  static Future<void> deleteFromDisk() async {
+    await Hive.deleteBoxFromDisk(HiveBoxes.ruleEntity);
+    await Hive.deleteBoxFromDisk(HiveBoxes.deckEntity);
+    await Hive.deleteBoxFromDisk(HiveBoxes.playedRuleTracker);
+  }
+
   static Future<Box<T>> openBox<T>({required String boxName}) async {
     try {
       if (!Hive.isBoxOpen(boxName)) {
