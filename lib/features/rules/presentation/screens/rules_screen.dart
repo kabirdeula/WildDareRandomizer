@@ -233,8 +233,11 @@ class _RulesScreenState extends State<RulesScreen>
               ],
             ),
           );
+        } else if (state is DeckFailure) {
+          log.e(state.error);
+          return Center(child: Text(state.error.toString()));
         } else {
-          return const Center(child: Text("Error loading decks"));
+          return const Center(child: Text("No Deck Found"));
         }
       },
     );
