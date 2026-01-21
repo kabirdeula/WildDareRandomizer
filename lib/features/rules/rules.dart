@@ -2,6 +2,7 @@ export './data/repositories/rule_repository_impl.dart';
 export './data/sources/local/played_rules_local_source.dart';
 export './data/sources/local/rule_asset_source.dart';
 export './data/sources/local/rule_local_source.dart';
+export './data/sources/remote/rule_remote_source.dart';
 export './domain/entities/played_rule_tracker.dart';
 export './domain/entities/rule_entity.dart';
 export './domain/helpers/rule_display_helpers.dart';
