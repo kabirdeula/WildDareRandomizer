@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 1.1,
   "definitions": {
     "power-card": "Any card with a special effect (Skip, Reverse, +2, Wild, custom cards, etc.)",
     "number-card": "Cards numbered 0–9 with no special effect"
@@ -7,7 +7,7 @@
   "rules": [
     {
       "id": "sys:all-players-draw-x",
-      "title": "All Players Draw x",
+      "title": "All Players Draw {cards}",
       "description": "All players must draw {cards} cards except you.",
       "level": "easy",
       "tags": ["draw"],
@@ -26,7 +26,7 @@
     },
     {
       "id": "sys:number-chain",
-      "title": "Number Chain",
+      "title": "Number Chain \ud83d\udeab\nPenalty: {cards}",
       "description": "If the next player has the same number as yours, they can stack it. The chain continues without Wild cards. If it breaks, the last player in the chain draws {cards} cards.",
       "level": "hard",
       "tags": ["stack", "draw"],
@@ -37,7 +37,7 @@
     },
     {
       "id": "sys:change-color-next-draws-x",
-      "title": "Change Color, Next Draws x",
+      "title": "Change Color, Next Draws {cards} \ud83d\udeab",
       "description": "Change the color. If the next player does not have that color, they must draw {cards} cards.",
       "level": "medium",
       "tags": ["color", "draw"],
@@ -61,7 +61,7 @@
     },
     {
       "id": "sys:sudden-blast",
-      "title": "Sudden Blast",
+      "title": "Sudden Blast\nPenalty: {cards}",
       "description": "Choose a player. They immediately draw {cards} cards.",
       "level": "hard",
       "tags": ["draw"],
@@ -77,7 +77,7 @@
     },
     {
       "id": "sys:discard-one-color-next-draws-x",
-      "title": "Discard One Color, Next Draws x",
+      "title": "Discard One Color, Next Draws {cards}",
       "description": "Clearing a color with one card left triggers the next player to draw {cards} cards.",
       "level": "hard",
       "tags": ["discard", "draw"],
@@ -93,7 +93,7 @@
     },
     {
       "id": "sys:discard-same-number",
-      "title": "Discard Same Number",
+      "title": "Discard Same Number\nPenalty: {cards}",
       "description": "You may discard all cards with the same number at once. If you have only one card left, you cannot discard it. The next player draws {cards} cards.",
       "level": "medium",
       "tags": ["discard", "draw"],
@@ -116,26 +116,47 @@
       "flags": []
     },
     {
-      "id": "sys:draw-until-even",
-      "title": "Draw Until Even Card",
-      "description": "The next player must draw cards until they receive an even-numbered card.",
-      "level": "medium",
-      "tags": ["draw"],
-      "flags": ["override"]
-    },
-    {
-      "id": "sys:draw-until-wild",
-      "title": "Draw Until Wild Card",
-      "description": "The next player keeps drawing cards until they draw a Wild card.",
+      "id": "sys:draw-until-dynamic",
+      "title": "Draw Until {condition} \ud83d\udeab",
+      "description": "The next player must draw cards until they receive {article} {condition}.",
       "level": "extreme",
       "tags": ["draw"],
-      "flags": ["random"]
+      "flags": ["override", "tap-to-reroll"],
+      "random": {
+        "condition": {
+          "type": "choice",
+          "choices": [
+            "Even card",
+            "Odd card",
+            "Wild card",
+            "Skip card",
+            "Reverse card",
+            "Red card",
+            "Blue card",
+            "Green card",
+            "Yellow card",
+            "Number 0",
+            "Number 1",
+            "Number 2",
+            "Number 3",
+            "Number 4",
+            "Number 5",
+            "Number 6",
+            "Number 7",
+            "Number 8",
+            "Number 9"
+          ],
+          "reroll": true
+        },
+        "article": { "type": "choice", "choices": ["a", "an"], "reroll": false }
+      },
+      "clarification": "Once the specified card type is drawn, they stop and can play."
     },
     {
       "id": "sys:force-play",
-      "title": "Force Play",
+      "title": "Force Play\ud83d\udeab\nPenalty: {cards}",
       "description": "Choose a player and force them to discard a specific power card (+2 card). If they do not have it, they draw {cards} cards.",
-      "level": "easy",
+      "level": "hard",
       "tags": ["force", "draw"],
       "flags": [],
       "random": {
@@ -149,7 +170,7 @@
     },
     {
       "id": "sys:force-swap",
-      "title": "Force Swap",
+      "title": "Force Swap\ud83d\udeab",
       "description": "Force two other players to swap hands. You cannot include yourself.",
       "level": "hard",
       "tags": ["swap"],
@@ -173,7 +194,7 @@
     },
     {
       "id": "sys:lose-hand-draw-X",
-      "title": "Lose Hand and Draw X",
+      "title": "Lose Hand and Draw {cards}",
       "description": "The next player loses their entire hand and draws {cards} new cards.",
       "level": "hard",
       "tags": ["hand", "draw"],
@@ -197,8 +218,8 @@
     },
     {
       "id": "sys:random-draw",
-      "title": "Random Draw",
-      "description": "Draw {cards} random cards from another player’s hand and add them to your own.",
+      "title": "Random Draw\nPenalty: {cards}",
+      "description": "Draw {cards} random cards from another player\"s hand and add them to your own.",
       "level": "easy",
       "tags": ["draw"],
       "flags": ["random"],
@@ -213,13 +234,13 @@
     },
     {
       "id": "sys:skip-X-turns",
-      "title": "Skip X Turns",
+      "title": "Skip {turns} Turns",
       "description": "The next player skips {turns} turns.",
       "level": "easy",
       "tags": ["skip"],
       "flags": [],
       "random": {
-        "cards": {
+        "turns": {
           "type": "int",
           "min": 2,
           "max": 4,
@@ -236,16 +257,8 @@
       "flags": []
     },
     {
-      "id": "sys:swap-hands",
-      "title": "Swap Hands",
-      "description": "Swap hands with any player of your choice.",
-      "level": "easy",
-      "tags": ["swap"],
-      "flags": []
-    },
-    {
       "id": "sys:take-X-cards",
-      "title": "Take X Cards",
+      "title": "Take {cards} Cards",
       "description": "You must draw {cards} cards from the deck.",
       "level": "extreme",
       "tags": ["draw"],
@@ -261,11 +274,19 @@
     },
     {
       "id": "sys:ultimate-uno",
-      "title": "Ultimate Uno",
-      "description": "All players must play with their cards revealed for one round.",
+      "title": "Ultimate Uno\nRound: {round}",
+      "description": "All players must play with their cards revealed for {round} round.",
       "level": "extreme",
       "tags": ["visibility"],
-      "flags": []
+      "flags": [],
+      "random": {
+        "round": {
+          "type": "int",
+          "min": 1,
+          "max": 3,
+          "reroll": true
+        }
+      }
     },
     {
       "id": "sys:hand-collapse",
@@ -278,10 +299,18 @@
     {
       "id": "sys:reveal-next-player-hand",
       "title": "Reveal Your Hand",
-      "description": "The next player must play with their hand revealed until their next turn.",
+      "description": "The next player must play with their hand revealed for {round} round.",
       "level": "medium",
       "tags": ["visibility"],
-      "flags": ["duration-until-next-turn"]
+      "flags": ["duration-until-next-turn"],
+      "random": {
+        "round": {
+          "type": "int",
+          "min": 1,
+          "max": 3,
+          "reroll": true
+        }
+      }
     },
     {
       "id": "sys:wildest-card",
@@ -301,8 +330,8 @@
     },
     {
       "id": "sys:one-for-one",
-      "title": "One for One",
-      "description": "Take one Wild card from the discard pile and immediately discard one card from your hand in its place.",
+      "title": "One for One\ud83d\udeab",
+      "description": "Take one Wild card from the discard pile.",
       "level": "hard",
       "tags": ["wild", "swap"],
       "flags": ["requires-discard-pile"]
@@ -341,14 +370,6 @@
       "flags": ["revenge"]
     },
     {
-      "id": "sys:trade-hands",
-      "title": "Trade Hands",
-      "description": "Trade hands with the player next to you.",
-      "level": "easy",
-      "tags": ["swap"],
-      "flags": ["swap"]
-    },
-    {
       "id": "sys:trap-card",
       "title": "Trap Card \ud83d\udeab",
       "description": "A lingering punishment that forces a player to draw 3 cards every turn until a Power Card finally frees them..",
@@ -369,7 +390,7 @@
       "id": "sys:forces-redistribution",
       "title": "Forced Redistribution \ud83d\udeab",
       "description": "The affected player must distribute all cards from their hand to other players of their choice, excluding the player who gave the dare. After distributing all cards, they draw 7 new cards from the deck.",
-      "level": "Hard",
+      "level": "hard",
       "tags": ["shuffle"],
       "flags": ["redistribute"]
     },
@@ -377,7 +398,7 @@
       "id": "sys:reverse-donation",
       "title": "Reverse Donation",
       "description": "The affected player gives all their power cards to other players of their choice, excluding the player who gave the dare. Number cards remain untouched.",
-      "level": "Hard",
+      "level": "hard",
       "tags": ["shuffle"],
       "flags": ["shuffle"]
     },
@@ -388,6 +409,94 @@
       "level": "extreme",
       "tags": ["shuffle"],
       "flags": ["shuffle"]
+    },
+    {
+      "id": "sys:skip-x-players",
+      "title": "Skip {count} Players",
+      "description": "Skip the next {count} players in turn order.",
+      "level": "easy",
+      "tags": ["skip"],
+      "flags": ["tap-to-reroll"],
+      "random": {
+        "count": {
+          "type": "choice",
+          "choices": ["1", "2", "3"],
+          "reroll": true
+        }
+      }
+    },
+    {
+      "id": "sys:gift-cards",
+      "title": "Gift {count} Cards",
+      "description": "Choose {count} cards from your hand and give them to a player of your choice.",
+      "level": "easy",
+      "tags": ["gift"],
+      "flags": ["tap-to-reroll"],
+      "random": {
+        "count": {
+          "type": "int",
+          "min": 3,
+          "max": 6,
+          "reroll": true
+        }
+      }
+    },
+    {
+      "id": "sys:trade-hands",
+      "title": "Trade Hands: {type}",
+      "description": "Trade your hand with {type}.",
+      "level": "extreme",
+      "tags": ["trade"],
+      "flags": ["tap-to-reroll"],
+      "random": {
+        "type": {
+          "type": "choice",
+          "choices": [
+            "the player on your left",
+            "the player on your right",
+            "the player with the most cards",
+            "the player with the least cards",
+            "a random player"
+          ],
+          "reroll": true
+        }
+      }
+    },
+    {
+      "id": "sys:color-swap",
+      "title": "Color Swap",
+      "description": "Choose a color. All players must pass all cards of that color to the player on their left.",
+      "level": "extreme",
+      "tags": ["action", "swap"]
+    },
+    {
+      "id": "sys:kings-tribute",
+      "title": "King's Tribute",
+      "description": "The current player is King. Everyone else must offer one card. The King accepts one and returns the rest.",
+      "level": "hard",
+      "tags": ["action", "social"]
+    },
+    {
+      "id": "sys:duel",
+      "title": "Duel\nPenalty: {cards}",
+      "description": "Pick a player. Both draw a card. High card wins. Loser draws {cards} cards.",
+      "level": "medium",
+      "tags": ["action", "chance"],
+      "flags": ["tap-to-reroll"],
+      "random": {
+        "cards": { "type": "int", "min": 4, "max": 7, "reroll": true }
+      }
+    },
+    {
+      "id": "sys:charity",
+      "title": "Charity\nPenalty: {cards}",
+      "description": "Everyone passes {cards} cards to the player with the most cards.",
+      "level": "easy",
+      "tags": ["action", "balance"],
+      "flags": ["tap-to-reroll"],
+      "random": {
+        "cards": { "type": "int", "min": 3, "max": 6, "reroll": true }
+      }
     }
   ]
 }
