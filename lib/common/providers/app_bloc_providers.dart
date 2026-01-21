@@ -15,6 +15,7 @@ class AppBlocProviders extends StatelessWidget {
     final ruleRepository = RuleRepositoryImpl(
       localSource: RuleLocalSource(),
       assetSource: RuleAssetSource(),
+      remoteSource: RuleRemoteSource(),
     );
     return MultiBlocProvider(
       providers: [
