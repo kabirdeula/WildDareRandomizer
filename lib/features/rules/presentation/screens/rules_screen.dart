@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../common/common.dart';
 import '../../../../core/core.dart';
 import '../../../deck/deck.dart';
 import '../../rules.dart';
@@ -78,8 +79,7 @@ class _RulesScreenState extends State<RulesScreen>
       builder: (context, state) {
         if (state is DeckLoading) {
           return const RulesShimmer();
-        }
-        if (state is DeckLoaded) {
+        } else if (state is DeckLoaded) {
           final rules = state.displayedRules;
           final playedCount = state.playedRuleIds.length;
           final totalCount = rules.length.clamp(0, 16);
@@ -265,10 +265,15 @@ class _RulesScreenState extends State<RulesScreen>
             ),
           );
         } else if (state is DeckFailure) {
-          log.e(state.error);
-          return Center(child: Text(state.error.toString()));
+          return ErrorScreen(error: state.error, onRetry: () {});
         } else {
-          return const Center(child: Text("No Deck Found"));
+          return Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              title: const Text(AppConstants.appName),
+            ),
+            body: const Center(child: CircularProgressIndicator()),
+          );
         }
       },
     );
