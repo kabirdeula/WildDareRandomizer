@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -17,6 +19,8 @@ class _RulesScreenState extends State<RulesScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   int? _previousSeed;
+  Timer? _debounceTimer;
+  bool _isShuffling = false;
 
   @override
   void initState() {
@@ -30,19 +34,32 @@ class _RulesScreenState extends State<RulesScreen>
   @override
   void dispose() {
     _controller.dispose();
+    _debounceTimer?.cancel();
     super.dispose();
   }
 
-  int dynamicCrossAxisCount(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+  // FIXED: Debounced shuffle to prevent spam
+  void _handleShuffle() {
+    // Prevent multiple shuffles during animation
+    if (_isShuffling) return;
 
-    return (screenWidth < 600)
-        ? 2
-        : (screenWidth < 900)
-        ? 3
-        : (screenWidth < 1200)
-        ? 4
-        : 5;
+    // Cancel previous debounce timer if exists
+    _debounceTimer?.cancel();
+
+    // Set debounce timer
+    _debounceTimer = Timer(const Duration(milliseconds: 300), () {
+      if (mounted) {
+        setState(() => _isShuffling = true);
+        context.read<DeckCubit>().shuffleDeck();
+
+        // Reset shuffling flag after animation completes
+        Future.delayed(const Duration(milliseconds: 1200), () {
+          if (mounted) {
+            setState(() => _isShuffling = false);
+          }
+        });
+      }
+    });
   }
 
   @override
@@ -60,8 +77,9 @@ class _RulesScreenState extends State<RulesScreen>
       },
       builder: (context, state) {
         if (state is DeckLoading) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (state is DeckLoaded) {
+          return const RulesShimmer();
+        }
+        if (state is DeckLoaded) {
           final rules = state.displayedRules;
           final playedCount = state.playedRuleIds.length;
           final totalCount = rules.length.clamp(0, 16);
@@ -222,13 +240,26 @@ class _RulesScreenState extends State<RulesScreen>
                   ),
 
                 if (playedCount > 0) const SizedBox(height: 12),
+                // FIXED: Shuffle button with debouncing and visual feedback
                 FloatingActionButton.extended(
-                  onPressed: () {
-                    context.read<DeckCubit>().shuffleDeck();
-                  },
-                  icon: const Icon(Icons.shuffle),
-                  label: const Text('Shuffle'),
-                  backgroundColor: const Color(0xFF9B59B6),
+                  heroTag: 'shuffle',
+                  onPressed: _isShuffling ? null : _handleShuffle,
+                  icon: _isShuffling
+                      ? const SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              Colors.white,
+                            ),
+                          ),
+                        )
+                      : const Icon(Icons.shuffle),
+                  label: Text(_isShuffling ? 'Shuffling...' : 'Shuffle'),
+                  backgroundColor: _isShuffling
+                      ? const Color(0xFF9B59B6).withOpacitySafe(0.7)
+                      : const Color(0xFF9B59B6),
                 ),
               ],
             ),
