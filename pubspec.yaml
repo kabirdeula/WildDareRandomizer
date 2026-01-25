@@ -20,6 +20,7 @@ dependencies:
   json_annotation: ^4.9.0
   logger: ^2.6.2
   path_provider: ^2.1.5
+  shimmer: ^3.0.0
   uuid: ^4.5.2
 
   # flutter_launcher_icons: ^0.14.1
@@ -39,7 +40,7 @@ flutter:
 
   assets:
     - assets/icon/
-    - assets/rules/
+    - assets/rules/system_rules.json
     - assets/fonts/poppins/
 
   fonts:
