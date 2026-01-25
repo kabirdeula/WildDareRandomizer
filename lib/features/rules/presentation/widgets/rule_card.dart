@@ -158,83 +158,85 @@ class _RuleCardState extends State<RuleCard>
                         ),
                       ),
 
-                      // * Rule number badge
+                      // * IMPROVED: Larger, more visible number badge
                       Positioned(
-                        top: 12,
-                        left: 12,
+                        top: 16,
+                        left: 16,
                         child: Container(
                           padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 6,
+                            horizontal: 16,
+                            vertical: 8,
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacitySafe(0.9),
-                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(24),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black.withOpacitySafe(0.1),
-                                blurRadius: 4,
-                                offset: const Offset(0, 2),
+                                color: Colors.black.withOpacitySafe(0.12),
+                                blurRadius: 6,
+                                offset: const Offset(0, 3),
                               ),
                             ],
                           ),
                           child: Text(
                             '#${widget.index + 1}',
                             style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w800,
-                              color: cardColor,
+                              fontSize: 26, // INCREASED from 14
+                              fontWeight: FontWeight.w900,
+                              color: cardColor.darken(
+                                0.3,
+                              ), // Darker for contrast
                               letterSpacing: 0.5,
                             ),
                           ),
                         ),
                       ),
 
-                      // * Reroll indicator
+                      // * Reroll indicator (also larger)
                       if (hasRerollFlag && _ruleDisplay.canReroll)
                         Positioned(
                           top: 12,
                           right: 12,
                           child: Container(
-                            padding: const EdgeInsets.all(6),
+                            padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
                               color: Colors.white.withOpacitySafe(0.9),
                               shape: BoxShape.circle,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.black.withOpacitySafe(0.1),
-                                  blurRadius: 4,
-                                  offset: const Offset(0, 2),
+                                  color: Colors.black.withOpacitySafe(0.12),
+                                  blurRadius: 6,
+                                  offset: const Offset(0, 3),
                                 ),
                               ],
                             ),
                             child: Icon(
                               Icons.casino,
-                              size: 16,
-                              color: cardColor,
+                              size: 20, // INCREASED from 16
+                              color: cardColor.darken(0.2),
                             ),
                           ),
                         ),
-
-                      // * Rule title  (with processed random values)
+                      // IMPROVED: Larger, more readable text with better contrast
                       Center(
                         child: Padding(
-                          padding: const EdgeInsets.all(20),
+                          padding: const EdgeInsets.all(24),
                           child: Text(
                             _ruleDisplay.processedTitle,
-                            // widget.rule.title,
                             textAlign: TextAlign.center,
                             maxLines: 4,
                             overflow: TextOverflow.ellipsis,
-                            style: theme.textTheme.headlineSmall?.copyWith(
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
-                              height: 1.2,
+                            style: theme.textTheme.headlineMedium?.copyWith(
+                              fontSize: 24, // INCREASED from ~20
+                              fontWeight: FontWeight.w800,
+                              color: Colors
+                                  .white, // Dark blue-gray for better readability
+                              height: 1.3,
                               shadows: [
                                 Shadow(
-                                  color: Colors.black.withOpacitySafe(0.2),
+                                  color: Colors.black.withOpacitySafe(0.8),
                                   offset: const Offset(0, 2),
-                                  blurRadius: 4,
+                                  blurRadius: 3,
                                 ),
                               ],
                             ),
