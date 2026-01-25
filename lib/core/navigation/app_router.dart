@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../common/common.dart';
 import '../../features/deck/deck.dart';
 import '../../features/rules/rules.dart';
 import '../core.dart';
@@ -15,8 +16,10 @@ abstract final class AppRouter {
     routes: _routes,
     navigatorKey: _rootNavigatorKey,
     debugLogDiagnostics: true,
-    errorBuilder: (context, state) =>
-        Scaffold(body: Center(child: Text(state.error.toString()))),
+    errorBuilder: (context, state) => ErrorScreen(
+      error: state.error.toString(),
+      onRetry: () => context.push(AppRoute.initial.path),
+    ),
   );
 
   static final _routes = [
